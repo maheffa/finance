@@ -4,6 +4,9 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+### generated bundle from the FE ###
+src/main/resources/static/spa/**
+
 ### STS ###
 .apt_generated
 .classpath

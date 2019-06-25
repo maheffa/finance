@@ -7,7 +7,8 @@ const config = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     // path: './dist',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -55,7 +56,7 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
-    // publicPath: '/',
+    publicPath: '/',
     // contentBase: './dist',
     contentBase: path.join(__dirname, 'dist'),
     port: 3000,

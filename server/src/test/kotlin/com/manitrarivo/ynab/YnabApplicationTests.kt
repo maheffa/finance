@@ -12,5 +12,4 @@ class YnabApplicationTests {
 	@Test
 	fun contextLoads() {
 	}
-
 }

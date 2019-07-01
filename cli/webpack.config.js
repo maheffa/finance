@@ -62,6 +62,9 @@ const config = {
     ]
   },
   plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
       filename: 'index.html',
@@ -71,7 +74,6 @@ const config = {
   ],
   devServer: {
     publicPath: '/',
-    // contentBase: './dist',
     contentBase: path.join(__dirname, 'dist'),
     port: 3000,
     clientLogLevel: 'warn',

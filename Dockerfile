@@ -1,8 +1,13 @@
 FROM node:12 as CLI
-ARG cli_path=./finance_cli
 WORKDIR /app
-COPY $cli_path .
+COPY ./cli .
 RUN yarn install
-CMD ['yarn', 'build-prod']
+RUN yarn build-prod
 
-
+FROM maven:3.6.1-jdk-11
+WORKDIR /app
+COPY ./server .
+RUN mkdir -p ./src/main/resources/static/spa
+COPY --from=CLI /app/dist ./src/main/resources/static/spa
+RUN mvn -q clean install
+ENTRYPOINT java -jar target/ynab-0.0.1.jar

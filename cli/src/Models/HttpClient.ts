@@ -1,7 +1,8 @@
 import superagent from 'superagent';
 
+const host = process.env.NODE_ENV === 'development' ? 'http://localhost:8080' : window.location.origin;
+
 export class HttpClient {
-  private readonly BE_URL = 'http://127.0.0.1:8080/api';
   private readonly agent = superagent.agent().accept('json');
 
   public post<Request, Response>(endpoint: string, body: Request): Promise<Response> {
@@ -30,6 +31,6 @@ export class HttpClient {
   }
 
   private getUrl(endpoint: string) {
-    return `${this.BE_URL}${endpoint}`;
+    return `${host}/api${endpoint}`;
   }
 }

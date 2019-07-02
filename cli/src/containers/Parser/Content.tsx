@@ -12,7 +12,7 @@ import useTheme from '@material-ui/core/styles/useTheme';
 import makeStyles from '@material-ui/styles/makeStyles/makeStyles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import {ExportType, downloadCombinedFinanceCSV} from './actions';
+import {ExportType, downloadCombinedFinanceCSV, downloadYnabCSV} from './actions';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -62,6 +62,10 @@ export const Content: React.FunctionComponent<IContentProps> =
     const handleExportTypeChange = (event: React.ChangeEvent<unknown>) => {
       setExportType((event.target as HTMLInputElement).value as ExportType);
     };
+    const onExport = () => exportType === ExportType.COMBINED_FINANCE
+      ? downloadCombinedFinanceCSV(transactions, selectedTransactions, owner)
+      : downloadYnabCSV(transactions, selectedTransactions);
+
     return (
       <Box>
         <Divider variant="middle" />
@@ -101,7 +105,7 @@ export const Content: React.FunctionComponent<IContentProps> =
               color="secondary"
               disabled={selectedCount === 0}
               variant="outlined"
-              onClick={() => downloadCombinedFinanceCSV(transactions, selectedTransactions, owner)}
+              onClick={() => onExport()}
             >
               Export
             </Button>

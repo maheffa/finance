@@ -7,32 +7,59 @@ export enum ExportType {
   YNAB = 'Parser/YNAB',
 }
 
-export const downloadCombinedFinanceCSV = (transactions: ITransactionLog[], selected: List<boolean>, owner: string) => {
-  const csvContent = 'data:text/csv;charset=utf-8,' + selected
+const getFilteredTransactions = (transactions: ITransactionLog[], selected: List<boolean>): List<ITransactionLog> =>
+  selected
     .map((isSelected, index) => isSelected ? transactions[index] : undefined)
-    .filter((transaction: ITransactionLog | undefined): transaction is ITransactionLog => transaction !== undefined)
-    .map(transaction => ({
-      date: moment()
-        .year(transaction.date[0])
-        .month(transaction.date[1] - 1)
-        .date(transaction.date[2])
-        .format('D MMM, YYYY'),
-      description: transaction.payee || transaction.memo,
-      amount: -transaction.outFlow,
-    }))
-    .map(it => `${it.date}\t\t${it.description}\t${owner}\t${it.amount}`)
-    .join('\n');
-  const encodedUri = encodeURI(csvContent);
+    .filter((transaction: ITransactionLog | undefined): transaction is ITransactionLog =>
+      transaction !== undefined);
+
+const downloadCSV = (
+  transactions: ITransactionLog[],
+  selected: List<boolean>,
+  csvHeader: string,
+  csvRowBuilder: (transaction: ITransactionLog) => string,
+  csvName: string
+) => {
+  const csvRows = getFilteredTransactions(transactions, selected).map(csvRowBuilder).join('\n');
+  const encodedUri = encodeURI(`data:text/csv;charset=utf-8,${csvHeader}\n${csvRows}`);
   const link = document.createElement('a');
-  const displayDate = (t: ITransactionLog): string => moment()
-    .year(t.date[0])
-    .month(t.date[1] - 1)
-    .date(t.date[2])
-    .format('Do_MMM_YYYY');
-  const fileName = `${displayDate(transactions[0])}_until_${displayDate(transactions[transactions.length - 1])}.csv`;
   link.setAttribute('href', encodedUri);
-  link.setAttribute('download', fileName);
+  link.setAttribute('download', csvName);
   document.body.appendChild(link);
 
   link.click();
+};
+
+export const downloadCombinedFinanceCSV = (transactions: ITransactionLog[], selected: List<boolean>, owner: string) => {
+  const csvRowBuilder = (transaction: ITransactionLog) => {
+    const date = moment()
+      .year(transaction.date[0])
+      .month(transaction.date[1] - 1)
+      .date(transaction.date[2])
+      .format('D MMM, YYYY');
+    const description = transaction.payee || transaction.memo;
+    const amount = transaction.outFlow;
+    return `${date}\t\t${description}\t${owner}\t${amount}`;
+  };
+  return downloadCSV(transactions, selected, '', csvRowBuilder, `Combined Finance ${moment().format('lll')}`);
+};
+
+export const downloadYnabCSV = (transactions: ITransactionLog[], selected: List<boolean>) => {
+  const csvRowBuilder = (transaction: ITransactionLog) => {
+    const date = moment()
+      .year(transaction.date[0])
+      .month(transaction.date[1] - 1)
+      .date(transaction.date[2])
+      .format('DD/MM/YYYY');
+    const outFlow = Math.round(transaction.outFlow);
+    const inFlow = Math.round(transaction.inFlow);
+    return `${date},${transaction.payee},${transaction.memo},${outFlow},${inFlow}`;
+  };
+  return downloadCSV(
+    transactions,
+    selected,
+    'Date,Payee,Memo,Outflow,Inflow',
+    csvRowBuilder,
+    `Ynab ${moment().format('lll')}`
+  );
 };

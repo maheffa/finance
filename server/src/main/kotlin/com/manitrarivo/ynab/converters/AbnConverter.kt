@@ -31,7 +31,7 @@ class AbnConverter: Converter<Row>() {
             { word: String -> !word.matches("\\d+".toRegex()) }
     )
     
-    override fun getReader(inputStream: InputStream): TransactionReader<Row> =  AbnTransactionReader(inputStream)
+    override fun getReader(inputStream: InputStream) =  AbnTransactionReader(inputStream)
 
     override fun getDate(transaction: Row): LocalDate = LocalDate.parse(
             transaction.getCell(2).numericCellValue.toInt().toString(),

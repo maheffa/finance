@@ -15,19 +15,17 @@ export class HttpClient {
     }));
   }
 
-  public async sendFile<Response>(endpoint: string, fileName: string, fileContent: File): Promise<Response> {
-    return new Promise((resolve, reject) => this
-      .agent
-      .post(this.getUrl(endpoint))
-      .attach(fileName, fileContent)
-      .end((err, response) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(response.body as Response);
-        }
-      })
-    );
+  public async sendFile<Response>(
+    endpoint: string,
+    fileName: string,
+    fileContent: File): Promise<Response> {
+    return new Promise((resolve, reject) => {
+      this
+        .agent
+        .post(this.getUrl(endpoint))
+        .attach(fileName, fileContent)
+        .end((err, response) => err ? reject(err) : resolve(response.body as Response));
+    });
   }
 
   private getUrl(endpoint: string) {

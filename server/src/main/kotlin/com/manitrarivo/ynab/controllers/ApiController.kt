@@ -1,7 +1,6 @@
 package com.manitrarivo.ynab.controllers
 
-import com.manitrarivo.ynab.converters.AbnConverter
-import com.manitrarivo.ynab.converters.TransactionLog
+import com.manitrarivo.ynab.converters.*
 import com.manitrarivo.ynab.data.Greeting
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
@@ -18,8 +17,11 @@ class ApiController {
     @GetMapping("/hello")
     fun hello() = Greeting("Boo")
 
-    @PostMapping("/upload/abn")
-    fun uploadMultipartFile(@RequestParam("transactions") file: MultipartFile, model: Model): ArrayList<TransactionLog> {
-        return AbnConverter().convert(file.inputStream)
-    }
+    @PostMapping("/parser/revolut")
+    fun parseRevolutFile(@RequestParam("transactions") file: MultipartFile): ArrayList<TransactionLog> =
+            RevolutConverter().convert(file.inputStream)
+
+    @PostMapping("/parser/abn")
+    fun parseAbnFile(@RequestParam("transactions") file: MultipartFile): ArrayList<TransactionLog> =
+            AbnConverter().convert(file.inputStream)
 }

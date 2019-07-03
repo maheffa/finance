@@ -1,4 +1,5 @@
 import { HttpClient } from './HttpClient';
+import {TransactionType} from '../containers/Parser/actions';
 
 export interface ITransactionLog {
   date: [number, number, number];
@@ -9,7 +10,16 @@ export interface ITransactionLog {
 }
 
 export class ApiClient extends HttpClient {
-  public uploadAbnReport(file: File) {
-    return this.sendFile<ITransactionLog[]>('/upload/abn', 'transactions', file);
+  public uploadAbnReport(file: File, transactionType: TransactionType) {
+    let endpoint: string = '';
+    switch (transactionType) {
+      case TransactionType.ABN:
+        endpoint = '/parser/abn';
+        break;
+      case TransactionType.REVOLUT:
+        endpoint = '/parser/revolut';
+        break;
+    }
+    return this.sendFile<ITransactionLog[]>(endpoint, 'transactions', file);
   }
 }

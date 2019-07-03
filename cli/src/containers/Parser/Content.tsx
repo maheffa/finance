@@ -73,8 +73,6 @@ export const Content: React.FunctionComponent<IContentProps> =
           <FormControl component="fieldset" className={classes.formControl}>
             <FormLabel component="legend">Export type: </FormLabel>
             <RadioGroup
-              aria-label="Gender"
-              name="gender1"
               className={classes.group}
               value={exportType}
               onChange={handleExportTypeChange}

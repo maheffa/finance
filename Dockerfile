@@ -1,7 +1,8 @@
 FROM node:12 as CLI
 WORKDIR /app
-COPY ./cli .
+COPY ./cli/package.json package.json
 RUN yarn install
+COPY ./cli .
 RUN yarn build-prod
 
 FROM maven:3.6.1-jdk-11

@@ -1,99 +1,56 @@
 package com.manitrarivo.ynab.converters
 
+import org.apache.poi.ss.usermodel.Row
+import java.io.InputStream
+import java.lang.Exception
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-/*
-from datetime import datetime
-import pandas as pd
-from converters.base import FileReader, Converter
+class RevolutTransactionReader(inputStream: InputStream) : TransactionReader<List<String>>(0, 0) {
+    private val rows: List<String>
 
+    init {
+        val content = String(inputStream.readAllBytes())
+        rows = content.split("\\n".toRegex()).dropLast(1)
+        this.maxRow = rows.size
+        this.curRow = 1
+    }
 
-class RevolutFileReader(FileReader):
-    def __init__(self, filename):
-        cols = [RevolutConverter.COL_DATE,
-                RevolutConverter.COL_DESCRIPTION,
-                RevolutConverter.COL_OUTFLOW,
-                RevolutConverter.COL_INFLOW,
-                'eout', 'ein', 'bal', 'note']
-        self.data = pd.read_csv(filename, delimiter=';', names=cols, index_col=False)
-        self.data = self.filter_out_vaults(self.data)
-        FileReader.__init__(self, 1, len(self.data))
+    override fun getRowByIndex(index: Int) = this.rows[index].split(";")
+}
 
-    def filter_out_vaults(self, data):
-        vault_data = data[data[RevolutConverter.COL_DESCRIPTION].str.contains('Invisoble Saving')]
-        d_out = vault_data[RevolutConverter.COL_OUTFLOW].apply(lambda x: float(x.strip() or 0))
-        d_in = vault_data[RevolutConverter.COL_INFLOW].apply(lambda x: float(x.strip() or 0))
-        total = int((d_in - d_out).sum())
-        new_data = data[~data[RevolutConverter.COL_DESCRIPTION].str.contains('Invisoble Saving')]
-        new_data = new_data.append({
-            RevolutConverter.COL_DATE: data.iloc[-1][RevolutConverter.COL_DATE],
-            RevolutConverter.COL_DESCRIPTION: 'Vault',
-            RevolutConverter.COL_OUTFLOW: str(-total) if total <= 0 else '0',
-            RevolutConverter.COL_INFLOW: str(total) if total > 0 else '0',
-            'eout': '', 'ein': '', 'bal': '', 'note': '',
-        }, ignore_index=True)
-        return new_data
+class RevolutConverter: Converter<List<String>>() {
+    override fun getReader(inputStream: InputStream) = RevolutTransactionReader(inputStream)
 
-    def _get_row_by_index(self, index):
-        return self.data.iloc[index]
+    override fun getDate(transaction: List<String>): LocalDate {
+        return LocalDate.parse(
+                transaction[0].trim(),
+                DateTimeFormatter.ofPattern("LLL d, yyyy")
+        )
+    }
 
+    override fun getPayee(transaction: List<String>): String {
+        val payee = transaction[1].trim()
 
-class RevolutConverter(Converter):
-    COL_DATE = 'date'
-    COL_DESCRIPTION = 'desc'
-    COL_INFLOW = 'inflow'
-    COL_OUTFLOW = 'outflow'
-    DATE_FMT = '%b %d, %Y'
+        return when {
+            payee.startsWith("Uber") -> "Uber"
+            payee.startsWith("Google") -> "Google"
+            payee.startsWith("Amzn") || payee.contains("Amazon") -> "Amazon"
+            payee.startsWith("Audible") -> "Audible"
 
-    def get_file_reader(self, filename, **kwargs):
-        return RevolutFileReader(filename)
+            payee.contains("Booking.com") -> "Booking.com"
+            payee.contains("Linode") -> "Linode"
+            payee.contains("Top-Up by") -> "from ICS"
 
-    def get_date(self, transaction):
-        return datetime.strptime(str(transaction[RevolutConverter.COL_DATE].strip()), RevolutConverter.DATE_FMT).strftime(Converter.YNAB_DATE_FORMAT)
+            payee == "Payment from Am Manitrarivo" -> "from Daily checking"
 
-    def get_payee(self, transaction):
-        val = transaction[RevolutConverter.COL_DESCRIPTION].strip()
+            else -> payee
+        }
+    }
 
-        if val.startswith('Uber'):
-            return 'Uber'
+    private fun parseDouble(value: String) = try { value.trim().toDouble() } catch (e: Exception) { 0.0 }
 
-        if val.startswith('Google'):
-            return 'Google'
+    override fun getInflow(transaction: List<String>) = parseDouble(transaction[3])
 
-        if val.find('Booking.com') >= 0:
-            return 'Booking.com'
-
-        if val.find('Linode') >= 0:
-            return 'Linode'
-
-        if val == 'Payment from Am Manitrarivo':
-            return 'from Daily checking'
-
-        if val.startswith('Amzn') or (val.find('Amazon') >= 0):
-            return 'Amazon'
-
-        if val.startswith('Audible'):
-            return 'Audible'
-
-        if val.startswith('Top-Up by'):
-            return 'from ICS'
-
-        return ''
-
-    def get_memo(self, transaction):
-        desc = transaction[RevolutConverter.COL_DESCRIPTION].strip()
-
-        if desc.startswith('Top-Up by'):
-            return 'Top Up'
-
-        return desc if not self.get_payee(transaction) else ''
-
-    def get_outflow(self, transaction):
-        val = transaction[RevolutConverter.COL_OUTFLOW].strip()
-        return round(float(val)) if val else None
-
-    def get_inflow(self, transaction):
-        val = transaction[RevolutConverter.COL_INFLOW].strip()
-        return round(float(val)) if val else None
-
-
- */
+    override fun getOutflow(transaction: List<String>) = parseDouble(transaction[2])
+}

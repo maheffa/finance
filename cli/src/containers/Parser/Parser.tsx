@@ -9,7 +9,10 @@ import {useDropzone} from 'react-dropzone';
 import {ApiClient, ITransactionLog} from '../../Models/ApiClient';
 import {Content} from './Content';
 import {List} from 'immutable';
-import {ExportType} from './actions';
+import {ExportType, TransactionType} from './actions';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
 
 const apiCli = new ApiClient();
 
@@ -19,15 +22,17 @@ export const Parser: React.FunctionComponent = () => {
   const [toExportTransactions, exportTransactions] = useState<List<ITransactionLog>>(List<ITransactionLog>());
   const [exportType, setExportType] = useState<ExportType>(ExportType.COMBINED_FINANCE);
   const [parsed, setParsed] = useState<ITransactionLog[]>([]);
+  const [transactionType, setTransactionType] = useState<TransactionType | undefined>(undefined);
+
   const onDrop = useCallback((files: File[]) => setFile(files[0]), []);
   const {getRootProps, getInputProps} = useDropzone({onDrop});
   const {ref, ...rootProps} = getRootProps();
   const onUpload = () => setRequesting(true);
 
   useEffect(() => {
-    if (requesting && file) {
+    if (requesting && file && transactionType) {
       setParsed([]);
-      apiCli.uploadAbnReport(file).then(newParsed => {
+      apiCli.uploadAbnReport(file, transactionType).then(newParsed => {
         setRequesting(false);
         setParsed(newParsed);
       });
@@ -43,22 +48,42 @@ export const Parser: React.FunctionComponent = () => {
             <Box component="div" p={4}>
               {
                 file === undefined
-                  ? 'Drop ABN AMRO transaction file here'
+                  ? 'Drop file here, or click here to open a file'
                   : file.name
               }
             </Box>
           </Paper>
         </RootRef>
         <Box mt={2} mb={2}>
-          <Button
-            color="primary"
-            disabled={file === undefined || requesting}
-            variant="outlined"
-            onClick={onUpload}
-          >
-            Parse
-            <ListIcon />
-          </Button>
+          <Grid container alignContent="center" justify="space-between">
+            <Grid item>
+              <TextField
+                select
+                disabled={file === undefined}
+                label="Source"
+                value={transactionType}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  setTransactionType(event.target.value as TransactionType)}
+                helperText="Where did these transactions come from?"
+                margin="dense"
+                variant="outlined"
+              >
+                {Object.keys(TransactionType).map(type => <MenuItem key={type} value={type}>{type}</MenuItem>)}
+              </TextField>
+            </Grid>
+            <Grid item>
+              <Button
+                style={{ marginTop: 8 }}
+                color="primary"
+                disabled={transactionType === undefined}
+                variant="outlined"
+                onClick={onUpload}
+              >
+                Parse
+                <ListIcon />
+              </Button>
+            </Grid>
+          </Grid>
         </Box>
       </Box>
       <Box>

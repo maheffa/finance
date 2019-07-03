@@ -7,6 +7,11 @@ export enum ExportType {
   YNAB = 'Parser/YNAB',
 }
 
+export enum TransactionType {
+  ABN = 'ABN',
+  REVOLUT = 'REVOLUT',
+}
+
 const getFilteredTransactions = (transactions: ITransactionLog[], selected: List<boolean>): List<ITransactionLog> =>
   selected
     .map((isSelected, index) => isSelected ? transactions[index] : undefined)

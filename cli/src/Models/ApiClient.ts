@@ -19,6 +19,9 @@ export class ApiClient extends HttpClient {
       case TransactionType.REVOLUT:
         endpoint = '/parser/revolut';
         break;
+      case TransactionType.ICS:
+        endpoint = '/parser/ics';
+        break;
     }
     return this.sendFile<ITransactionLog[]>(endpoint, 'transactions', file);
   }

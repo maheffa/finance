@@ -1,17 +1,29 @@
 package com.manitrarivo.ynab.converters
 
-import org.apache.poi.ss.usermodel.Row
 import java.io.InputStream
-import java.lang.Exception
+import java.lang.Math.round
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.util.*
+
+fun parseDouble(value: String) = try { value.trim().toDouble() } catch (e: Exception) { 0.0 }
 
 class RevolutTransactionReader(inputStream: InputStream) : TransactionReader<List<String>>(0, 0) {
     private val rows: List<String>
 
     init {
         val content = String(inputStream.readAllBytes())
-        rows = content.split("\\n".toRegex()).dropLast(1)
+        val raw = content.split("\\n".toRegex())
+        val filteredRows = raw.filter { !it.contains("Invisoble Saving") && it.trim().isNotEmpty() }.toMutableList()
+        val savings = raw.filter { it.contains("Invisoble Saving") }
+        val totalSaving = savings
+                .map { parseDouble(it.split(";")[2]) }
+                .sum()
+        val lastRow: String = SimpleDateFormat("MMM d, yyyy").format(Date()) +
+                ";Vault Saving;" + round(totalSaving).toString() + ";;"
+        filteredRows.add(lastRow)
+        rows = filteredRows.filter { it.split(";").isNotEmpty() }
         this.maxRow = rows.size
         this.curRow = 1
     }
@@ -33,7 +45,6 @@ class RevolutConverter: Converter<List<String>>() {
         val payee = transaction[1].trim()
 
         return when {
-            payee.startsWith("Uber") -> "Uber"
             payee.startsWith("Google") -> "Google"
             payee.startsWith("Amzn") || payee.contains("Amazon") -> "Amazon"
             payee.startsWith("Audible") -> "Audible"
@@ -47,8 +58,6 @@ class RevolutConverter: Converter<List<String>>() {
             else -> payee
         }
     }
-
-    private fun parseDouble(value: String) = try { value.trim().toDouble() } catch (e: Exception) { 0.0 }
 
     override fun getInflow(transaction: List<String>) = parseDouble(transaction[3])
 

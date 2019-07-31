@@ -10,6 +10,7 @@ export enum ExportType {
 export enum TransactionType {
   ABN = 'ABN',
   REVOLUT = 'REVOLUT',
+  ICS = 'ICS',
 }
 
 const getFilteredTransactions = (transactions: ITransactionLog[], selected: List<boolean>): List<ITransactionLog> =>

@@ -1,43 +1,39 @@
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
 import React from 'react';
-import useTheme from '@material-ui/core/styles/useTheme';
+import { Link } from 'react-router-dom';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  })
+export const AppBar: React.FunctionComponent<{}> = () => (
+  <div className="sidebar">
+    <nav className="sidebar-nav">
+      <ul className="nav">
+        <li className="nav-title">Finance Tool</li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/">Converter</Link>
+        </li>
+        {/*<li className="nav-item">*/}
+          {/*<a className="nav-link" href="#">*/}
+            {/*<i className="nav-icon cui-speedometer"/> With badge*/}
+            {/*<span className="badge badge-primary">NEW</span>*/}
+          {/*</a>*/}
+        {/*</li>*/}
+        {/*<li className="nav-item nav-dropdown">*/}
+          {/*<a className="nav-link nav-dropdown-toggle" href="#">*/}
+            {/*<i className="nav-icon cui-puzzle"/> Nav dropdown*/}
+          {/*</a>*/}
+          {/*<ul className="nav-dropdown-items">*/}
+            {/*<li className="nav-item">*/}
+              {/*<a className="nav-link" href="#">*/}
+                {/*<i className="nav-icon cui-puzzle"/> Nav dropdown item*/}
+              {/*</a>*/}
+            {/*</li>*/}
+            {/*<li className="nav-item">*/}
+              {/*<a className="nav-link" href="#">*/}
+                {/*<i className="nav-icon cui-puzzle"/> Nav dropdown item*/}
+              {/*</a>*/}
+            {/*</li>*/}
+          {/*</ul>*/}
+        {/*</li>*/}
+      </ul>
+    </nav>
+    <button className="sidebar-minimizer brand-minimizer" type="button"/>
+  </div>
 );
-
-export const ButtonAppBar: React.FunctionComponent<{}> = () => {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="primary">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            Personal Finance Tool
-          </Typography>
-          {/*<Button color="inherit">Login</Button>*/}
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}

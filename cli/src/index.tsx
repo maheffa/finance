@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import 'typeface-roboto';
 import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
+import '@coreui/coreui/dist/css/coreui.css';
+import '@coreui/coreui/dist/js/coreui.js';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

@@ -48,7 +48,8 @@ class RevolutConverter: Converter<List<String>>() {
         // 1- Transform "Exchange EUR to  FX Rate €1 = US$123.456789" to "to Revolut Portfolio"
         // 2- Transform "Patreon Membership FX Rate €1 = US$123.456789" to "Patreon Membership"
         // 3- Transform "You Need A Budget FX Rate €1 = US$1.0967" to "You Need A Budget"
-        // Or, case 2 & 3 can be generalized. 
+        // Or, case 2 & 3 can be generalized.
+        // Do mention in the memo what's the exchange rate is.
         return when {
             payee.startsWith("Google") -> "Google"
             payee.startsWith("Amzn") || payee.contains("Amazon") -> "Amazon"

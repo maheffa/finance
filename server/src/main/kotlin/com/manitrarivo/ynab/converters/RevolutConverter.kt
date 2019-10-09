@@ -44,6 +44,7 @@ class RevolutConverter: Converter<List<String>>() {
     override fun getPayee(transaction: List<String>): String {
         val payee = transaction[1].trim()
 
+        // TODO: Transform "Exchange EUR to  FX Rate €1 = US$123.456789" to "to Revolut Portfolio"
         return when {
             payee.startsWith("Google") -> "Google"
             payee.startsWith("Amzn") || payee.contains("Amazon") -> "Amazon"

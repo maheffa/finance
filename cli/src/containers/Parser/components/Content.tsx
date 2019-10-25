@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {List} from 'immutable';
-import {ITransactionLog} from '../../Models/ApiClient';
+import {ITransactionLog} from '../../../Models/ApiClient';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
@@ -12,7 +12,7 @@ import useTheme from '@material-ui/core/styles/useTheme';
 import makeStyles from '@material-ui/styles/makeStyles/makeStyles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import {ExportType, downloadCombinedFinanceCSV, downloadYnabCSV} from './actions';
+import {ExportType, downloadCombinedFinanceCSV, downloadYnabCSV} from '../actions';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';

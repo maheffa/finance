@@ -2,10 +2,10 @@ package com.manitrarivo.ynab.data.db
 
 import org.springframework.data.repository.CrudRepository
 
-interface CombinedTransactionRepository: CrudRepository<CombinedTransaction, Int>
-interface CombinedTransactionCategoryRepository: CrudRepository<CombinedTransactionCategory, Int>
-interface CombinedTransactionPayeeRepository: CrudRepository<CombinedTransactionPayee, Int>
-interface ContributionRepository: CrudRepository<ContributionRepository, Int>
-interface OweTransactionRepository: CrudRepository<OweTransaction, Int>
-interface PaybackTransactionRepository: CrudRepository<PaybackTransaction, Int>
-interface UserRepository: CrudRepository<User, Int>
+public interface UserRepository: CrudRepository<User, Int>
+
+public interface PayeeRepository: CrudRepository<Payee, Int> {
+    fun findByNameIgnoreCase(name: String): Iterable<Payee>
+}
+
+public interface TransactionRepository: CrudRepository<Transaction, Int>

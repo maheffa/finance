@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { StylesProvider } from '@material-ui/styles';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Parser } from '../Parser/Parser';
+import { Parser } from '../Parser/components/Parser';
 import { AppBar } from './AppBar';
 
 const App: React.FunctionComponent = () => {

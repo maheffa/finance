@@ -11,20 +11,14 @@ import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 
 @Entity
-data class PaybackTransaction (
-    @ManyToOne
-    @JoinColumn
-    val from: User,
-
-    @ManyToOne
-    @JoinColumn
-    val to: User,
-
-    @Column(nullable = false)
-    val amount: Double
+class Transaction (
+    val date: LocalDateTime,
+    val memo: String,
+    val amount: Double,
+    @ManyToOne @JoinColumn(name = "user_id") val user: User,
+    @ManyToOne @JoinColumn(name = "payee_id") val payee: Payee
 ) {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
 
     @CreationTimestamp

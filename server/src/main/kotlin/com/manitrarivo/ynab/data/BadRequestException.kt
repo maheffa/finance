@@ -1,4 +1,4 @@
-package com.manitrarivo.ynab.controllers
+package com.manitrarivo.ynab.data
 
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ResponseStatus

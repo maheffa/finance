@@ -1,5 +1,6 @@
 package com.manitrarivo.ynab.controllers
 
+import com.manitrarivo.ynab.data.BadRequestException
 import com.manitrarivo.ynab.data.db.Payee
 import com.manitrarivo.ynab.data.db.PayeeRepository
 import com.manitrarivo.ynab.data.db.Transaction
@@ -7,8 +8,6 @@ import com.manitrarivo.ynab.data.db.TransactionRepository
 import com.manitrarivo.ynab.data.db.UserRepository
 import com.manitrarivo.ynab.data.request.TransactionCreateRequest
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody

@@ -26,7 +26,7 @@ class TransactionController {
     private lateinit var transactionRepository: TransactionRepository
 
     @PostMapping("/create")
-    fun create(@RequestBody request: TransactionCreateRequest): Transaction {
+    fun createTransaction(@RequestBody request: TransactionCreateRequest): Transaction {
         val user = userRepository
             .findById(request.userId)
             .orElseThrow { throw BadRequestException(message = "User with ID: <" + request.userId + "> not found.") }

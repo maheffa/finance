@@ -159,12 +159,27 @@
                 <configuration>
                     <jsonLibrary>jackson2</jsonLibrary>
                     <outputFileType>implementationFile</outputFileType>
-                    <outputKind>global</outputKind>
+                    <outputKind>module</outputKind>
                     <classPatterns>
                         <classPattern>com.manitrarivo.ynab.controllers.*</classPattern>
+<!--                        <classPattern>com.manitrarivo.ynab.converters.**</classPattern>-->
                     </classPatterns>
+<!--                    <excludeClasses>-->
+                        <!-- The parser somehow fails. Probably because of the multipart upload -->
+<!--                        <excludeClass>com.manitrarivo.ynab.controllers.ParserController</excludeClass>-->
+<!--                    </excludeClasses>-->
+                    <generateSpringApplicationClient>true</generateSpringApplicationClient>
+                    <customTypeMappings>
+                        <customTypeMapping>org.springframework.web.multipart.MultipartFile:File</customTypeMapping>
+                        <customTypeMapping>java.time.LocalDate:[number, number, number]</customTypeMapping>
+                    </customTypeMappings>
                 </configuration>
                 <dependencies>
+                    <dependency>
+                        <groupId>javax.annotation</groupId>
+                        <artifactId>javax.annotation-api</artifactId>
+                        <version>1.3.2</version>
+                    </dependency>
                     <dependency>
                         <groupId>cz.habarta.typescript-generator</groupId>
                         <artifactId>typescript-generator-spring</artifactId>

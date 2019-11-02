@@ -8,6 +8,7 @@
     "@material-ui/icons": "^4.2.1",
     "@material-ui/styles": "^4.1.2",
     "@types/jquery": "^3.3.31",
+    "@types/react-redux": "^7.1.5",
     "immutable": "^4.0.0-rc.12",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
@@ -15,10 +16,13 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-dropzone": "^10.1.5",
+    "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "redux": "^4.0.4",
     "superagent": "^5.1.0",
     "typeface-roboto": "^0.0.54",
+    "typesafe-actions": "^5.1.0-1",
     "typescript": "^3.5.2"
   },
   "devDependencies": {

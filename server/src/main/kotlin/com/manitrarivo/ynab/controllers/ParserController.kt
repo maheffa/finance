@@ -17,14 +17,14 @@ import org.springframework.web.multipart.MultipartFile
 class ParserController {
 
     @PostMapping("/revolut")
-    fun parseRevolutFile(@RequestParam("transactions") file: MultipartFile): ArrayList<TransactionLog> =
+    fun parseRevolutFile(@RequestParam("transactionsFile") file: MultipartFile): List<TransactionLog> =
         RevolutConverter().convert(file.inputStream)
 
     @PostMapping("/abn")
-    fun parseAbnFile(@RequestParam("transactions") file: MultipartFile): ArrayList<TransactionLog> =
+    fun parseAbnFile(@RequestParam("transactionsFile") file: MultipartFile): List<TransactionLog> =
         AbnConverter().convert(file.inputStream)
 
     @PostMapping("/ics")
-    fun parseIcsFile(@RequestParam("transactions") file: MultipartFile): ArrayList<TransactionLog> =
+    fun parseIcsFile(@RequestParam("transactionsFile") file: MultipartFile): List<TransactionLog> =
         IcsConverter().convert(file.inputStream)
 }

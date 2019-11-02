@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { StylesProvider } from '@material-ui/styles';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Parser } from '../Parser/components/Parser';
+import { Index } from '../Parser/index';
 import { AppBar } from './AppBar';
 
 const App: React.FunctionComponent = () => {
@@ -13,7 +13,7 @@ const App: React.FunctionComponent = () => {
         <AppBar/>
         <Container maxWidth="md">
           <Box py={2}>
-            <Parser/>
+            <Index/>
           </Box>
         </Container>
       </StylesProvider>

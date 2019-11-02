@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController
 
 @CrossOrigin(origins = ["*"], allowedHeaders = ["*"])
 @RestController
-@RequestMapping("api")
 class ApiController {
 
     @GetMapping("/hello")

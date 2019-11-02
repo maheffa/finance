@@ -1,29 +1,20 @@
-import {List} from 'immutable';
-import {ITransactionLog} from '../../Models/ApiClient';
+import { List } from 'immutable';
 import moment from 'moment';
+import { TransactionLog } from '../../api/ynab';
+import { ynabCli } from '../../api/YnabClient';
+import { TransactionType } from './constants';
 
-export enum ExportType {
-  COMBINED_FINANCE = 'Parser/COMBINED_FINANCE',
-  YNAB = 'Parser/YNAB',
-}
-
-export enum TransactionType {
-  ABN = 'ABN',
-  REVOLUT = 'REVOLUT',
-  ICS = 'ICS',
-}
-
-const getFilteredTransactions = (transactions: ITransactionLog[], selected: List<boolean>): List<ITransactionLog> =>
+const getFilteredTransactions = (transactions: TransactionLog[], selected: List<boolean>): List<TransactionLog> =>
   selected
     .map((isSelected, index) => isSelected ? transactions[index] : undefined)
-    .filter((transaction: ITransactionLog | undefined): transaction is ITransactionLog =>
+    .filter((transaction: TransactionLog | undefined): transaction is TransactionLog =>
       transaction !== undefined);
 
 const downloadCSV = (
-  transactions: ITransactionLog[],
+  transactions: TransactionLog[],
   selected: List<boolean>,
   csvHeader: string,
-  csvRowBuilder: (transaction: ITransactionLog) => string,
+  csvRowBuilder: (transaction: TransactionLog) => string,
   csvName: string
 ) => {
   const csvRows = getFilteredTransactions(transactions, selected).map(csvRowBuilder).join('\n');
@@ -36,8 +27,8 @@ const downloadCSV = (
   link.click();
 };
 
-export const downloadCombinedFinanceCSV = (transactions: ITransactionLog[], selected: List<boolean>, owner: string) => {
-  const csvRowBuilder = (transaction: ITransactionLog) => {
+export const downloadCombinedFinanceCSV = (transactions: TransactionLog[], selected: List<boolean>, owner: string) => {
+  const csvRowBuilder = (transaction: TransactionLog) => {
     const date = moment()
       .year(transaction.date[0])
       .month(transaction.date[1] - 1)
@@ -50,8 +41,8 @@ export const downloadCombinedFinanceCSV = (transactions: ITransactionLog[], sele
   return downloadCSV(transactions, selected, '', csvRowBuilder, `Combined Finance ${moment().format('lll')}`);
 };
 
-export const downloadYnabCSV = (transactions: ITransactionLog[], selected: List<boolean>) => {
-  const csvRowBuilder = (transaction: ITransactionLog) => {
+export const downloadYnabCSV = (transactions: TransactionLog[], selected: List<boolean>) => {
+  const csvRowBuilder = (transaction: TransactionLog) => {
     const date = moment()
       .year(transaction.date[0])
       .month(transaction.date[1] - 1)
@@ -68,4 +59,31 @@ export const downloadYnabCSV = (transactions: ITransactionLog[], selected: List<
     csvRowBuilder,
     `Ynab ${moment().format('lll')}`
   );
+};
+
+export const parseFile = (file: File | undefined, transactionType: TransactionType | undefined, actions: {
+  setIsParsing: (value: boolean) => void,
+  setFile: (value: File | undefined) => void,
+  setParsed: (logs: TransactionLog[]) => void,
+}) => {
+  if (!file || !transactionType) {
+    return;
+  }
+
+  const onSuccess = (logs: TransactionLog[]) => {
+    actions.setIsParsing(false);
+    actions.setFile(undefined);
+    actions.setParsed(logs);
+  };
+  actions.setParsed([]);
+  actions.setIsParsing(true);
+
+  switch (transactionType) {
+    case TransactionType.ABN:
+      return ynabCli.parseAbnFile({ transactionsFile: file }).then(onSuccess);
+    case TransactionType.REVOLUT:
+      return ynabCli.parseRevolutFile({ transactionsFile: file }).then(onSuccess);
+    case TransactionType.ICS:
+      return ynabCli.parseIcsFile({ transactionsFile: file }).then(onSuccess);
+  }
 };

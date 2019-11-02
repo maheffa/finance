@@ -18,9 +18,9 @@ class UserController {
     @Autowired
     private lateinit var userRepository: UserRepository
 
-    @GetMapping("/list")
-    fun list() = this.userRepository.findAll()
+    @GetMapping("/users")
+    fun getUsers() = this.userRepository.findAll().toList()
 
     @PostMapping("/create")
-    fun create(@RequestBody createRequest: UserCreateRequest) = this.userRepository.save(User(createRequest.name))
+    fun createUser(@RequestBody createRequest: UserCreateRequest) = this.userRepository.save(User(createRequest.name))
 }

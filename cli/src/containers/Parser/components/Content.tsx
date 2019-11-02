@@ -20,9 +20,7 @@ interface IContentProps {
 export const Content: React.FunctionComponent<IContentProps> = ({ transactions }) => {
   const classes = useStyles(useTheme())();
   const nTransactions = transactions.length;
-  const [selectedTransactions, selectTransactions] = useState<List<boolean>>(
-    List<boolean>(Array(nTransactions).fill(false))
-  );
+  const [selectedTransactions, selectTransactions] = useState<List<boolean>>(List<boolean>(Array(nTransactions).fill(false)));
   const selectedCount = selectedTransactions.filter(v => v).size;
 
   return (

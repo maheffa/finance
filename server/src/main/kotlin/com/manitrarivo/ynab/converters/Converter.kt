@@ -18,6 +18,7 @@ abstract class Converter<Transaction> {
 
         while (reader.hasNextTransaction()) {
             val transaction = reader.getNextTransaction()
+            println(transaction)
             logs.add(TransactionLog(
                     this.getDate(transaction),
                     this.getMemo(transaction),

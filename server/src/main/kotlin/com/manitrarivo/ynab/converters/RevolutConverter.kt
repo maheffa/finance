@@ -5,9 +5,14 @@ import java.lang.Math.round
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.*
 
-fun parseDouble(value: String) = try { value.trim().toDouble() } catch (e: Exception) { 0.0 }
+fun parseDouble(value: String) = try {
+    value.trim().replace(".", "").replace(",", ".").toDouble()
+} catch (e: Exception) { 0.0 }
+
+fun isVaultSavingRow(row: String) = row.contains("Invisible Saving") || row.contains("Boatin-drakitra")
 
 class RevolutTransactionReader(inputStream: InputStream) : TransactionReader<List<String>>(0, 0) {
     private val rows: List<String>
@@ -15,12 +20,12 @@ class RevolutTransactionReader(inputStream: InputStream) : TransactionReader<Lis
     init {
         val content = String(inputStream.readAllBytes())
         val raw = content.split("\\n".toRegex())
-        val filteredRows = raw.filter { !it.contains("Invisoble Saving") && it.trim().isNotEmpty() }.toMutableList()
-        val savings = raw.filter { it.contains("Invisoble Saving") }
+        val filteredRows = raw.filter { !isVaultSavingRow(it) && it.trim().isNotEmpty() }.toMutableList()
+        val savings = raw.filter { isVaultSavingRow(it) }
         val totalSaving = savings
                 .map { parseDouble(it.split(";")[2]) }
                 .sum()
-        val lastRow: String = SimpleDateFormat("MMM d, yyyy").format(Date()) +
+        val lastRow: String = SimpleDateFormat("MMMM d").format(Date()) +
                 ";Vault Saving;" + round(totalSaving).toString() + ";;"
         filteredRows.add(lastRow)
         rows = filteredRows.filter { it.split(";").isNotEmpty() }
@@ -35,10 +40,17 @@ class RevolutConverter: Converter<List<String>>() {
     override fun getReader(inputStream: InputStream) = RevolutTransactionReader(inputStream)
 
     override fun getDate(transaction: List<String>): LocalDate {
-        return LocalDate.parse(
+        try {
+            return LocalDate.parse(
+                transaction[0].trim() + ", " + LocalDate.now().year.toString(),
+                DateTimeFormatter.ofPattern("MMMM d, yyyy")
+            )
+        } catch(e: DateTimeParseException) {
+            return LocalDate.parse(
                 transaction[0].trim(),
-                DateTimeFormatter.ofPattern("LLL d, yyyy")
-        )
+                DateTimeFormatter.ofPattern("d MMM yyy")
+            )
+        }
     }
 
     override fun getPayee(transaction: List<String>): String {

@@ -1,14 +1,23 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import {
-  FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button, MenuItem, TextField, Box,
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Button,
+  MenuItem,
+  TextField,
+  Box,
 } from '@material-ui/core';
 import { ExportType } from '../constants';
-import { useState } from 'react';
 import { downloadCombinedFinanceCSV, downloadYnabCSV } from '../actions';
-import { TransactionLog } from '../../../api/ynab';
+import { TransactionLog, User } from '../../../api/ynab';
 import { List } from 'immutable';
 import { useStyles } from '../../../style';
 import useTheme from '@material-ui/core/styles/useTheme';
+import { ynabCli } from '../../../api/YnabClient';
 
 interface IExportProps {
   selectedTransactions: List<boolean>;
@@ -20,11 +29,19 @@ const doExport = (exportType: ExportType, owner: string, selectedTransactions: L
     ? downloadCombinedFinanceCSV(transactions, selectedTransactions, owner)
     : downloadYnabCSV(transactions, selectedTransactions);
 
+const getUserOwner = (owner: number | undefined, users: User[]) => {
+  const found = users.find(user => user.id === owner);
+  return found ? found.name : '';
+};
+
 export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransactions, transactions }) => {
   const classes = useStyles(useTheme())();
-  const [owner, setOwner] = useState('');
+  const [users, setUsers] = useState<User[]>([]);
+  const [owner, setOwner] = useState<number>();
   const [exportType, setExportType] = useState<ExportType>(ExportType.COMBINED_FINANCE);
   const selectedCount = selectedTransactions.filter(v => v).size;
+
+  useEffect(() => { ynabCli.getUsers().then(setUsers); }, []);
 
   return (
     <FormControl component="fieldset" className={classes.formControl}>
@@ -46,12 +63,14 @@ export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransact
                 select
                 label="Owner"
                 value={owner}
-                onChange={e => setOwner(e.target.value)}
+                onChange={e => setOwner(parseInt(e.target.value, 10))}
                 helperText="Whose transactions are these?"
                 margin="dense"
                 variant="outlined"
               >
-                {['Mahefa', 'Hasina'].map(name => <MenuItem key={name} value={name}>{name}</MenuItem>)}
+                {
+                  users.map(user => <MenuItem key={user.id} value={user.id}>{user.name}</MenuItem>)
+                }
               </TextField>
             </Box>
           ) : null
@@ -60,7 +79,7 @@ export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransact
         color="secondary"
         disabled={selectedCount === 0}
         variant="outlined"
-        onClick={() => doExport(exportType, owner, selectedTransactions, transactions)}
+        onClick={() => doExport(exportType, getUserOwner(owner, users) , selectedTransactions, transactions)}
       >
         Export
       </Button>

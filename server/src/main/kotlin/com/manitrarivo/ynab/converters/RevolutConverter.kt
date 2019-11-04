@@ -8,9 +8,18 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.*
 
-fun parseDouble(value: String) = try {
-    value.trim().replace(".", "").replace(",", ".").toDouble()
-} catch (e: Exception) { 0.0 }
+fun parseDouble(value: String): Double {
+    val trimmed = value.trim()
+    val decimal = trimmed.takeLast(3)
+    return when {
+        // 1,000.00 or 100.00
+        decimal[0] == '.' -> trimmed.replace(",", "").toDouble()
+        // 1.000,00 or 100,00
+        decimal[0] == ',' -> trimmed.replace(".", "").replace(",", ".").toDouble()
+        // If no decimal, remove "." or ","
+        else -> trimmed.replace(",", "").replace(".", "").toDouble()
+    }
+}
 
 fun isVaultSavingRow(row: String) = row.contains("Invisible Saving") || row.contains("Boatin-drakitra")
 

@@ -19,7 +19,6 @@ build-and-push:
 	cd ./cli && yarn install && yarn build-prod
 	rm -rf ${server_folder} && mkdir -p ${server_folder}
 	cp -R ./cli/dist/* ${server_folder}
-	cd ./server && mvn clean
-	cd ./server && mvn install
+	cd ./server && mvn -q clean install
 	scp ./server/target/ynab-0.0.1.jar linode:Workspace/bin
 

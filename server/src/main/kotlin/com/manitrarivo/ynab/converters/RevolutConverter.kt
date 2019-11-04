@@ -12,6 +12,7 @@ fun parseDouble(value: String): Double {
     val trimmed = value.trim()
     val decimal = trimmed.takeLast(3)
     return when {
+        decimal.isEmpty() || decimal.isBlank() -> 0.0
         // 1,000.00 or 100.00
         decimal[0] == '.' -> trimmed.replace(",", "").toDouble()
         // 1.000,00 or 100,00

@@ -1,39 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { IRouteInfos, IRouteInfo } from './constants';
 
-export const AppBar: React.FunctionComponent<{}> = () => (
-  <div className="sidebar">
-    <nav className="sidebar-nav">
-      <ul className="nav">
-        <li className="nav-title">Finance Tool</li>
-        <li className="nav-item">
-          <Link className="nav-link" to="/">Converter</Link>
-        </li>
-        {/*<li className="nav-item">*/}
-          {/*<a className="nav-link" href="#">*/}
-            {/*<i className="nav-icon cui-speedometer"/> With badge*/}
-            {/*<span className="badge badge-primary">NEW</span>*/}
-          {/*</a>*/}
-        {/*</li>*/}
-        {/*<li className="nav-item nav-dropdown">*/}
-          {/*<a className="nav-link nav-dropdown-toggle" href="#">*/}
-            {/*<i className="nav-icon cui-puzzle"/> Nav dropdown*/}
-          {/*</a>*/}
-          {/*<ul className="nav-dropdown-items">*/}
-            {/*<li className="nav-item">*/}
-              {/*<a className="nav-link" href="#">*/}
-                {/*<i className="nav-icon cui-puzzle"/> Nav dropdown item*/}
-              {/*</a>*/}
-            {/*</li>*/}
-            {/*<li className="nav-item">*/}
-              {/*<a className="nav-link" href="#">*/}
-                {/*<i className="nav-icon cui-puzzle"/> Nav dropdown item*/}
-              {/*</a>*/}
-            {/*</li>*/}
-          {/*</ul>*/}
-        {/*</li>*/}
-      </ul>
-    </nav>
-    <button className="sidebar-minimizer brand-minimizer" type="button"/>
-  </div>
-);
+export const AppBar: React.FunctionComponent<{ routes: IRouteInfos }> = ({ routes }) => {
+  const rInfos: IRouteInfo[] = (Object.keys(routes).map(key => routes[key]));
+  return (
+    <div className="sidebar">
+      <nav className="sidebar-nav">
+        <ul className="nav">
+          <li className="nav-title">Finance Tool</li>
+          <li className="nav-item">
+            {
+              rInfos.map(rInfo => (
+                <NavLink className="nav-link" exact={rInfo.path === '/'} to={rInfo.path}>{rInfo.title}</NavLink>
+              ))
+            }
+          </li>
+        </ul>
+      </nav>
+      <button className="sidebar-minimizer brand-minimizer" type="button"/>
+    </div>
+  );
+};

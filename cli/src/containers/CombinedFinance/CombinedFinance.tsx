@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 interface ICombinedFinanceProps {
-  children: React.ReactNode;
+  data: string;
 }
 
 export const CombinedFinance: React.FunctionComponent<ICombinedFinanceProps> =
-  ({ children }) => <div>Here goes the combined</div>;
+  ({ data }) => <div>Here goes the combined {data}</div>;

@@ -1,6 +1,6 @@
 export enum ExportType {
-  COMBINED_FINANCE = 'Index/COMBINED_FINANCE',
-  YNAB = 'Index/YNAB',
+  COMBINED_FINANCE = 'Parser/COMBINED_FINANCE',
+  YNAB = 'Parser/YNAB',
 }
 
 export enum TransactionType {

@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import moment from 'moment';
-import { TransactionLog } from '../../api/ynab';
+import { TransactionLog, TransactionCreateRequest } from '../../api/ynab';
 import { ynabCli } from '../../api/YnabClient';
 import { TransactionType } from './constants';
 
@@ -86,4 +86,30 @@ export const parseFile = (file: File | undefined, transactionType: TransactionTy
     case TransactionType.ICS:
       return ynabCli.parseIcsFile({ transactionsFile: file }).then(onSuccess);
   }
+};
+
+/*
+TransactionCreateRequest {
+  date: [number, number, number];
+  payee: string;
+  memo: string;
+  amount: number;
+  userId: number;
+}
+ */
+export const importIntoCombined = (userId: number, selectedTransactions: List<boolean>, transactions: TransactionLog[]) => {
+  return ynabCli.createTransaction({
+    transactions: selectedTransactions
+      .toArray()
+      .map((selected, index) => ({ transaction: transactions[index], selected }))
+      .filter(tr => tr.selected)
+      .map(tr => tr.transaction)
+      .map((transaction: TransactionLog): TransactionCreateRequest => ({
+        userId,
+        date: transaction.date,
+        payee: transaction.payee,
+        memo: transaction.memo,
+        amount: transaction.inFlow - transaction.outFlow,
+      })),
+  });
 };

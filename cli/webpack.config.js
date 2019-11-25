@@ -77,7 +77,11 @@ const config = {
     contentBase: path.join(__dirname, 'dist'),
     port: 3000,
     clientLogLevel: 'warn',
-  }
+    historyApiFallback: {
+      index: 'index.html',
+    },
+  },
+  devtool: 'cheap-module-eval-source-map',
 };
 
 module.exports = config;

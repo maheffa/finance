@@ -172,6 +172,7 @@
                     <customTypeMappings>
                         <customTypeMapping>org.springframework.web.multipart.MultipartFile:File</customTypeMapping>
                         <customTypeMapping>java.time.LocalDate:[number, number, number]</customTypeMapping>
+                        <customTypeMapping>java.time.LocalDateTime:[number, number, number, number, number, number]</customTypeMapping>
                     </customTypeMappings>
                 </configuration>
                 <dependencies>

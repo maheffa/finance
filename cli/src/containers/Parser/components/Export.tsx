@@ -1,23 +1,16 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import {
-  FormControl,
-  FormLabel,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Button,
-  MenuItem,
-  TextField,
-  Box,
-} from '@material-ui/core';
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Box, Grid, Button } from '@material-ui/core';
 import { ExportType } from '../constants';
-import { downloadCombinedFinanceCSV, downloadYnabCSV } from '../actions';
-import { TransactionLog, User } from '../../../api/ynab';
+import { downloadCombinedFinanceCSV, downloadYnabCSV, importIntoCombined } from '../actions';
+import { TransactionLog, User, Transaction } from '../../../api/ynab';
 import { List } from 'immutable';
 import { useStyles } from '../../../style';
-import useTheme from '@material-ui/core/styles/useTheme';
 import { ynabCli } from '../../../api/YnabClient';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import useTheme from '@material-ui/styles/useTheme/useTheme';
+import { useSnackbar } from 'notistack';
 
 interface IExportProps {
   selectedTransactions: List<boolean>;
@@ -29,19 +22,21 @@ const doExport = (exportType: ExportType, owner: string, selectedTransactions: L
     ? downloadCombinedFinanceCSV(transactions, selectedTransactions, owner)
     : downloadYnabCSV(transactions, selectedTransactions);
 
-const getUserOwner = (owner: number | undefined, users: User[]) => {
-  const found = users.find(user => user.id === owner);
-  return found ? found.name : '';
-};
+const successMessage = (createdTransactions: Transaction[]) => `Successfully imported ${createdTransactions.length} transactions`;
 
 export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransactions, transactions }) => {
   const classes = useStyles(useTheme())();
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<{ [key: number]: User }>({});
   const [owner, setOwner] = useState<number>();
   const [exportType, setExportType] = useState<ExportType>(ExportType.COMBINED_FINANCE);
   const selectedCount = selectedTransactions.filter(v => v).size;
+  const { enqueueSnackbar } = useSnackbar();
 
-  useEffect(() => { ynabCli.getUsers().then(setUsers); }, []);
+  useEffect(() => {
+    ynabCli.getUsers().then(usersList => {
+      setUsers(usersList.reduce((cur, user) => ({ ...cur, [user.id]: user }), {}));
+    });
+  }, []);
 
   return (
     <FormControl component="fieldset" className={classes.formControl}>
@@ -60,29 +55,47 @@ export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransact
           ? (
             <Box mb={2}>
               <TextField
-                select
-                label="Owner"
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => setOwner(parseInt(event.target.value, 10))}
                 value={owner}
-                onChange={e => setOwner(parseInt(e.target.value, 10))}
                 helperText="Whose transactions are these?"
-                margin="dense"
-                variant="outlined"
+                margin="dense" variant="outlined" label="Owner"
+                select
               >
                 {
-                  users.map(user => <MenuItem key={user.id} value={user.id}>{user.name}</MenuItem>)
+                  Object.keys(users)
+                    .map(key => parseInt(key, 10))
+                    .map(userId => <MenuItem key={userId} value={userId} >{users[userId].name}</MenuItem>)
                 }
               </TextField>
             </Box>
           ) : null
       }
-      <Button
-        color="secondary"
-        disabled={selectedCount === 0}
-        variant="outlined"
-        onClick={() => doExport(exportType, getUserOwner(owner, users) , selectedTransactions, transactions)}
-      >
-        Export
-      </Button>
+      <Grid container>
+        <Grid item>
+          <Button
+            onClick={() => doExport(exportType, users[owner!].name , selectedTransactions, transactions)}
+            disabled={selectedCount === 0}
+            color="primary" variant="outlined"
+          >
+            Export to CSV
+          </Button>
+        </Grid>
+        {
+          exportType === ExportType.COMBINED_FINANCE ? (
+            <Grid>
+              <Button
+                onClick={() => importIntoCombined(owner!, selectedTransactions, transactions)
+                  .then(res => enqueueSnackbar(successMessage(res), { variant: 'success' }))
+                  .catch(() => enqueueSnackbar('Something went wrong. Contact Jesus.', { variant: 'error' }))}
+                disabled={selectedCount === 0 || owner === undefined}
+                color="secondary" variant="outlined"
+              >
+                Import as Combined
+              </Button>
+            </Grid>
+          ) : null
+        }
+      </Grid>
     </FormControl>
   );
 };

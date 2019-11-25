@@ -10,3 +10,7 @@ data class TransactionCreateRequest(
     val amount: Double,
     val userId: Int
 )
+
+data class TransactionsCreateRequest(
+    val transactions: List<TransactionCreateRequest>
+)

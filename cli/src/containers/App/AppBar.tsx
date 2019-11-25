@@ -12,7 +12,7 @@ export const AppBar: React.FunctionComponent<{ routes: IRouteInfos }> = ({ route
           <li className="nav-item">
             {
               rInfos.map(rInfo => (
-                <NavLink className="nav-link" exact={rInfo.path === '/'} to={rInfo.path}>{rInfo.title}</NavLink>
+                <NavLink key={rInfo.path} className="nav-link" exact={rInfo.path === '/'} to={rInfo.path}>{rInfo.title}</NavLink>
               ))
             }
           </li>

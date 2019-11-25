@@ -1,17 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { List } from 'immutable';
-import { Table, TableHead } from '@material-ui/core';
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import TableBody from '@material-ui/core/TableBody';
-import Box from '@material-ui/core/Box';
-import useTheme from '@material-ui/core/styles/useTheme';
-import Checkbox from '@material-ui/core/Checkbox';
-import Divider from '@material-ui/core/Divider';
+import { Table, TableHead, TableRow, TableCell, TableBody, Box, Checkbox, Divider } from '@material-ui/core';
 import { TransactionLog } from '../../../api/ynab';
 import { useStyles } from '../../../style';
 import { Export } from './Export';
+import useTheme from '@material-ui/styles/useTheme/useTheme';
 
 interface IContentProps {
   transactions: TransactionLog[];
@@ -47,13 +41,12 @@ export const Content: React.FunctionComponent<IContentProps> = ({ transactions }
         </TableHead>
         <TableBody>
           {transactions.map((row, index) => (
-            <TableRow key={index}>
-              <TableCell padding="checkbox">
-                <Checkbox
-                  checked={selectedTransactions.get(index)}
-                  onChange={() => selectTransactions(selectedTransactions.update(index, v => !v))}
-                />
-              </TableCell>
+            <TableRow
+              key={index}
+              className={classes.tableRow}
+              onClick={() => selectTransactions(selectedTransactions.update(index, v => !v))}
+            >
+              <TableCell padding="checkbox"><Checkbox checked={selectedTransactions.get(index)} /></TableCell>
               <TableCell align="center">{row.date[2]}/{row.date[1]}/{row.date[0]}</TableCell>
               <TableCell>{row.payee}</TableCell>
               <TableCell>{row.memo}</TableCell>

@@ -10,6 +10,8 @@ import javax.persistence.Id
 data class Payee(
     @Column(name = "name", nullable = false) val name: String
 ) {
+    constructor(): this("<INVALID PAYEE>")
+
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
 }

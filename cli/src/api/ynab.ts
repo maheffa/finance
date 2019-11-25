@@ -1,27 +1,16 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.15.527 on 2019-11-01 19:50:03.
+// Generated using typescript-generator version 2.15.527 on 2019-11-11 22:59:11.
+
+export interface TransactionControllerKt {
+}
 
 export interface Greeting {
   name: string;
 }
 
-export interface TransactionCreateRequest {
-  date: [number, number, number];
-  payee: string;
-  memo: string;
-  amount: number;
-  userId: number;
-}
-
-export interface Transaction {
-  id: number;
-  created: Date;
-  date: Date;
-  memo: string;
-  amount: number;
-  user: User;
-  payee: Payee;
+export interface TransactionsCreateRequest {
+  transactions: TransactionCreateRequest[];
 }
 
 export interface UserCreateRequest {
@@ -30,7 +19,7 @@ export interface UserCreateRequest {
 
 export interface User {
   id: number;
-  created: Date;
+  created: [number, number, number, number, number, number];
   name: string;
 }
 
@@ -40,6 +29,24 @@ export interface TransactionLog {
   payee: string;
   outFlow: number;
   inFlow: number;
+}
+
+export interface Transaction {
+  id: number;
+  created: [number, number, number, number, number, number];
+  date: [number, number, number, number, number, number];
+  memo: string;
+  amount: number;
+  user: User;
+  payee: Payee;
+}
+
+export interface TransactionCreateRequest {
+  date: [number, number, number];
+  payee: string;
+  memo: string;
+  amount: number;
+  userId: number;
 }
 
 export interface Payee {
@@ -82,10 +89,18 @@ export class RestApplicationClient {
   }
 
   /**
+   * HTTP GET /api/transaction/all
+   * Java method: com.manitrarivo.ynab.controllers.TransactionController.allTransaction
+   */
+  allTransaction(queryParams?: { from?: string; to?: string; }): RestResponse<Transaction[]> {
+    return this.httpClient.request({ method: "GET", url: uriEncoding`api/transaction/all`, queryParams: queryParams });
+  }
+
+  /**
    * HTTP POST /api/transaction/create
    * Java method: com.manitrarivo.ynab.controllers.TransactionController.createTransaction
    */
-  createTransaction(request: TransactionCreateRequest): RestResponse<Transaction> {
+  createTransaction(request: TransactionsCreateRequest): RestResponse<Transaction[]> {
     return this.httpClient.request({ method: "POST", url: uriEncoding`api/transaction/create`, data: request });
   }
 

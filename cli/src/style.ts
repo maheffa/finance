@@ -1,7 +1,8 @@
 import makeStyles from '@material-ui/styles/makeStyles/makeStyles';
 import { Theme } from '@material-ui/core';
+import createStyles from '@material-ui/styles/createStyles/createStyles';
 
-export const useStyles = (theme: Theme) => makeStyles({
+export const useStyles = (theme: Theme) => makeStyles(createStyles({
   root: {
     display: 'flex',
   },
@@ -18,4 +19,10 @@ export const useStyles = (theme: Theme) => makeStyles({
   outFlow: {
     color: `${theme.palette.error.light} !important`,
   },
-});
+  tableRow: {
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+      cursor: 'pointer',
+    },
+  },
+}));

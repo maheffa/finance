@@ -1,0 +1,342 @@
+2018-10-27;Grocery;[FROM OLD];Mahefa;-3437.36
+2018-10-27;Grocery;[FROM OLD];Hasina;-1694.29
+2018-10-27;Home;[FROM OLD];Mahefa;-827.25
+2018-10-27;Home;[FROM OLD];Hasina;-407.75
+2018-10-27;Transportation;[FROM OLD];Mahefa;-1144.73
+2018-10-28;Transportation;[FROM OLD];Hasina;-564.25
+2018-10-27;Outing;[FROM OLD];Mahefa;-1950.69
+2018-10-27;Outing;[FROM OLD];Hasina;-961.51
+2018-10-27;Extra;[FROM OLD];Mahefa;-421.33
+2018-10-27;Extra;[FROM OLD];Hasina;-207.67
+2018-10-27;Payback;[ADJUSTMENT];Hasina;823.15
+2018-10-29;Grocery;AH;Hasina;-32.00
+2018-10-31;Outing;Uber eat - Dinner;Hasina;-32.00
+2018-10-01;Grocery;2 months online ;Hasina;-263.00
+2018-11-06;Outing;Uber eat;Mahefa;-26.00
+2018-11-03;Extra;Febo + drink for Sam's housewarming;Mahefa;-25.00
+2018-11-06;Extra;Netflix;Mahefa;-11.00
+2018-11-10;Payback;;Mahefa;171.00
+2018-11-08;Home;towels and christmas decorations;Hasina;-52.00
+2018-11-09;Grocery;AH;Hasina;-50.00
+2018-11-14;Outing;Popcorn;Hasina;-10.00
+2018-11-14;Grocery;Shower products;Hasina;-53.00
+2018-11-15;Grocery;AH;Hasina;-19.00
+2018-11-17;Grocery;AH;Hasina;-28.00
+2018-11-21;Grocery;AH;Hasina;-26.00
+2018-11-19;Outing;Uber eat - Lunch;Hasina;-29.00
+2018-11-26;Grocery;AH;Hasina;-25.00
+2018-11-30;Grocery;AH;Hasina;-31.00
+2018-12-19;Outing;Breakfast after doctor visit;Mahefa;-12.00
+2018-11-24;Outing;Wine (going to Soely);Mahefa;-22.00
+2018-11-11;Outing;Uber Eat;Mahefa;-32.00
+2018-11-16;Outing;Uber Eat;Mahefa;-42.00
+2018-11-19;Outing;Uber Eat;Mahefa;-34.00
+2018-11-28;Outing;Uber Eat;Mahefa;-44.00
+2018-11-24;Transportation;Uber;Mahefa;-45.00
+2018-12-02;Payback;;Mahefa;100.00
+2018-12-02;Grocery;AH;Hasina;-29.00
+2018-12-06;Grocery;AH;Hasina;-55.00
+2018-12-11;Grocery;AH;Hasina;-29.00
+2018-12-10;Transportation;Uber;Hasina;-26.00
+2018-12-05;Outing;Uber eat;Hasina;-30.00
+2018-12-04;Outing;Uber eat;Hasina;-41.50
+2018-12-04;Extra;netflix;Mahefa;-11.00
+2018-12-06;Outing;Drink - joost;Mahefa;-20.00
+2018-12-12;Outing;Movie;Mahefa;-10.00
+2018-12-14;Outing;Movie + cafe + dinner;Mahefa;-121.00
+2018-12-24;Grocery;Gall & Gall;Mahefa;-61.00
+2018-12-26;Outing;Movie;Mahefa;-14.00
+2018-12-26;Outing;Gluhwein + German thingy;Mahefa;-25.00
+2018-12-28;Grocery;Gall & Gall;Mahefa;-65.00
+2018-12-13;Outing;Uber eat;Mahefa;-28.00
+2018-12-22;Outing;Uber eat;Mahefa;-44.00
+2018-12-13;Transportation;Uber;Mahefa;-25.00
+2018-12-17;Transportation;Uber;Mahefa;-24.00
+2018-12-27;Transportation;Uber;Mahefa;-52.00
+2018-12-06;Grocery;AH;Hasina;-56.00
+2018-12-11;Grocery;AH;Hasina;-28.00
+2018-12-15;Outing;Deliveroo;Hasina;-50.00
+2018-12-16;Grocery;AH;Hasina;-37.00
+2018-12-21;Grocery;AH;Hasina;-29.00
+2018-12-23;Outing;Order after squash;Hasina;-73.00
+2018-12-23;Grocery;AH;Hasina;-71.00
+2018-12-24;Grocery;Farmer's market;Hasina;-43.00
+2018-12-24;Grocery;AH;Hasina;-45.00
+2018-12-29;Payback;;Mahefa;185.16
+2019-01-03;Grocery;krudivat;Hasina;-44.00
+2019-01-03;Grocery;AH;Hasina;-26.00
+2019-01-04;Grocery;AH;Hasina;-28.00
+2019-01-06;Grocery;AH;Hasina;-37.00
+2019-01-07;Grocery;AH;Hasina;-224.00
+2019-01-13;Grocery;AH;Hasina;-25.00
+2019-01-16;Grocery;AH;Hasina;-8.00
+2019-01-18;Grocery;AH;Hasina;-32.00
+2019-01-20;Grocery;krudivat;Hasina;-39.00
+2019-01-22;Grocery;AH;Hasina;-15.00
+2019-01-24;Grocery;AH;Hasina;-22.00
+2019-01-25;Grocery;AH;Hasina;-51.00
+2019-01-26;Outing;foodhallen;Hasina;-40.70
+2019-01-28;Grocery;AH;Hasina;-17.00
+2019-02-02;Grocery;AH;Hasina;-57.00
+2019-02-02;Home;ACTION;Hasina;-34.00
+2019-02-03;Home;ACTION;Hasina;-4.00
+2019-02-03;Grocery;AH;Hasina;-28.00
+2019-02-10;Grocery;AH;Hasina;-14.00
+2019-02-11;Home;ACTION;Hasina;-16.00
+2019-02-11;Grocery;AH;Hasina;-28.00
+2019-02-12;Home;PRAXIS;Hasina;-17.00
+2019-02-14;Home;ACTION;Hasina;-25.00
+2019-02-14;Grocery;AH;Hasina;-3.00
+2019-02-15;Home;HELPING,NL;Hasina;-34.00
+2019-02-15;Home;ACTION;Hasina;-12.00
+2019-02-15;Grocery;AH;Hasina;-31.00
+2019-02-16;Home;ACTION;Hasina;-12.00
+2019-02-16;Grocery;AH;Hasina;-9.00
+2019-02-17;Home;ETOS;Hasina;-20.00
+2019-02-18;Grocery;krudivat;Hasina;-24.00
+2019-02-19;Grocery;AH;Hasina;-21.00
+2019-02-21;Home;ACTION;Hasina;-12.00
+2019-02-21;Grocery;AH;Hasina;-5.00
+2019-02-22;Grocery;MARQT;Hasina;-10.00
+2019-02-01;Transportation;UBER;Hasina;-28.00
+2019-02-01;Transportation;UBER;Hasina;-33.00
+2019-02-10;Transportation;UBER;Hasina;-26.00
+2019-02-10;Outing;UBER  EATS;Hasina;-46.00
+2019-02-14;Transportation;UBER;Hasina;-54.00
+2019-02-14;Outing;UBER EATS;Hasina;-36.00
+2019-02-24;Outing;UBER EATS;Hasina;-51.00
+2019-02-23;Outing;UBER EATS;Mahefa;-201.00
+2019-01-06;Outing;pho viet;Mahefa;-35.00
+2018-12-28;Grocery;gall & gall;Mahefa;-65.00
+2018-12-28;Grocery;albert heijn;Mahefa;-30.00
+2018-12-30;Outing;Salmuera;Mahefa;-120.00
+2019-01-26;Extra;Ice skating;Mahefa;-52.00
+2019-01-01;Extra;drovers dog;Mahefa;-40.00
+2019-01-17;Outing;the butcher;Mahefa;-38.00
+2019-01-17;Outing;de bijenkorf;Mahefa;-52.00
+2019-02-24;Payback;;Mahefa;524.05
+2019-02-25;Grocery;AH;Hasina;-28.00
+2019-02-28;Grocery;AH;Hasina;-9.00
+2019-03-01;Home;Laundry;Hasina;-20.00
+2019-03-01;Grocery;AH;Hasina;-43.00
+2019-03-02;Grocery;MARKT;Hasina;-36.00
+2019-03-04;Grocery;AH;Hasina;-34.00
+2019-03-04;Home;Laundry;Hasina;-10.00
+2019-03-08;Home;Action;Hasina;-8.00
+2019-03-08;Grocery;AH;Hasina;-25.00
+2019-03-10;Grocery;AH;Hasina;-40.00
+2019-03-14;Grocery;AH;Hasina;-7.00
+2019-03-15;Grocery;AH;Hasina;-31.00
+2019-03-16;Grocery;AH;Hasina;-23.00
+2019-03-17;Grocery;AH;Hasina;-27.00
+2019-03-18;Home;Laundry;Hasina;-20.00
+2019-03-19;Grocery;AH;Hasina;-6.00
+2019-03-20;Grocery;AH;Hasina;-20.00
+2019-03-21;Grocery;Apotheek;Hasina;-5.00
+2019-03-22;Grocery;AH;Hasina;-62.00
+2019-03-24;Home;Debijenkorf - bread keeper;Hasina;-49.00
+2019-03-25;Home;AH;Hasina;-25.00
+2019-03-29;Home;Laundry;Hasina;-15.00
+2019-03-30;Outing;Uber eats;Hasina;-29.00
+2019-03-28;Outing;Uber eats;Hasina;-39.00
+2019-03-27;Outing;Uber eats;Hasina;-53.00
+2019-03-26;Outing;Uber eats;Hasina;-22.00
+2019-03-21;Outing;Uber eats;Hasina;-28.00
+2019-03-20;Outing;Uber eats;Hasina;-27.00
+2019-03-15;Outing;Uber eats;Hasina;-26.00
+2019-03-11;Outing;Uber eats;Hasina;-40.00
+2019-03-08;Outing;Uber eats;Hasina;-38.00
+2019-03-02;Outing;Uber eats;Hasina;-32.00
+2019-03-13;Outing;Uber eats;Mahefa;-42.00
+2019-03-16;Extra;Google Movies;Mahefa;-49.00
+2019-03-05;Transportation;Flight to/from Greece;Mahefa;-828.00
+2019-03-05;Extra;Appolonia Beach 6 nights (after Booking Benefits);Mahefa;-304.00
+2019-03-02;Grocery;Marqt;Mahefa;-56.00
+2019-03-06;Outing;Cinema;Mahefa;-12.00
+2019-03-06;Outing;Fine Dynasty [restaurant];Mahefa;-160.00
+2019-03-31;Outing;Peskesi [restaurant];Mahefa;-80.00
+2019-04-01;Outing;Ligo Krasi [restaurant];Mahefa;-55.00
+2019-04-02;Outing;Appolonia Spa;Mahefa;-235.00
+2019-04-02;Payback;Volahasina's product;Mahefa;68.00
+2019-04-03;Outing;Peskesi [restaurant];Mahefa;-80.00
+2019-04-04;Outing;Kouzeineri [restaurant];Mahefa;-120.00
+2019-04-06;Extra;Appolonia Beach Adjustment;Mahefa;-152.00
+2019-02-26;Home;Ikea;Mahefa;-557.00
+2019-04-04;Home;Ikea;Hasina;-228.00
+2019-04-06;Home;Raclette;Hasina;-53.00
+2019-04-09;Home;Ikea;Hasina;-60.00
+2019-04-26;Payback;Payback;Hasina;440.00
+2019-04-07;Grocery;AH;Hasina;-122.00
+2019-04-07;Grocery;MARKT;Hasina;-89.00
+2019-04-07;Grocery;Bath product;Hasina;-47.00
+2019-04-08;Home;action;Hasina;-51.00
+2019-04-13;Extra;housewarming;Hasina;-198.00
+2019-04-27;Outing;King's day hot dog;Hasina;-14.00
+2019-04-16;Outing;Uber eats;Hasina;-112.50
+2019-04-22;Outing;Uber eats;Mahefa;-49.00
+2019-04-29;Outing;Uber eats;Mahefa;-34.00
+2019-05-01;Outing;Uber eats;Mahefa;-40.00
+2019-05-03;Outing;Uber eats;Mahefa;-28.00
+2019-05-13;Grocery;Het Bier En Wijnbedrij - housewarming drinks;Mahefa;-138.00
+2019-04-18;Outing;Lokaal van de staad;Mahefa;-19.00
+2019-04-21;Outing;Restaurant blauw;Mahefa;-125.00
+2019-04-28;Outing;Restaurant Teun;Mahefa;-75.00
+2019-05-05;Extra;tax;Mahefa;-244.00
+2019-05-30;Payback;Payback;Mahefa;84.63
+2019-05-14;Grocery;All grocery May;Hasina;-479.97
+2019-05-31;Home;Bol;Hasina;-47.00
+2019-05-25;Transportation;uber ;Hasina;-18.60
+2019-05-22;Outing;uber eats;Hasina;-35.00
+2019-05-13;Outing;uber eats;Hasina;-48.50
+2019-05-11;Outing;uber eats;Hasina;-26.00
+2019-05-29;Outing;cinema;Hasina;-10.56
+2019-06-11;Grocery;All grocery June;Hasina;-440.00
+2019-06-10;Extra;Spa;Hasina;-241.00
+2019-06-19;Outing;Uber eats;Hasina;-42.00
+2019-06-19;Transportation;Uber;Hasina;-49.00
+2019-05-31;Grocery;Albert Heijn;Mahefa;-21.98
+2019-06-02;Grocery;Broodbakker Mensink;Mahefa;-10.60
+2019-06-04;Extra;Netflix International B.v.;Mahefa;-13.99
+2019-06-09;Outing;Miss Korea B.v;Mahefa;-78.00
+2019-06-22;Grocery;Albert Heijn;Mahefa;-5.90
+2019-06-19	Payback	Volahasina	Mahefa	-€320.00
+2019-07-02;Outing;Uber Trip Help.uber.co;Mahefa;-23.40
+2019-06-29;Outing;Ubr* Pending.uber.com;Mahefa;-16.40
+2019-06-28;Movies;Google;Mahefa;-16.99
+2019-06-27;Movies;Google;Mahefa;-3.99
+2019-06-24;Outing;Uber Trip Help.uber.co;Mahefa;-24.45
+2019-06-18;Outing;Uber;Mahefa;-25.50
+2019-06-10;Outing;Uber;Mahefa;-30.50
+2019-06-09;Outing;Uber;Mahefa;-39.55
+2019-06-06;Movies;Google;Mahefa;-3.99
+2019-06-05;Movies;Google;Mahefa;-3.99
+2019-06-05;Movies;google;Mahefa;-12.99
+2019-07-06;Payback;;Mahefa;1,047.88
+2019-07-08;Movies;Pathe De Munt;Mahefa;-11.54
+2019-07-08;Grocery;Albert Heijn;Mahefa;-17.67
+2019-07-09;Outing;Uber Bv;Mahefa;-22.00
+2019-07-12;Outing;Ubernl_pbv;Mahefa;-27.50
+2019-07-15;Home;Ventilator;Mahefa;-100.00
+2019-07-20;Outing;Restaurant De Belh;Mahefa;-114.75
+2019-07-20;Grocery;Etos;Mahefa;-52.18
+2019-07-21;Extra;Spa Sport Htl Zuiver;Mahefa;-372.00
+2019-07-21;Movies;google;Mahefa;-4.99
+2019-07-21;Outing;Uber Bv;Mahefa;-26.40
+2019-07-22;Grocery;Kruidvat;Mahefa;-15.04
+2019-07-22;Outing;Uber Bv;Mahefa;-40.90
+2019-07-29;Extra;Andasibe Spending (see Misc Tab);Mahefa;-220.00
+2019-08-01;Outing;La Varangue;Mahefa;-199.00
+2019-08-07;Movies;De Filmhallen Via Multisafepay;Mahefa;-22.00
+2019-08-08;Outing;The Uptown Meat Cl;Mahefa;-66.30
+2019-08-08;Outing;Uber Bv;Mahefa;-36.50
+2019-06-29;Grocery;Albert Heijn;Hasina;-19.53
+2019-06-29;Grocery;Broodbakker Mensink;Hasina;-7.10
+2019-06-30;Grocery;Albert Heijn;Hasina;-36.34
+2019-06-30;Grocery;Action;Hasina;-2.93
+2019-07-01;Grocery;Albert Heijn;Hasina;-27.33
+2019-07-02;Grocery;Albert Heijn;Hasina;-6.57
+2019-07-03;Home;Waterschap Amstel, Gooi En Vecht;Hasina;-124.27
+2019-07-03;Home;Gemeente Amsterdam Belastingen;Hasina;-207.00
+2019-07-12;Grocery;Albert Heijn;Hasina;-44.91
+2019-07-16;Grocery;Albert Heijn;Hasina;-57.22
+2019-07-17;Extra;Etos;Hasina;-48.58
+2019-07-17;Grocery;Albert Heijn;Hasina;-12.21
+2019-07-18;Grocery;Albert Heijn;Hasina;-22.57
+2019-07-20;Grocery;Albert Heijn;Hasina;-8.21
+2019-07-20;Grocery;Broodbakker Mensink;Hasina;-13.60
+2019-07-20;Home;Hoofddorpweg;Hasina;-50.00
+2019-07-22;Extra;Kruidvat;Hasina;-24.91
+2019-08-10;Payback;;Hasina;113.65
+2019-08-14;Extra;Lucas Andreas Apoth;Mahefa;-7.19
+2019-08-21;Outing;Restaurant Di Brun;Mahefa;-80.00
+2019-08-07;Grocery;Albert Heijn;Hasina;-40.88
+2019-08-09;Grocery;Albert Heijn;Hasina;-61.76
+2019-08-11;Grocery;Albert Heijn;Hasina;-13.67
+2019-08-13;Grocery;Albert Heijn;Hasina;-16.97
+2019-08-16;Grocery;Albert Heijn B.v.;Hasina;-266.82
+2019-08-19;Grocery;Albert Heijn;Hasina;-24.47
+2019-08-19;Grocery;Albert Heijn;Hasina;-1.99
+2019-08-24;Grocery;Albert Heijn;Hasina;-18.36
+2019-08-24;Grocery;Broodbakker Mensink;Hasina;-9.85
+2019-08-24;Grocery;Blokker007;Hasina;-2.99
+2019-08-24;Grocery;Albert Heijn;Hasina;-25.88
+2019-08-28;Grocery;Albert Heijn;Hasina;-35.22
+2019-08-30;Grocery;Albert Heijn;Hasina;-14.02
+2019-09-09;Grocery;Albert Heijn;Hasina;-9.40
+2019-09-15;Grocery;Albert Heijn;Hasina;-28.95
+2019-09-16;Grocery;Albert Heijn;Hasina;-10.50
+2019-09-21;Grocery;Albert Heijn;Hasina;-5.22
+2019-09-21;Grocery;Broodbakker Mensink;Hasina;-8.55
+2019-09-22;Grocery;Albert Heijn;Hasina;-20.36
+2019-09-23;Grocery;Albert Heijn;Hasina;-31.92
+2019-09-26;Grocery;Albert Heijn;Hasina;-27.89
+2019-09-29;Grocery;Albert Heijn;Hasina;-20.83
+2019-08-24;Grocery;Het Bier En Wijnbedrij;Mahefa;-45.85
+2019-08-26;Movies;Pathe De Munt;Mahefa;-2.99
+2019-08-29;Outing;Ticketmaster;Mahefa;-67.90
+2019-09-01;Outing;Libanees Restauran;Mahefa;-82.50
+2019-09-07;Outing;Droversdog2;Mahefa;-37.00
+2019-09-09;Grocery;Marqt Hoofddorpweg;Mahefa;-12.80
+2019-09-21;Grocery;Het Bier En Wijnbedrij;Mahefa;-75.20
+2019-09-28;Grocery;Hellofresh;Mahefa;-40.95
+2019-10-02;Grocery;Marqt Hoofddorpweg;Mahefa;-27.04
+2019-10-12;Outing;Shelter;Mahefa;-2.00
+2019-10-12;Outing;Shelter;Mahefa;-2.00
+2019-10-12;Outing;Shelter;Mahefa;-2.00
+2019-10-12;Outing;Shelter;Mahefa;-19.00
+2019-10-12;Transportation;Rabobank Geldautomaat;Mahefa;-50.00
+2019-10-12;Outing;Bourbonstreet;Mahefa;-8.00
+2019-10-12;Home;Amazon Payments Europe Sca;Mahefa;-17.99
+2019-10-13;Grocery;Albert Heijn;Mahefa;-8.19
+2019-10-14;Grocery;Hellofresh;Mahefa;-40.95
+2019-10-14;Home;De bijenkorf;Mahefa;-60.00
+2019-10-15;Outing;Ticketmaster;Mahefa;-28.80
+2019-10-19;Extra;Amazon Payments Europe Sca;Mahefa;-55.62
+2019-10-19;Extra;Bol.com B.v.;Mahefa;-79.95
+2019-10-19;Extra;Amazon Payments Europe Sca;Mahefa;-58.99
+2019-10-19;Extra;Amazon Payments Europe Sca;Mahefa;-34.77
+2019-10-20;Extra;Amazon Payments Europe Sca;Mahefa;-12.84
+2019-10-20;Outing;Ccv Steakhouse San Ped;Mahefa;-42.00
+2019-10-21;Grocery;Hellofresh;Mahefa;-6.00
+2019-10-21;Grocery;Hellofresh;Mahefa;-40.95
+2019-10-21;Grocery;Hellofresh;Mahefa;-14.00
+2019-10-22;Extra;Night & Day Events B.v. Via Pay.nl;Mahefa;-60.90
+2019-10-27;Outing;Acp Westergasterras;Mahefa;-8.00
+2019-10-28;Grocery;Hellofresh;Mahefa;-40.95
+2019-10-28;Grocery;Hellofresh;Mahefa;-4.00
+2019-11-02;Extra;Carnavalskleding.nl Via Mollie;Mahefa;-89.55
+2019-11-04;Grocery;Hellofresh;Mahefa;-9.00
+2019-11-04;Grocery;Hellofresh;Mahefa;-40.95
+2019-11-04;Grocery;Hellofresh;Mahefa;-4.00
+2019-10-17;Movies;google;Mahefa;-13.99
+2019-10-15;Movies;google;Mahefa;-3.99
+2019-10-15;Movies;Google;Mahefa;-3.99
+2019-10-15;Movies;google;Mahefa;-4.99
+2019-10-08;Outing;Uber *eats;Mahefa;-38.50
+2019-09-26;Outing;Uber Eats;Mahefa;-37.00
+2019-09-23;Transportation;Ubernl_pbv;Mahefa;-13.50
+2019-09-23;Transportation;Ubernl_pbv;Mahefa;-11.09
+2019-09-04;Outing;Uber Eats;Mahefa;-21.50
+2019-08-29;Home;2 premium bed sheets;Mahefa;-129.00
+2019-08-31;Home;Gray bed comforter;Mahefa;-69.00
+2019-10-05;Home;White bed comforter;Mahefa;-63.00
+2019-10-23;Outing;Eatmosfera;Mahefa;-95.00
+2019-10-24;Outing;Pho viet;Mahefa;-33.00
+2019-10-03;Grocery;Marqt Hoofddorpweg;Hasina;-34.19
+2019-10-05;Grocery;Albert Heijn;Hasina;-27.39
+2019-10-05;Grocery;Broodbakker Mensink;Hasina;-5.80
+2019-10-06;Grocery;Kruidvat;Hasina;-29.94
+2019-10-06;Grocery;Hema Ev387;Hasina;-44.00
+2019-10-06;Grocery;Marqt Hoofddorpweg;Hasina;-3.78
+2019-10-07;Grocery;Albert Heijn;Hasina;-17.09
+2019-10-08;Grocery;Albert Heijn;Hasina;-12.46
+2019-10-09;Grocery;Sab Catering;Hasina;-2.20
+2019-10-11;Grocery;Albert Heijn;Hasina;-18.41
+2019-10-21;Grocery;Albert Heijn;Hasina;-13.49
+2019-10-24;Grocery;Albert Heijn;Hasina;-4.18
+2019-10-26;Grocery;Albert Heijn;Hasina;-14.13
+2019-10-26;Grocery;Broodbakker Mensink;Hasina;-5.90
+2019-10-26;Grocery;Het Bier En Wijnbedrij;Hasina;-78.80
+2019-11-03;Grocery;Albert Heijn;Hasina;-25.96
+2019-11-03;Grocery;Albert Heijn;Hasina;-14.00
+2019-11-04;Grocery;Albert Heijn;Hasina;-26.32

@@ -13,7 +13,7 @@ class User(
     @Column(nullable = false)
     val name: String
 ) {
-    constructor(): this("[Name not set]")
+    constructor(): this("<INVALID USER>")
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0

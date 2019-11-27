@@ -12,10 +12,10 @@ from data import get_ready_data, trim, fetch_and_scale, build
 from nn import build_model, train
 from normalizer import Normalizer
 
-OUTPUT_PATH = '/Users/adamamahefa/Workspace/finance/analysis/ml_data/output/'
+OUTPUT_PATH = './output/'
 best_model_path = os.path.join(OUTPUT_PATH, 'best_model.h5')
 csv_log_path = os.path.join(OUTPUT_PATH, 'training_log_' + time.ctime().replace(' ', '_') + '.log')
-csv_logger = CSVLogger(csv_log_path, append=True)
+csv_logger = CSVLogger(csv_log_path)
 
 
 class LogMetrics(Callback):
@@ -77,19 +77,19 @@ def search():
     scaler, x_train, x_test = fetch_and_scale()
 
     def main(params):
+        print('****************')
+        print('****************')
+        print('Training with:')
+        print(params)
         x_t, y_t, (x_val, _), (y_val, _) = build(x_train, x_test,
                                                  params['batch_size'], params['time_steps'])
         model = build_model(x_t, params)
-        es = EarlyStopping(monitor='val_loss', mode='min', verbose=1,
-                           patience=20, min_delta=0.0001)
         return train(model, x_t, y_t, x_val, y_val, params,
-                     callbacks=[es, LogMetrics(search_space, params, -1), csv_logger])
+                     callbacks=[LogMetrics(search_space, params, -1), csv_logger])
 
     search_space = {
-        # 'batch_size': hp.choice('bs', [30, 40, 50, 60, 70]),
-        'batch_size': hp.choice('batch_size', [30, 60]),
-        # 'time_steps': hp.choice('ts', [30, 50, 60, 80, 90]),
-        'time_steps': hp.choice('time_steps', [30, 60, 90]),
+        'batch_size': hp.choice('bs', [30, 40, 50, 60, 70]),
+        'time_steps': hp.choice('ts', [30, 60, 90]),
         'lstm1_nodes': hp.choice('lstm1_nodes', [70, 80, 100, 130]),
         'lstm1_dropouts': hp.uniform('lstm1_dropouts', 0, 1),
         'lstm_layers': hp.choice('lstm_layers', [
@@ -98,8 +98,7 @@ def search():
             },
             {
                 'layers': 'two',
-                # 'lstm2_nodes': hp.choice('units_lstm2', [20, 30, 40, 50]),
-                'lstm2_nodes': hp.choice('units_lstm2', [20, 50]),
+                'lstm2_nodes': hp.choice('units_lstm2', [20, 30, 40, 50]),
                 'lstm2_dropouts': hp.uniform('dos_lstm2', 0, 1)
             }
         ]),
@@ -109,22 +108,19 @@ def search():
             },
             {
                 'layers': 'two',
-                # 'dense2_nodes': hp.choice('units_dense', [10, 20, 30, 40])
-                'dense2_nodes': hp.choice('units_dense', [10, 40])
+                'dense2_nodes': hp.choice('units_dense', [10, 20, 30, 40])
             }
         ]),
         "learning_rate": hp.loguniform('learning_rate', -15, -5),
-        # "epochs": hp.choice('epochs', [30, 40, 50, 60, 70]),
-        "epochs": hp.choice('epochs', [30, 60]),
-        # "optimizer": hp.choice('optmz', ["sgd", "rms"])
-        "optimizer": hp.choice('optimizer', ["rms"])
+        "epochs": hp.choice('epochs', [50, 100]),
+        "optimizer": hp.choice('optmz', ["sgd", "rms"])
     }
 
     trials = Trials()
     best_index = fmin(main,
                       space=search_space,
                       algo=tpe.suggest,
-                      max_evals=2,
+                      max_evals=1000,
                       trials=trials)
     best = space_eval(search_space, best_index)
 

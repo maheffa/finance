@@ -1,0 +1,877 @@
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]                                                      ****************
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]                                                      ****************
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]                                                      Training with:
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]                                                      {'batch_size': 50, 'dense_layers': {'layers': 'one'}, 'epochs': 50, 'learning_rate': 2.546602193686055e-06, 'lstm1_dropouts': 0.591814334090095, 'lstm1_nodes': 100, 'lstm_layers': {'layers': 'one'}, 'optimizer': 'rms', 'time_steps': 60}
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]                                                      Trying params:
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]                                                      {'batch_size': 50, 'dense_layers': {'layers': 'one'}, 'epochs': 50, 'learning_rate': 2.546602193686055e-06, 'lstm1_dropouts': 0.591814334090095, 'lstm1_nodes': 100, 'lstm_layers': {'layers': 'one'}, 'optimizer': 'rms', 'time_steps': 60}
+  0%|          | 0/1000 [00:00<?, ?it/s, best loss: ?]2019-11-27 03:25:06.823920: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-11-27 03:25:06.830163: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2499990000 Hz
+2019-11-27 03:25:06.830468: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x4d9d810 executing computations on platform Host. Devices:
+2019-11-27 03:25:06.830493: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+Using TensorFlow backend.
+WARNING:tensorflow:Large dropout rate: 0.591814 (>0.5). In TensorFlow 2.x, dropout() uses dropout rate instead of keep_prob. Please ensure that this is intended.
+WARNING:tensorflow:Large dropout rate: 0.591814 (>0.5). In TensorFlow 2.x, dropout() uses dropout rate instead of keep_prob. Please ensure that this is intended.
+WARNING:tensorflow:Large dropout rate: 0.591814 (>0.5). In TensorFlow 2.x, dropout() uses dropout rate instead of keep_prob. Please ensure that this is intended.
+WARNING:tensorflow:Large dropout rate: 0.591814 (>0.5). In TensorFlow 2.x, dropout() uses dropout rate instead of keep_prob. Please ensure that this is intended.
+                                                      Train on 650 samples, validate on 200 samples
+  0%|          | 0/1000 [00:01<?, ?it/s, best loss: ?]                                                      Epoch 1/50
+  0%|          | 0/1000 [00:01<?, ?it/s, best loss: ?]                                                       - 2s - loss: 0.2119 - val_loss: 0.1443
+
+  0%|          | 0/1000 [00:02<?, ?it/s, best loss: ?]                                                      Epoch 2/50
+  0%|          | 0/1000 [00:02<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2115 - val_loss: 0.1440
+
+  0%|          | 0/1000 [00:04<?, ?it/s, best loss: ?]                                                      Epoch 3/50
+  0%|          | 0/1000 [00:04<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2112 - val_loss: 0.1438
+
+  0%|          | 0/1000 [00:05<?, ?it/s, best loss: ?]                                                      Epoch 4/50
+  0%|          | 0/1000 [00:05<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2109 - val_loss: 0.1435
+
+  0%|          | 0/1000 [00:06<?, ?it/s, best loss: ?]                                                      Epoch 5/50
+  0%|          | 0/1000 [00:06<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2104 - val_loss: 0.1433
+
+  0%|          | 0/1000 [00:07<?, ?it/s, best loss: ?]                                                      Epoch 6/50
+  0%|          | 0/1000 [00:07<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2096 - val_loss: 0.1431
+
+  0%|          | 0/1000 [00:08<?, ?it/s, best loss: ?]                                                      Epoch 7/50
+  0%|          | 0/1000 [00:08<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2094 - val_loss: 0.1429
+
+  0%|          | 0/1000 [00:09<?, ?it/s, best loss: ?]                                                      Epoch 8/50
+  0%|          | 0/1000 [00:09<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2092 - val_loss: 0.1426
+
+  0%|          | 0/1000 [00:10<?, ?it/s, best loss: ?]                                                      Epoch 9/50
+  0%|          | 0/1000 [00:10<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2088 - val_loss: 0.1424
+
+  0%|          | 0/1000 [00:12<?, ?it/s, best loss: ?]                                                      Epoch 10/50
+  0%|          | 0/1000 [00:12<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2087 - val_loss: 0.1421
+
+  0%|          | 0/1000 [00:13<?, ?it/s, best loss: ?]                                                      Epoch 11/50
+  0%|          | 0/1000 [00:13<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2080 - val_loss: 0.1419
+
+  0%|          | 0/1000 [00:14<?, ?it/s, best loss: ?]                                                      Epoch 12/50
+  0%|          | 0/1000 [00:14<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2080 - val_loss: 0.1416
+
+  0%|          | 0/1000 [00:15<?, ?it/s, best loss: ?]                                                      Epoch 13/50
+  0%|          | 0/1000 [00:15<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2075 - val_loss: 0.1414
+
+  0%|          | 0/1000 [00:16<?, ?it/s, best loss: ?]                                                      Epoch 14/50
+  0%|          | 0/1000 [00:16<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2074 - val_loss: 0.1411
+
+  0%|          | 0/1000 [00:17<?, ?it/s, best loss: ?]                                                      Epoch 15/50
+  0%|          | 0/1000 [00:17<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2071 - val_loss: 0.1409
+
+  0%|          | 0/1000 [00:18<?, ?it/s, best loss: ?]                                                      Epoch 16/50
+  0%|          | 0/1000 [00:18<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2068 - val_loss: 0.1407
+
+  0%|          | 0/1000 [00:19<?, ?it/s, best loss: ?]                                                      Epoch 17/50
+  0%|          | 0/1000 [00:19<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2060 - val_loss: 0.1404
+
+  0%|          | 0/1000 [00:21<?, ?it/s, best loss: ?]                                                      Epoch 18/50
+  0%|          | 0/1000 [00:21<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2059 - val_loss: 0.1402
+
+  0%|          | 0/1000 [00:22<?, ?it/s, best loss: ?]                                                      Epoch 19/50
+  0%|          | 0/1000 [00:22<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2047 - val_loss: 0.1399
+
+  0%|          | 0/1000 [00:23<?, ?it/s, best loss: ?]                                                      Epoch 20/50
+  0%|          | 0/1000 [00:23<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2049 - val_loss: 0.1396
+
+  0%|          | 0/1000 [00:24<?, ?it/s, best loss: ?]                                                      Epoch 21/50
+  0%|          | 0/1000 [00:24<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2045 - val_loss: 0.1394
+
+  0%|          | 0/1000 [00:25<?, ?it/s, best loss: ?]                                                      Epoch 22/50
+  0%|          | 0/1000 [00:25<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2049 - val_loss: 0.1392
+
+  0%|          | 0/1000 [00:26<?, ?it/s, best loss: ?]                                                      Epoch 23/50
+  0%|          | 0/1000 [00:26<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2043 - val_loss: 0.1390
+
+  0%|          | 0/1000 [00:27<?, ?it/s, best loss: ?]                                                      Epoch 24/50
+  0%|          | 0/1000 [00:27<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2038 - val_loss: 0.1387
+
+  0%|          | 0/1000 [00:29<?, ?it/s, best loss: ?]                                                      Epoch 25/50
+  0%|          | 0/1000 [00:29<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2028 - val_loss: 0.1383
+
+  0%|          | 0/1000 [00:30<?, ?it/s, best loss: ?]                                                      Epoch 26/50
+  0%|          | 0/1000 [00:30<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2030 - val_loss: 0.1381
+
+  0%|          | 0/1000 [00:31<?, ?it/s, best loss: ?]                                                      Epoch 27/50
+  0%|          | 0/1000 [00:31<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2024 - val_loss: 0.1379
+
+  0%|          | 0/1000 [00:32<?, ?it/s, best loss: ?]                                                      Epoch 28/50
+  0%|          | 0/1000 [00:32<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2018 - val_loss: 0.1376
+
+  0%|          | 0/1000 [00:33<?, ?it/s, best loss: ?]                                                      Epoch 29/50
+  0%|          | 0/1000 [00:33<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2020 - val_loss: 0.1375
+
+  0%|          | 0/1000 [00:34<?, ?it/s, best loss: ?]                                                      Epoch 30/50
+  0%|          | 0/1000 [00:34<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2017 - val_loss: 0.1370
+
+  0%|          | 0/1000 [00:35<?, ?it/s, best loss: ?]                                                      Epoch 31/50
+  0%|          | 0/1000 [00:35<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2007 - val_loss: 0.1368
+
+  0%|          | 0/1000 [00:37<?, ?it/s, best loss: ?]                                                      Epoch 32/50
+  0%|          | 0/1000 [00:37<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2007 - val_loss: 0.1364
+
+  0%|          | 0/1000 [00:38<?, ?it/s, best loss: ?]                                                      Epoch 33/50
+  0%|          | 0/1000 [00:38<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1992 - val_loss: 0.1362
+
+  0%|          | 0/1000 [00:39<?, ?it/s, best loss: ?]                                                      Epoch 34/50
+  0%|          | 0/1000 [00:39<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2002 - val_loss: 0.1360
+
+  0%|          | 0/1000 [00:40<?, ?it/s, best loss: ?]                                                      Epoch 35/50
+  0%|          | 0/1000 [00:40<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.2001 - val_loss: 0.1357
+
+  0%|          | 0/1000 [00:41<?, ?it/s, best loss: ?]                                                      Epoch 36/50
+  0%|          | 0/1000 [00:41<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1989 - val_loss: 0.1353
+
+  0%|          | 0/1000 [00:42<?, ?it/s, best loss: ?]                                                      Epoch 37/50
+  0%|          | 0/1000 [00:42<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1992 - val_loss: 0.1352
+
+  0%|          | 0/1000 [00:43<?, ?it/s, best loss: ?]                                                      Epoch 38/50
+  0%|          | 0/1000 [00:43<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1976 - val_loss: 0.1348
+
+  0%|          | 0/1000 [00:45<?, ?it/s, best loss: ?]                                                      Epoch 39/50
+  0%|          | 0/1000 [00:45<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1976 - val_loss: 0.1345
+
+  0%|          | 0/1000 [00:46<?, ?it/s, best loss: ?]                                                      Epoch 40/50
+  0%|          | 0/1000 [00:46<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1975 - val_loss: 0.1343
+
+  0%|          | 0/1000 [00:47<?, ?it/s, best loss: ?]                                                      Epoch 41/50
+  0%|          | 0/1000 [00:47<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1961 - val_loss: 0.1340
+
+  0%|          | 0/1000 [00:48<?, ?it/s, best loss: ?]                                                      Epoch 42/50
+  0%|          | 0/1000 [00:48<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1961 - val_loss: 0.1338
+
+  0%|          | 0/1000 [00:49<?, ?it/s, best loss: ?]                                                      Epoch 43/50
+  0%|          | 0/1000 [00:49<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1971 - val_loss: 0.1335
+
+  0%|          | 0/1000 [00:50<?, ?it/s, best loss: ?]                                                      Epoch 44/50
+  0%|          | 0/1000 [00:50<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1967 - val_loss: 0.1330
+
+  0%|          | 0/1000 [00:51<?, ?it/s, best loss: ?]                                                      Epoch 45/50
+  0%|          | 0/1000 [00:51<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1953 - val_loss: 0.1328
+
+  0%|          | 0/1000 [00:53<?, ?it/s, best loss: ?]                                                      Epoch 46/50
+  0%|          | 0/1000 [00:53<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1948 - val_loss: 0.1325
+
+  0%|          | 0/1000 [00:54<?, ?it/s, best loss: ?]                                                      Epoch 47/50
+  0%|          | 0/1000 [00:54<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1946 - val_loss: 0.1321
+
+  0%|          | 0/1000 [00:55<?, ?it/s, best loss: ?]                                                      Epoch 48/50
+  0%|          | 0/1000 [00:55<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1960 - val_loss: 0.1320
+
+  0%|          | 0/1000 [00:56<?, ?it/s, best loss: ?]                                                      Epoch 49/50
+  0%|          | 0/1000 [00:56<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1938 - val_loss: 0.1316
+
+  0%|          | 0/1000 [00:57<?, ?it/s, best loss: ?]                                                      Epoch 50/50
+  0%|          | 0/1000 [00:57<?, ?it/s, best loss: ?]                                                       - 1s - loss: 0.1937 - val_loss: 0.1313
+
+  0%|          | 0/1000 [00:58<?, ?it/s, best loss: ?]  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  ****************
+  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  ****************
+  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Training with:
+  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  {'batch_size': 30, 'dense_layers': {'layers': 'one'}, 'epochs': 100, 'learning_rate': 3.876262203941255e-05, 'lstm1_dropouts': 0.5889043365268533, 'lstm1_nodes': 130, 'lstm_layers': {'layers': 'two', 'lstm2_dropouts': 0.39659735125094364, 'lstm2_nodes': 40}, 'optimizer': 'rms', 'time_steps': 90}
+  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Trying params:
+  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  {'batch_size': 30, 'dense_layers': {'layers': 'one'}, 'epochs': 100, 'learning_rate': 3.876262203941255e-05, 'lstm1_dropouts': 0.5889043365268533, 'lstm1_nodes': 130, 'lstm_layers': {'layers': 'two', 'lstm2_dropouts': 0.39659735125094364, 'lstm2_nodes': 40}, 'optimizer': 'rms', 'time_steps': 90}
+  0%|          | 1/1000 [00:58<16:18:47, 58.79s/it, best loss: 0.1312962882220745]WARNING:tensorflow:Large dropout rate: 0.588904 (>0.5). In TensorFlow 2.x, dropout() uses dropout rate instead of keep_prob. Please ensure that this is intended.
+                                                                                  Train on 660 samples, validate on 180 samples
+  0%|          | 1/1000 [01:01<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 1/100
+  0%|          | 1/1000 [01:01<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.2116 - val_loss: 0.1348
+
+  0%|          | 1/1000 [01:06<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 2/100
+  0%|          | 1/1000 [01:06<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.2015 - val_loss: 0.1267
+
+  0%|          | 1/1000 [01:10<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 3/100
+  0%|          | 1/1000 [01:10<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.1882 - val_loss: 0.1157
+
+  0%|          | 1/1000 [01:14<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 4/100
+  0%|          | 1/1000 [01:14<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.1737 - val_loss: 0.0998
+
+  0%|          | 1/1000 [01:19<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 5/100
+  0%|          | 1/1000 [01:19<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.1478 - val_loss: 0.0751
+
+  0%|          | 1/1000 [01:23<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 6/100
+  0%|          | 1/1000 [01:23<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.1128 - val_loss: 0.0333
+
+  0%|          | 1/1000 [01:27<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 7/100
+  0%|          | 1/1000 [01:27<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0571 - val_loss: 6.3100e-04
+
+  0%|          | 1/1000 [01:32<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 8/100
+  0%|          | 1/1000 [01:32<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0242 - val_loss: 0.0038
+
+  0%|          | 1/1000 [01:36<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 9/100
+  0%|          | 1/1000 [01:36<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0221 - val_loss: 0.0051
+
+  0%|          | 1/1000 [01:40<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 10/100
+  0%|          | 1/1000 [01:40<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0216 - val_loss: 0.0055
+
+  0%|          | 1/1000 [01:44<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 11/100
+  0%|          | 1/1000 [01:44<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0213 - val_loss: 0.0053
+
+  0%|          | 1/1000 [01:49<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 12/100
+  0%|          | 1/1000 [01:49<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0206 - val_loss: 0.0049
+
+  0%|          | 1/1000 [01:53<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 13/100
+  0%|          | 1/1000 [01:53<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0201 - val_loss: 0.0061
+
+  0%|          | 1/1000 [01:57<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 14/100
+  0%|          | 1/1000 [01:57<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0177 - val_loss: 0.0058
+
+  0%|          | 1/1000 [02:02<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 15/100
+  0%|          | 1/1000 [02:02<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0173 - val_loss: 0.0079
+
+  0%|          | 1/1000 [02:06<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 16/100
+  0%|          | 1/1000 [02:06<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0159 - val_loss: 0.0068
+
+  0%|          | 1/1000 [02:11<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 17/100
+  0%|          | 1/1000 [02:11<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0200 - val_loss: 0.0074
+
+  0%|          | 1/1000 [02:15<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 18/100
+  0%|          | 1/1000 [02:15<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0177 - val_loss: 0.0073
+
+  0%|          | 1/1000 [02:20<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 19/100
+  0%|          | 1/1000 [02:20<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0165 - val_loss: 0.0080
+
+  0%|          | 1/1000 [02:24<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 20/100
+  0%|          | 1/1000 [02:24<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0164 - val_loss: 0.0064
+
+  0%|          | 1/1000 [02:28<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 21/100
+  0%|          | 1/1000 [02:28<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0167 - val_loss: 0.0075
+
+  0%|          | 1/1000 [02:33<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 22/100
+  0%|          | 1/1000 [02:33<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0134 - val_loss: 0.0073
+
+  0%|          | 1/1000 [02:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 23/100
+  0%|          | 1/1000 [02:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0135 - val_loss: 0.0091
+
+  0%|          | 1/1000 [02:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 24/100
+  0%|          | 1/1000 [02:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0184 - val_loss: 0.0058
+
+  0%|          | 1/1000 [02:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 25/100
+  0%|          | 1/1000 [02:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0146 - val_loss: 0.0075
+
+  0%|          | 1/1000 [02:51<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 26/100
+  0%|          | 1/1000 [02:51<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0144 - val_loss: 0.0058
+
+  0%|          | 1/1000 [02:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 27/100
+  0%|          | 1/1000 [02:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0169 - val_loss: 0.0080
+
+  0%|          | 1/1000 [03:00<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 28/100
+  0%|          | 1/1000 [03:00<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0156 - val_loss: 0.0071
+
+  0%|          | 1/1000 [03:04<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 29/100
+  0%|          | 1/1000 [03:04<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0142 - val_loss: 0.0077
+
+  0%|          | 1/1000 [03:08<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 30/100
+  0%|          | 1/1000 [03:08<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0142 - val_loss: 0.0078
+
+  0%|          | 1/1000 [03:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 31/100
+  0%|          | 1/1000 [03:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0168 - val_loss: 0.0065
+
+  0%|          | 1/1000 [03:17<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 32/100
+  0%|          | 1/1000 [03:17<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0141 - val_loss: 0.0086
+
+  0%|          | 1/1000 [03:21<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 33/100
+  0%|          | 1/1000 [03:21<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0161 - val_loss: 0.0082
+
+  0%|          | 1/1000 [03:25<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 34/100
+  0%|          | 1/1000 [03:25<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0130 - val_loss: 0.0086
+
+  0%|          | 1/1000 [03:30<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 35/100
+  0%|          | 1/1000 [03:30<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0143 - val_loss: 0.0062
+
+  0%|          | 1/1000 [03:34<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 36/100
+  0%|          | 1/1000 [03:34<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0149 - val_loss: 0.0077
+
+  0%|          | 1/1000 [03:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 37/100
+  0%|          | 1/1000 [03:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0152 - val_loss: 0.0059
+
+  0%|          | 1/1000 [03:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 38/100
+  0%|          | 1/1000 [03:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0125 - val_loss: 0.0080
+
+  0%|          | 1/1000 [03:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 39/100
+  0%|          | 1/1000 [03:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0128 - val_loss: 0.0088
+
+  0%|          | 1/1000 [03:51<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 40/100
+  0%|          | 1/1000 [03:51<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0165 - val_loss: 0.0079
+
+  0%|          | 1/1000 [03:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 41/100
+  0%|          | 1/1000 [03:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0117 - val_loss: 0.0096
+
+  0%|          | 1/1000 [03:59<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 42/100
+  0%|          | 1/1000 [03:59<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0128 - val_loss: 0.0075
+
+  0%|          | 1/1000 [04:04<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 43/100
+  0%|          | 1/1000 [04:04<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0136 - val_loss: 0.0067
+
+  0%|          | 1/1000 [04:08<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 44/100
+  0%|          | 1/1000 [04:08<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0117 - val_loss: 0.0092
+
+  0%|          | 1/1000 [04:12<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 45/100
+  0%|          | 1/1000 [04:12<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0122 - val_loss: 0.0071
+
+  0%|          | 1/1000 [04:16<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 46/100
+  0%|          | 1/1000 [04:16<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0135 - val_loss: 0.0093
+
+  0%|          | 1/1000 [04:21<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 47/100
+  0%|          | 1/1000 [04:21<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0129 - val_loss: 0.0074
+
+  0%|          | 1/1000 [04:25<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 48/100
+  0%|          | 1/1000 [04:25<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0113 - val_loss: 0.0082
+
+  0%|          | 1/1000 [04:29<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 49/100
+  0%|          | 1/1000 [04:29<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0099 - val_loss: 0.0074
+
+  0%|          | 1/1000 [04:33<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 50/100
+  0%|          | 1/1000 [04:33<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0165 - val_loss: 0.0087
+
+  0%|          | 1/1000 [04:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 51/100
+  0%|          | 1/1000 [04:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0113 - val_loss: 0.0089
+
+  0%|          | 1/1000 [04:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 52/100
+  0%|          | 1/1000 [04:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0159 - val_loss: 0.0072
+
+  0%|          | 1/1000 [04:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 53/100
+  0%|          | 1/1000 [04:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0102 - val_loss: 0.0087
+
+  0%|          | 1/1000 [04:50<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 54/100
+  0%|          | 1/1000 [04:50<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0097 - val_loss: 0.0088
+
+  0%|          | 1/1000 [04:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 55/100
+  0%|          | 1/1000 [04:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 6s - loss: 0.0094 - val_loss: 0.0090
+
+  0%|          | 1/1000 [05:01<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 56/100
+  0%|          | 1/1000 [05:01<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0139 - val_loss: 0.0083
+
+  0%|          | 1/1000 [05:06<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 57/100
+  0%|          | 1/1000 [05:06<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0153 - val_loss: 0.0062
+
+  0%|          | 1/1000 [05:11<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 58/100
+  0%|          | 1/1000 [05:11<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0119 - val_loss: 0.0067
+
+  0%|          | 1/1000 [05:15<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 59/100
+  0%|          | 1/1000 [05:15<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0107 - val_loss: 0.0084
+
+  0%|          | 1/1000 [05:20<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 60/100
+  0%|          | 1/1000 [05:20<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0139 - val_loss: 0.0065
+
+  0%|          | 1/1000 [05:24<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 61/100
+  0%|          | 1/1000 [05:24<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0098 - val_loss: 0.0071
+
+  0%|          | 1/1000 [05:29<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 62/100
+  0%|          | 1/1000 [05:29<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0118 - val_loss: 0.0089
+
+  0%|          | 1/1000 [05:33<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 63/100
+  0%|          | 1/1000 [05:33<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0114 - val_loss: 0.0084
+
+  0%|          | 1/1000 [05:37<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 64/100
+  0%|          | 1/1000 [05:37<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0097 - val_loss: 0.0080
+
+  0%|          | 1/1000 [05:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 65/100
+  0%|          | 1/1000 [05:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0104 - val_loss: 0.0077
+
+  0%|          | 1/1000 [05:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 66/100
+  0%|          | 1/1000 [05:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0097 - val_loss: 0.0087
+
+  0%|          | 1/1000 [05:50<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 67/100
+  0%|          | 1/1000 [05:50<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0094 - val_loss: 0.0108
+
+  0%|          | 1/1000 [05:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 68/100
+  0%|          | 1/1000 [05:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0104 - val_loss: 0.0074
+
+  0%|          | 1/1000 [05:59<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 69/100
+  0%|          | 1/1000 [05:59<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0168 - val_loss: 0.0079
+
+  0%|          | 1/1000 [06:03<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 70/100
+  0%|          | 1/1000 [06:03<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0105 - val_loss: 0.0072
+
+  0%|          | 1/1000 [06:08<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 71/100
+  0%|          | 1/1000 [06:08<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0105 - val_loss: 0.0076
+
+  0%|          | 1/1000 [06:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 72/100
+  0%|          | 1/1000 [06:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0119 - val_loss: 0.0073
+
+  0%|          | 1/1000 [06:17<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 73/100
+  0%|          | 1/1000 [06:17<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0113 - val_loss: 0.0089
+
+  0%|          | 1/1000 [06:21<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 74/100
+  0%|          | 1/1000 [06:21<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0141 - val_loss: 0.0054
+
+  0%|          | 1/1000 [06:25<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 75/100
+  0%|          | 1/1000 [06:25<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0132 - val_loss: 0.0069
+
+  0%|          | 1/1000 [06:29<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 76/100
+  0%|          | 1/1000 [06:29<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0084 - val_loss: 0.0084
+
+  0%|          | 1/1000 [06:34<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 77/100
+  0%|          | 1/1000 [06:34<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0131 - val_loss: 0.0091
+
+  0%|          | 1/1000 [06:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 78/100
+  0%|          | 1/1000 [06:38<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0082 - val_loss: 0.0076
+
+  0%|          | 1/1000 [06:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 79/100
+  0%|          | 1/1000 [06:42<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0113 - val_loss: 0.0090
+
+  0%|          | 1/1000 [06:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 80/100
+  0%|          | 1/1000 [06:46<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0135 - val_loss: 0.0062
+
+  0%|          | 1/1000 [06:50<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 81/100
+  0%|          | 1/1000 [06:50<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0110 - val_loss: 0.0087
+
+  0%|          | 1/1000 [06:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 82/100
+  0%|          | 1/1000 [06:55<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0106 - val_loss: 0.0075
+
+  0%|          | 1/1000 [06:59<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 83/100
+  0%|          | 1/1000 [06:59<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0123 - val_loss: 0.0073
+
+  0%|          | 1/1000 [07:04<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 84/100
+  0%|          | 1/1000 [07:04<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0115 - val_loss: 0.0066
+
+  0%|          | 1/1000 [07:09<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 85/100
+  0%|          | 1/1000 [07:09<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0107 - val_loss: 0.0067
+
+  0%|          | 1/1000 [07:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 86/100
+  0%|          | 1/1000 [07:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0092 - val_loss: 0.0079
+
+  0%|          | 1/1000 [07:18<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 87/100
+  0%|          | 1/1000 [07:18<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0085 - val_loss: 0.0078
+
+  0%|          | 1/1000 [07:22<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 88/100
+  0%|          | 1/1000 [07:22<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0120 - val_loss: 0.0077
+
+  0%|          | 1/1000 [07:26<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 89/100
+  0%|          | 1/1000 [07:26<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0091 - val_loss: 0.0075
+
+  0%|          | 1/1000 [07:30<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 90/100
+  0%|          | 1/1000 [07:30<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0101 - val_loss: 0.0068
+
+  0%|          | 1/1000 [07:34<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 91/100
+  0%|          | 1/1000 [07:34<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0111 - val_loss: 0.0062
+
+  0%|          | 1/1000 [07:39<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 92/100
+  0%|          | 1/1000 [07:39<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 5s - loss: 0.0129 - val_loss: 0.0051
+
+  0%|          | 1/1000 [07:43<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 93/100
+  0%|          | 1/1000 [07:43<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0113 - val_loss: 0.0070
+
+  0%|          | 1/1000 [07:48<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 94/100
+  0%|          | 1/1000 [07:48<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0071 - val_loss: 0.0069
+
+  0%|          | 1/1000 [07:52<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 95/100
+  0%|          | 1/1000 [07:52<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0068 - val_loss: 0.0081
+
+  0%|          | 1/1000 [07:56<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 96/100
+  0%|          | 1/1000 [07:56<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0110 - val_loss: 0.0073
+
+  0%|          | 1/1000 [08:01<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 97/100
+  0%|          | 1/1000 [08:01<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0099 - val_loss: 0.0082
+
+  0%|          | 1/1000 [08:05<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 98/100
+  0%|          | 1/1000 [08:05<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0082 - val_loss: 0.0074
+
+  0%|          | 1/1000 [08:09<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 99/100
+  0%|          | 1/1000 [08:09<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0129 - val_loss: 0.0066
+
+  0%|          | 1/1000 [08:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                  Epoch 100/100
+  0%|          | 1/1000 [08:13<16:18:47, 58.79s/it, best loss: 0.1312962882220745]                                                                                   - 4s - loss: 0.0108 - val_loss: 0.0069
+
+  0%|          | 1/1000 [08:18<16:18:47, 58.79s/it, best loss: 0.1312962882220745]  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      ****************
+  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      ****************
+  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Training with:
+  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      {'batch_size': 60, 'dense_layers': {'layers': 'one'}, 'epochs': 100, 'learning_rate': 9.333264506758917e-07, 'lstm1_dropouts': 0.9320815792493783, 'lstm1_nodes': 130, 'lstm_layers': {'layers': 'two', 'lstm2_dropouts': 0.551102678779041, 'lstm2_nodes': 30}, 'optimizer': 'sgd', 'time_steps': 30}
+  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Trying params:
+  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      {'batch_size': 60, 'dense_layers': {'layers': 'one'}, 'epochs': 100, 'learning_rate': 9.333264506758917e-07, 'lstm1_dropouts': 0.9320815792493783, 'lstm1_nodes': 130, 'lstm_layers': {'layers': 'two', 'lstm2_dropouts': 0.551102678779041, 'lstm2_nodes': 30}, 'optimizer': 'sgd', 'time_steps': 30}
+  0%|          | 2/1000 [08:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Train on 720 samples, validate on 180 samples
+  0%|          | 2/1000 [08:20<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 1/100
+  0%|          | 2/1000 [08:20<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 2s - loss: 0.2073 - val_loss: 0.1548
+
+  0%|          | 2/1000 [08:22<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 2/100
+  0%|          | 2/1000 [08:22<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2068 - val_loss: 0.1548
+
+  0%|          | 2/1000 [08:23<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 3/100
+  0%|          | 2/1000 [08:23<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2072 - val_loss: 0.1548
+
+  0%|          | 2/1000 [08:24<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 4/100
+  0%|          | 2/1000 [08:24<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2073 - val_loss: 0.1547
+
+  0%|          | 2/1000 [08:25<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 5/100
+  0%|          | 2/1000 [08:25<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2081 - val_loss: 0.1547
+
+  0%|          | 2/1000 [08:26<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 6/100
+  0%|          | 2/1000 [08:26<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2068 - val_loss: 0.1547
+
+  0%|          | 2/1000 [08:27<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 7/100
+  0%|          | 2/1000 [08:27<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1547
+
+  0%|          | 2/1000 [08:28<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 8/100
+  0%|          | 2/1000 [08:28<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2062 - val_loss: 0.1546
+
+  0%|          | 2/1000 [08:30<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 9/100
+  0%|          | 2/1000 [08:30<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2069 - val_loss: 0.1546
+
+  0%|          | 2/1000 [08:31<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 10/100
+  0%|          | 2/1000 [08:31<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2074 - val_loss: 0.1546
+
+  0%|          | 2/1000 [08:32<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 11/100
+  0%|          | 2/1000 [08:32<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2066 - val_loss: 0.1545
+
+  0%|          | 2/1000 [08:33<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 12/100
+  0%|          | 2/1000 [08:33<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2063 - val_loss: 0.1545
+
+  0%|          | 2/1000 [08:34<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 13/100
+  0%|          | 2/1000 [08:34<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2063 - val_loss: 0.1545
+
+  0%|          | 2/1000 [08:35<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 14/100
+  0%|          | 2/1000 [08:35<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2063 - val_loss: 0.1545
+
+  0%|          | 2/1000 [08:36<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 15/100
+  0%|          | 2/1000 [08:36<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2061 - val_loss: 0.1544
+
+  0%|          | 2/1000 [08:37<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 16/100
+  0%|          | 2/1000 [08:37<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2060 - val_loss: 0.1544
+
+  0%|          | 2/1000 [08:39<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 17/100
+  0%|          | 2/1000 [08:39<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2080 - val_loss: 0.1544
+
+  0%|          | 2/1000 [08:40<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 18/100
+  0%|          | 2/1000 [08:40<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2077 - val_loss: 0.1543
+
+  0%|          | 2/1000 [08:41<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 19/100
+  0%|          | 2/1000 [08:41<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2060 - val_loss: 0.1543
+
+  0%|          | 2/1000 [08:42<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 20/100
+  0%|          | 2/1000 [08:42<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2058 - val_loss: 0.1543
+
+  0%|          | 2/1000 [08:43<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 21/100
+  0%|          | 2/1000 [08:43<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1543
+
+  0%|          | 2/1000 [08:45<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 22/100
+  0%|          | 2/1000 [08:45<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2068 - val_loss: 0.1542
+
+  0%|          | 2/1000 [08:46<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 23/100
+  0%|          | 2/1000 [08:46<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2063 - val_loss: 0.1542
+
+  0%|          | 2/1000 [08:47<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 24/100
+  0%|          | 2/1000 [08:47<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2069 - val_loss: 0.1542
+
+  0%|          | 2/1000 [08:48<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 25/100
+  0%|          | 2/1000 [08:48<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1541
+
+  0%|          | 2/1000 [08:49<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 26/100
+  0%|          | 2/1000 [08:49<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2069 - val_loss: 0.1542
+
+  0%|          | 2/1000 [08:50<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 27/100
+  0%|          | 2/1000 [08:50<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2066 - val_loss: 0.1541
+
+  0%|          | 2/1000 [08:51<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 28/100
+  0%|          | 2/1000 [08:51<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2064 - val_loss: 0.1541
+
+  0%|          | 2/1000 [08:52<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 29/100
+  0%|          | 2/1000 [08:52<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2076 - val_loss: 0.1540
+
+  0%|          | 2/1000 [08:53<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 30/100
+  0%|          | 2/1000 [08:53<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2069 - val_loss: 0.1540
+
+  0%|          | 2/1000 [08:54<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 31/100
+  0%|          | 2/1000 [08:54<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2068 - val_loss: 0.1540
+
+  0%|          | 2/1000 [08:56<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 32/100
+  0%|          | 2/1000 [08:56<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2068 - val_loss: 0.1539
+
+  0%|          | 2/1000 [08:57<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 33/100
+  0%|          | 2/1000 [08:57<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2048 - val_loss: 0.1539
+
+  0%|          | 2/1000 [08:58<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 34/100
+  0%|          | 2/1000 [08:58<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2061 - val_loss: 0.1539
+
+  0%|          | 2/1000 [08:59<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 35/100
+  0%|          | 2/1000 [08:59<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1538
+
+  0%|          | 2/1000 [09:00<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 36/100
+  0%|          | 2/1000 [09:00<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2051 - val_loss: 0.1538
+
+  0%|          | 2/1000 [09:01<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 37/100
+  0%|          | 2/1000 [09:01<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1538
+
+  0%|          | 2/1000 [09:02<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 38/100
+  0%|          | 2/1000 [09:02<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2073 - val_loss: 0.1538
+
+  0%|          | 2/1000 [09:03<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 39/100
+  0%|          | 2/1000 [09:03<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2064 - val_loss: 0.1538
+
+  0%|          | 2/1000 [09:04<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 40/100
+  0%|          | 2/1000 [09:04<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2058 - val_loss: 0.1537
+
+  0%|          | 2/1000 [09:05<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 41/100
+  0%|          | 2/1000 [09:05<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1537
+
+  0%|          | 2/1000 [09:06<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 42/100
+  0%|          | 2/1000 [09:06<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2059 - val_loss: 0.1537
+
+  0%|          | 2/1000 [09:08<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 43/100
+  0%|          | 2/1000 [09:08<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2055 - val_loss: 0.1536
+
+  0%|          | 2/1000 [09:09<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 44/100
+  0%|          | 2/1000 [09:09<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2055 - val_loss: 0.1536
+
+  0%|          | 2/1000 [09:10<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 45/100
+  0%|          | 2/1000 [09:10<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2057 - val_loss: 0.1536
+
+  0%|          | 2/1000 [09:11<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 46/100
+  0%|          | 2/1000 [09:11<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2057 - val_loss: 0.1536
+
+  0%|          | 2/1000 [09:12<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 47/100
+  0%|          | 2/1000 [09:12<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2067 - val_loss: 0.1536
+
+  0%|          | 2/1000 [09:13<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 48/100
+  0%|          | 2/1000 [09:13<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2058 - val_loss: 0.1535
+
+  0%|          | 2/1000 [09:14<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 49/100
+  0%|          | 2/1000 [09:14<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2056 - val_loss: 0.1535
+
+  0%|          | 2/1000 [09:15<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 50/100
+  0%|          | 2/1000 [09:15<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2063 - val_loss: 0.1535
+
+  0%|          | 2/1000 [09:16<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 51/100
+  0%|          | 2/1000 [09:16<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2058 - val_loss: 0.1534
+
+  0%|          | 2/1000 [09:17<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 52/100
+  0%|          | 2/1000 [09:17<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2052 - val_loss: 0.1534
+
+  0%|          | 2/1000 [09:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 53/100
+  0%|          | 2/1000 [09:18<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2057 - val_loss: 0.1534
+
+  0%|          | 2/1000 [09:19<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 54/100
+  0%|          | 2/1000 [09:19<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1533
+
+  0%|          | 2/1000 [09:20<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 55/100
+  0%|          | 2/1000 [09:20<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2055 - val_loss: 0.1533
+
+  0%|          | 2/1000 [09:22<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 56/100
+  0%|          | 2/1000 [09:22<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2052 - val_loss: 0.1533
+
+  0%|          | 2/1000 [09:23<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 57/100
+  0%|          | 2/1000 [09:23<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2059 - val_loss: 0.1533
+
+  0%|          | 2/1000 [09:24<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 58/100
+  0%|          | 2/1000 [09:24<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2058 - val_loss: 0.1532
+
+  0%|          | 2/1000 [09:25<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 59/100
+  0%|          | 2/1000 [09:25<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2052 - val_loss: 0.1532
+
+  0%|          | 2/1000 [09:26<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 60/100
+  0%|          | 2/1000 [09:26<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2056 - val_loss: 0.1532
+
+  0%|          | 2/1000 [09:27<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 61/100
+  0%|          | 2/1000 [09:27<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2065 - val_loss: 0.1531
+
+  0%|          | 2/1000 [09:28<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 62/100
+  0%|          | 2/1000 [09:28<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2048 - val_loss: 0.1531
+
+  0%|          | 2/1000 [09:29<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 63/100
+  0%|          | 2/1000 [09:29<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2049 - val_loss: 0.1531
+
+  0%|          | 2/1000 [09:30<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 64/100
+  0%|          | 2/1000 [09:30<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2048 - val_loss: 0.1531
+
+  0%|          | 2/1000 [09:31<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 65/100
+  0%|          | 2/1000 [09:31<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2062 - val_loss: 0.1531
+
+  0%|          | 2/1000 [09:32<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 66/100
+  0%|          | 2/1000 [09:32<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2060 - val_loss: 0.1530
+
+  0%|          | 2/1000 [09:33<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 67/100
+  0%|          | 2/1000 [09:33<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2054 - val_loss: 0.1530
+
+  0%|          | 2/1000 [09:34<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 68/100
+  0%|          | 2/1000 [09:34<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2046 - val_loss: 0.1530
+
+  0%|          | 2/1000 [09:36<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 69/100
+  0%|          | 2/1000 [09:36<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2059 - val_loss: 0.1530
+
+  0%|          | 2/1000 [09:37<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 70/100
+  0%|          | 2/1000 [09:37<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2056 - val_loss: 0.1529
+
+  0%|          | 2/1000 [09:38<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 71/100
+  0%|          | 2/1000 [09:38<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2047 - val_loss: 0.1529
+
+  0%|          | 2/1000 [09:39<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 72/100
+  0%|          | 2/1000 [09:39<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2050 - val_loss: 0.1529
+
+  0%|          | 2/1000 [09:40<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 73/100
+  0%|          | 2/1000 [09:40<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2053 - val_loss: 0.1528
+
+  0%|          | 2/1000 [09:41<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 74/100
+  0%|          | 2/1000 [09:41<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2061 - val_loss: 0.1528
+
+  0%|          | 2/1000 [09:42<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 75/100
+  0%|          | 2/1000 [09:42<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2052 - val_loss: 0.1528
+
+  0%|          | 2/1000 [09:43<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 76/100
+  0%|          | 2/1000 [09:43<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2059 - val_loss: 0.1528
+
+  0%|          | 2/1000 [09:44<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 77/100
+  0%|          | 2/1000 [09:44<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2040 - val_loss: 0.1527
+
+  0%|          | 2/1000 [09:45<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 78/100
+  0%|          | 2/1000 [09:45<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2044 - val_loss: 0.1527
+
+  0%|          | 2/1000 [09:46<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 79/100
+  0%|          | 2/1000 [09:46<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2043 - val_loss: 0.1527
+
+  0%|          | 2/1000 [09:47<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 80/100
+  0%|          | 2/1000 [09:47<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2059 - val_loss: 0.1526
+
+  0%|          | 2/1000 [09:49<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 81/100
+  0%|          | 2/1000 [09:49<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2052 - val_loss: 0.1526
+
+  0%|          | 2/1000 [09:50<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 82/100
+  0%|          | 2/1000 [09:50<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2037 - val_loss: 0.1526
+
+  0%|          | 2/1000 [09:51<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 83/100
+  0%|          | 2/1000 [09:51<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2053 - val_loss: 0.1526
+
+  0%|          | 2/1000 [09:52<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 84/100
+  0%|          | 2/1000 [09:52<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2060 - val_loss: 0.1525
+
+  0%|          | 2/1000 [09:53<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 85/100
+  0%|          | 2/1000 [09:53<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2042 - val_loss: 0.1525
+
+  0%|          | 2/1000 [09:54<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 86/100
+  0%|          | 2/1000 [09:54<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2050 - val_loss: 0.1525
+
+  0%|          | 2/1000 [09:55<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 87/100
+  0%|          | 2/1000 [09:55<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2042 - val_loss: 0.1525
+
+  0%|          | 2/1000 [09:56<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 88/100
+  0%|          | 2/1000 [09:56<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2029 - val_loss: 0.1524
+
+  0%|          | 2/1000 [09:57<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 89/100
+  0%|          | 2/1000 [09:57<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2043 - val_loss: 0.1524
+
+  0%|          | 2/1000 [09:59<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 90/100
+  0%|          | 2/1000 [09:59<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2048 - val_loss: 0.1523
+
+  0%|          | 2/1000 [10:00<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 91/100
+  0%|          | 2/1000 [10:00<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2062 - val_loss: 0.1524
+
+  0%|          | 2/1000 [10:01<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 92/100
+  0%|          | 2/1000 [10:01<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2049 - val_loss: 0.1523
+
+  0%|          | 2/1000 [10:02<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 93/100
+  0%|          | 2/1000 [10:02<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2045 - val_loss: 0.1523
+
+  0%|          | 2/1000 [10:03<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 94/100
+  0%|          | 2/1000 [10:03<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2038 - val_loss: 0.1523
+
+  0%|          | 2/1000 [10:04<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 95/100
+  0%|          | 2/1000 [10:04<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2044 - val_loss: 0.1522
+
+  0%|          | 2/1000 [10:06<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 96/100
+  0%|          | 2/1000 [10:06<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2042 - val_loss: 0.1522
+
+  0%|          | 2/1000 [10:07<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 97/100
+  0%|          | 2/1000 [10:07<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2039 - val_loss: 0.1521
+
+  0%|          | 2/1000 [10:08<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 98/100
+  0%|          | 2/1000 [10:08<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2039 - val_loss: 0.1521
+
+  0%|          | 2/1000 [10:09<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 99/100
+  0%|          | 2/1000 [10:09<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2040 - val_loss: 0.1521
+
+  0%|          | 2/1000 [10:10<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 100/100
+  0%|          | 2/1000 [10:10<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.2054 - val_loss: 0.1521
+
+  0%|          | 2/1000 [10:11<47:56:30, 172.94s/it, best loss: 0.0006310006234950075]  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      ****************
+  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      ****************
+  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Training with:
+  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      {'batch_size': 70, 'dense_layers': {'layers': 'one'}, 'epochs': 50, 'learning_rate': 5.887660023923396e-05, 'lstm1_dropouts': 0.12496308946887336, 'lstm1_nodes': 70, 'lstm_layers': {'layers': 'one'}, 'optimizer': 'rms', 'time_steps': 90}
+  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Trying params:
+  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      {'batch_size': 70, 'dense_layers': {'layers': 'one'}, 'epochs': 50, 'learning_rate': 5.887660023923396e-05, 'lstm1_dropouts': 0.12496308946887336, 'lstm1_nodes': 70, 'lstm_layers': {'layers': 'one'}, 'optimizer': 'rms', 'time_steps': 90}
+  0%|          | 3/1000 [10:11<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Train on 630 samples, validate on 140 samples
+  0%|          | 3/1000 [10:12<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 1/50
+  0%|          | 3/1000 [10:12<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 2s - loss: 0.2081 - val_loss: 0.1339
+
+  0%|          | 3/1000 [10:14<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 2/50
+  0%|          | 3/1000 [10:14<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1968 - val_loss: 0.1261
+
+  0%|          | 3/1000 [10:15<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 3/50
+  0%|          | 3/1000 [10:15<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1866 - val_loss: 0.1173
+
+  0%|          | 3/1000 [10:16<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 4/50
+  0%|          | 3/1000 [10:16<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1745 - val_loss: 0.1064
+
+  0%|          | 3/1000 [10:17<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 5/50
+  0%|          | 3/1000 [10:17<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1607 - val_loss: 0.0939
+
+  0%|          | 3/1000 [10:18<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 6/50
+  0%|          | 3/1000 [10:18<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1454 - val_loss: 0.0794
+
+  0%|          | 3/1000 [10:19<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 7/50
+  0%|          | 3/1000 [10:19<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1273 - val_loss: 0.0633
+
+  0%|          | 3/1000 [10:20<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 8/50
+  0%|          | 3/1000 [10:20<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.1109 - val_loss: 0.0469
+
+  0%|          | 3/1000 [10:22<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 9/50
+  0%|          | 3/1000 [10:22<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0906 - val_loss: 0.0312
+
+  0%|          | 3/1000 [10:23<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 10/50
+  0%|          | 3/1000 [10:23<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0727 - val_loss: 0.0175
+
+  0%|          | 3/1000 [10:24<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 11/50
+  0%|          | 3/1000 [10:24<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0567 - val_loss: 0.0071
+
+  0%|          | 3/1000 [10:25<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 12/50
+  0%|          | 3/1000 [10:25<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0463 - val_loss: 0.0017
+
+  0%|          | 3/1000 [10:26<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 13/50
+  0%|          | 3/1000 [10:26<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0355 - val_loss: 5.2730e-04
+
+  0%|          | 3/1000 [10:27<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 14/50
+  0%|          | 3/1000 [10:27<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0316 - val_loss: 0.0021
+
+  0%|          | 3/1000 [10:28<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 15/50
+  0%|          | 3/1000 [10:28<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0282 - val_loss: 0.0046
+
+  0%|          | 3/1000 [10:29<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 16/50
+  0%|          | 3/1000 [10:29<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0273 - val_loss: 0.0070
+
+  0%|          | 3/1000 [10:30<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 17/50
+  0%|          | 3/1000 [10:30<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0268 - val_loss: 0.0081
+
+  0%|          | 3/1000 [10:31<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 18/50
+  0%|          | 3/1000 [10:31<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0266 - val_loss: 0.0084
+
+  0%|          | 3/1000 [10:32<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 19/50
+  0%|          | 3/1000 [10:32<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0266 - val_loss: 0.0088
+
+  0%|          | 3/1000 [10:33<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 20/50
+  0%|          | 3/1000 [10:33<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0266 - val_loss: 0.0093
+
+  0%|          | 3/1000 [10:34<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 21/50
+  0%|          | 3/1000 [10:34<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0266 - val_loss: 0.0092
+
+  0%|          | 3/1000 [10:35<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 22/50
+  0%|          | 3/1000 [10:35<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0265 - val_loss: 0.0082
+
+  0%|          | 3/1000 [10:37<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 23/50
+  0%|          | 3/1000 [10:37<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0265 - val_loss: 0.0081
+
+  0%|          | 3/1000 [10:38<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 24/50
+  0%|          | 3/1000 [10:38<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0264 - val_loss: 0.0083
+
+  0%|          | 3/1000 [10:39<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 25/50
+  0%|          | 3/1000 [10:39<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0264 - val_loss: 0.0078
+
+  0%|          | 3/1000 [10:40<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 26/50
+  0%|          | 3/1000 [10:40<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0263 - val_loss: 0.0067
+
+  0%|          | 3/1000 [10:41<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 27/50
+  0%|          | 3/1000 [10:41<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0262 - val_loss: 0.0067
+
+  0%|          | 3/1000 [10:42<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 28/50
+  0%|          | 3/1000 [10:42<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0260 - val_loss: 0.0055
+
+  0%|          | 3/1000 [10:43<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 29/50
+  0%|          | 3/1000 [10:43<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                       - 1s - loss: 0.0259 - val_loss: 0.0050
+
+  0%|          | 3/1000 [10:44<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]                                                                                      Epoch 30/50
+  0%|          | 3/1000 [10:44<42:57:03, 155.09s/it, best loss: 0.0006310006234950075]

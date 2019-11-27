@@ -31,7 +31,7 @@ def fetch_and_scale():
     intrinio = Intrinio()
     raw = intrinio.get_stock_prices('AAPL', '2016-01-01', '2019-01-01', 'daily')
     x_raw = [Normalizer.extract_data_tuple(s) for s in raw]
-    x_train, x_test = train_test_split(np.array(x_raw), train_size=0.8, test_size=0.2, shuffle=False)
+    x_train, x_test = train_test_split(np.array(x_raw), train_size=0.6, test_size=0.4, shuffle=False)
     scaler = MinMaxScaler().fit(x_raw)
 
     return scaler, scaler.transform(x_train), scaler.transform(x_test)

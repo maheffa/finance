@@ -5,7 +5,7 @@ import intrinio_sdk
 class Intrinio:
     page_size = 100
 
-    def __init__(self, key='OmY3OTBiYTU5ODc2ZmQ3MmNhYmZhZmVkNTVmMjIxZjc3'):  # standbox key
+    def __init__(self, key='OmY3OTBiYTU5ODc2ZmQ3MmNhYmZhZmVkNTVmMjIxZjc3'):  # sandbox key
         intrinio_sdk.ApiClient().configuration.api_key['api_key'] = os.getenv('INTRINIO_KEY', key)
         self.security_api = intrinio_sdk.SecurityApi()
         self.company_api = intrinio_sdk.CompanyApi()

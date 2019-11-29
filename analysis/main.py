@@ -1,16 +1,15 @@
+import copy
 import os
 import pickle
 import time
 
-from keras.callbacks import EarlyStopping, ModelCheckpoint, CSVLogger, Callback
-from keras.models import load_model
-from sklearn.metrics import mean_squared_error
-from matplotlib import pyplot as plt
-from hyperopt import Trials, STATUS_FAIL, tpe, fmin, hp, space_eval
+from keras.callbacks import CSVLogger, Callback, EarlyStopping
+from hyperopt import hp, Trials, fmin, tpe, space_eval
 
-from data import get_ready_data, trim, fetch_and_scale, build
+from constants import DEFAULT_TRAINING_PARAMS
+from data import fetch_and_scale, build
 from nn import build_model, train
-from normalizer import Normalizer
+from visual import plot_training, plot_best_model_prediction
 
 OUTPUT_PATH = './output/'
 best_model_path = os.path.join(OUTPUT_PATH, 'best_model.h5')
@@ -32,47 +31,6 @@ class LogMetrics(Callback):
         logs["combination_number"] = self.comb_no
 
 
-# def train(model, x_t, y_t, x_val, y_val, epochs=300, batch_size=30):
-#     es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=30, min_delta=0.0001)
-#     mcp = ModelCheckpoint(best_model_path, monitor='val_loss', verbose=1, save_best_only=True,
-#     save_weights_only=False)
-#     validation_data = (trim(x_val, batch_size), trim(y_val, batch_size))
-#
-#     return model.fit(x_t, y_t, epochs=epochs, verbose=2, batch_size=batch_size, shuffle=False,
-#                      validation_data=validation_data, callbacks=[es, mcp, csv_logger])
-
-
-def plot_training(history):
-    plt.figure()
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('Model loss')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
-    plt.savefig(os.path.join(OUTPUT_PATH, 'train_vis_BS_' + str() + "_" + time.ctime() + '.png'))
-
-
-def plot_best_model_prediction(scaler, model, x_test_t, y_test_t, batch_size):
-    x_test_t = trim(x_test_t, batch_size)
-    y_test_t = trim(y_test_t, batch_size)
-    y_pred = model.predict(x_test_t, batch_size=batch_size)
-    y_pred = y_pred.flatten()
-    y_pred_org = (y_pred * scaler.data_range_[Normalizer.prediction_tuple_index]) \
-                 + scaler.data_min_[Normalizer.prediction_tuple_index]
-    y_test_t_org = (y_test_t * scaler.data_range_[Normalizer.prediction_tuple_index]) \
-                   + scaler.data_min_[Normalizer.prediction_tuple_index]
-
-    plt.figure()
-    plt.plot(y_pred_org)
-    plt.plot(y_test_t_org)
-    plt.title('Prediction vs Real Stock Price')
-    plt.ylabel('Price')
-    plt.xlabel('Days')
-    plt.legend(['Prediction', 'Real'], loc='upper left')
-    plt.savefig(os.path.join(OUTPUT_PATH, 'pred_vs_real_BS' + str(batch_size) + "_" + time.ctime() + '.png'))
-
-
 def search():
     scaler, x_train, x_test = fetch_and_scale()
 
@@ -82,12 +40,15 @@ def search():
         print('Training with:')
         print(params)
         x_t, y_t, (x_val, _), (y_val, _) = build(x_train, x_test,
-                                                 params['batch_size'], params['time_steps'])
+                                                 params['batch_size'], params['time_steps'], params['n_days_pred'])
         model = build_model(x_t, params)
+        es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=30, min_delta=0.0001)
         return train(model, x_t, y_t, x_val, y_val, params,
-                     callbacks=[LogMetrics(search_space, params, -1), csv_logger])
+                     callbacks=[es, LogMetrics(search_space, params, -1), csv_logger])
 
     search_space = {
+        'n_days_pred': hp.uniformint('n_days_pred', 5, 30),
+        'rate_decay': hp.loguniform('rate_decay', -10, -5),
         'batch_size': hp.choice('bs', [30, 40, 50, 60, 70]),
         'time_steps': hp.choice('ts', [30, 60, 90]),
         'lstm1_nodes': hp.choice('lstm1_nodes', [70, 80, 100, 130]),
@@ -112,7 +73,7 @@ def search():
             }
         ]),
         "learning_rate": hp.loguniform('learning_rate', -15, -5),
-        "epochs": hp.choice('epochs', [50, 100]),
+        "epochs": hp.choice('epochs', [100]),
         "optimizer": hp.choice('optmz', ["sgd", "rms"])
     }
 
@@ -123,21 +84,44 @@ def search():
                       max_evals=1000,
                       trials=trials)
     best = space_eval(search_space, best_index)
-
-    pickle.dump(best, open(os.path.join(OUTPUT_PATH, "hyperopt_res"), "wb"))
+    pickle.dump(best, open(os.path.join(OUTPUT_PATH, "hyperopt_best")))
 
     print('********** BEST **********')
     print(best)
     print('**************************')
-    _, _, (_, x_test_t), (_, y_test_t) = build(x_train, x_test,
-                                               best['batch_size'], best['time_steps'])
-    best['epochs'] = 300
+    x, y, (x_val, x_test_t), (y_val, y_test_t) = build(x_train, x_test,
+                                                       best['batch_size'], best['time_steps'], best['n_days_pred'])
+    # best['epochs'] = 300
     trained_best = main(best)
     best_model = trained_best['model']
     best_history = trained_best['history']
-    plot_training(best_history)
-    plot_best_model_prediction(scaler, best_model, x_test_t, y_test_t, best['batch_size'])
+    plot_training(best_history, OUTPUT_PATH)
+    plot_best_model_prediction(scaler, best_model, x_test_t, y_test_t, best, OUTPUT_PATH, custom_name='Test')
+    plot_best_model_prediction(scaler, best_model, x, y, best, OUTPUT_PATH, custom_name='Training')
+    plot_best_model_prediction(scaler, best_model, x_val, y_val, best, OUTPUT_PATH, custom_name='Validation')
+
+
+def run(override_params=None):
+    params = copy.deepcopy(DEFAULT_TRAINING_PARAMS)
+    if override_params is not None:
+        for (key, value) in override_params:
+            params[key] = value
+
+    scaler, x_train, x_test = fetch_and_scale()
+    print('Training with:')
+    print(params)
+    x_t, y_t, (x_val, x_test_t), (y_val, y_test_t) = build(x_train, x_test,
+                                             params['batch_size'], params['time_steps'], params['n_days_pred'])
+    model = build_model(x_t, params)
+    es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=40, min_delta=0.0001)
+
+    res_train = train(model, x_t, y_t, x_val, y_val, params, callbacks=[es, csv_logger])
+    plot_training(res_train['history'], OUTPUT_PATH)
+    plot_best_model_prediction(scaler, model, x_test_t, y_test_t, params, OUTPUT_PATH, custom_name='Test')
+    # plot_best_model_prediction(scaler, model, x_t, y_t, params, OUTPUT_PATH, custom_name='Training')
+    plot_best_model_prediction(scaler, model, x_val, y_val, params, OUTPUT_PATH, custom_name='Validation')
 
 
 if __name__ == '__main__':
-    search()
+    run()
+    # search()

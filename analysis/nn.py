@@ -25,11 +25,11 @@ def build_model(x_t, params):
     if params["dense_layers"]["layers"] == 'two':
         lstm_model.add(Dense(params["dense_layers"]["dense2_nodes"], activation='relu'))
 
-    lstm_model.add(Dense(1, activation='sigmoid'))
+    lstm_model.add(Dense(params['n_days_pred'], activation='sigmoid'))
 
     lr = params["learning_rate"]
     if params["optimizer"] == 'rms':
-        optimizer = optimizers.RMSprop(lr=lr)
+        optimizer = optimizers.RMSprop(lr=lr, decay=0.1)
     else:
         optimizer = optimizers.SGD(lr=lr, decay=1e-6, momentum=0.9, nesterov=True)
 

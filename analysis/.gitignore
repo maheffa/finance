@@ -4,3 +4,4 @@ __pycache__
 .idea/analysis.iml .idea/dictionaries .idea/inspectionProfiles .idea/misc.xml .idea/modules.xml .idea/vcs.xml .idea/workspace.xml
 output
 *.db
+/output/

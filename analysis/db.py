@@ -1,31 +1,23 @@
 from datetime import datetime, timedelta
 from random import shuffle
 import sqlite3
+from data.model import TABLE_FETCH_LOG, TABLE_STOCK_INFO, STOCK_COLUMNS, TAG_COLUMNS
 
 DB_FILE = 'data.db'
-
-TABLE_NAME = 'stock_info'
 
 
 def to_db_date(d):
     return d.strftime('%Y-%m-%d 00:00:00')
 
 
-def quote(v):
-    return v
-
-
 class DB:
-    STOCK_COLUMNS = ('close', 'open', 'high', 'low', 'volume')
-    TAG_COLUMNS = ('pricetoearnings',)
-
     def __init__(self):
         self.conn = sqlite3.connect(DB_FILE)
         self._ensure_db()
 
     def _ensure_db(self):
         cur = self.conn.cursor()
-        columns = (*DB.STOCK_COLUMNS, *DB.TAG_COLUMNS)
+        columns = (*STOCK_COLUMNS, *TAG_COLUMNS)
         cur.executescript("""
             CREATE TABLE IF NOT EXISTS '{}' (
                 id INTEGER PRIMARY KEY,
@@ -45,7 +37,15 @@ class DB:
                 stock_exchange TEXT,
                 created DATETIME NOT NULL DEFAULT (datetime(CURRENT_TIMESTAMP, 'localtime'))
             );
-        """.format(TABLE_NAME, ', '.join([c + ' REAL' for c in columns])))
+            
+            CREATE TABLE IF NOT EXISTS '{}' (
+                id TEXT PRIMARY KEY,
+                {},
+            );
+        """.format(TABLE_STOCK_INFO,
+                   ', '.join([c + ' REAL' for c in columns]),
+                   TABLE_FETCH_LOG,
+                   ', '.join([c + ' TEXT' for c in columns])))
 
     def _find_ids(self, identifier, dates, conditions=None):
         ids = [-1 for _ in dates]
@@ -56,7 +56,7 @@ class DB:
             where_close += conditions
 
         c = self.conn.cursor()
-        for row in c.execute("SELECT id, date FROM {} WHERE {}".format(TABLE_NAME, ' AND '.join(where_close))):
+        for row in c.execute("SELECT id, date FROM {} WHERE {}".format(TABLE_STOCK_INFO, ' AND '.join(where_close))):
             if row[1] in date_to_index:
                 ids[date_to_index[row[1]]] = row[0]
 
@@ -64,30 +64,31 @@ class DB:
 
     def insert_or_update_stocks(self, identifier, stock_objects):
         ids = self._find_ids(identifier, [stock_object['date'] for stock_object in stock_objects])
-        to_insert_list = [(quote(to_db_date(stock_object['date'])), quote(identifier), *stock_object['value'])
+        to_insert_list = [(to_db_date(stock_object['date']), identifier, *stock_object['value'])
                           for (i, stock_object) in enumerate(stock_objects) if ids[i] == -1]
         to_update_list = [(*stock_object['value'], ids[i])
                           for (i, stock_object) in enumerate(stock_objects) if ids[i] != -1]
 
         print('Inserting {} elements'.format(len(to_insert_list)))
-        self.conn.executemany('INSERT INTO {}(date,identifier,close,open,high,low,volume) VALUES (?, ?, ?, ?, ?, ?, ?)'.format(TABLE_NAME), to_insert_list)
+        self.conn.executemany('INSERT INTO {}(date,identifier,close,open,high,low,volume) VALUES (?, ?, ?, ?, ?, ?, ?)'.format(
+            TABLE_STOCK_INFO), to_insert_list)
         self.conn.commit()
 
         print('Updating {} elements'.format(len(to_update_list)))
-        self.conn.executemany('UPDATE {} SET close=?,open=?,high=?,low=?,volume=? WHERE id=?'.format(TABLE_NAME), to_update_list)
+        self.conn.executemany('UPDATE {} SET close=?,open=?,high=?,low=?,volume=? WHERE id=?'.format(TABLE_STOCK_INFO), to_update_list)
         self.conn.commit()
 
     def insert_or_update_tag(self, identifier, tag, data):
         ids = self._find_ids(identifier, [d['date'] for d in data])
-        to_insert_list = [(quote(to_db_date(d['date'])), quote(identifier), d['value']) for (i, d) in enumerate(data) if ids[i] == -1]
+        to_insert_list = [(to_db_date(d['date']), identifier, d['value']) for (i, d) in enumerate(data) if ids[i] == -1]
         to_update_list = [(d['value'], ids[i]) for (i, d) in enumerate(data) if ids[i] != -1]
 
         print('Inserting {} elements'.format(len(to_insert_list)))
-        self.conn.executemany('INSERT INTO {}(date,identifier,{}) VALUES (?, ?, ?)'.format(TABLE_NAME, tag), to_insert_list)
+        self.conn.executemany('INSERT INTO {}(date,identifier,{}) VALUES (?, ?, ?)'.format(TABLE_STOCK_INFO, tag), to_insert_list)
         self.conn.commit()
 
         print('Updating {} elements'.format(len(to_update_list)))
-        self.conn.executemany('UPDATE {} SET {}=? WHERE id=?'.format(TABLE_NAME, tag), to_update_list)
+        self.conn.executemany('UPDATE {} SET {}=? WHERE id=?'.format(TABLE_STOCK_INFO, tag), to_update_list)
         self.conn.commit()
 
     def populate_stocks(self, intrinio, identifier, start_date, end_date):
@@ -125,5 +126,5 @@ class DB:
 
         for identifier in stock_identifiers:
             self.populate_stocks(intrinio, identifier, start_date, end_date)
-            for tag in DB.TAG_COLUMNS:
+            for tag in TAG_COLUMNS:
                 self.populate_tag(intrinio, identifier, tag, start_date, end_date)

@@ -49,17 +49,17 @@ class DB:
         )
         self.session.commit()
 
-    def insert_or_update_tag(self, identifier, tag, data):
+    def insert_or_update_tag(self, identifier, column, data):
         ids = self._find_ids(identifier, [d['date'] for d in data])
         self.session.bulk_update_mappings(
             StockInfo,
-            [{'id': ids[i], [tag]: d['value']} for (i, d) in enumerate(data) if ids[i] != -1]
+            [{'id': ids[i], [column]: d['value']} for (i, d) in enumerate(data) if ids[i] != -1]
         )
         self.session.bulk_insert_mappings(
             StockInfo,
             [{'identifier': identifier,
               'date': d['date'],
-              [tag]: d['value'],
+              [column]: d['value'],
               } for (i, d) in enumerate(data) if ids[i] == -1]
         )
         self.session.commit()

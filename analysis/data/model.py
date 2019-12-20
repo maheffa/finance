@@ -40,6 +40,7 @@ class StockInfo(Base):
     low = Column(Float)
     volume = Column(Float)
     pricetoearnings = Column(Float)
+    news = Column(String)
 
     uniq = UniqueConstraint('identifier', 'date')
 

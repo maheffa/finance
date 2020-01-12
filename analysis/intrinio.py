@@ -11,7 +11,7 @@ def retry_on_fail_api_call(api_call, retry=3, sleep_time=1):
             result = api_call()
             return result
         except ApiException:
-            print('Api Call failed. Sleeping {} sec'.format(sleep_time))
+            print('[Intrinio] Api Call failed. Sleeping {} sec'.format(sleep_time))
             time.sleep(sleep_time)
             n_call += 1
     return api_call()
@@ -32,7 +32,7 @@ def get_all_data(fetch, extract_list, extract_data, start_page='', ignore_date=F
     if not ignore_date:
         result.sort(key=lambda res: res['date'])
 
-    print('Total item fetched: ' + str(len(result)))
+    print('[Intrinio] Total item fetched: ' + str(len(result)))
     return result
 
 
@@ -48,27 +48,31 @@ def _find_next_common_indexes(common_date, raw_stocks, raw_tag_data, stock_index
     return stock_index, tag_data_index
 
 
+def fmt(date):
+    return date.strftime('%Y-%m-%d')
+
+
 class Intrinio:
     def __init__(self, key='OmY3OTBiYTU5ODc2ZmQ3MmNhYmZhZmVkNTVmMjIxZjc3'):  # sandbox key
         api_key = os.getenv('INTRINIO_KEY', key)
-        print('Using key: {}'.format(api_key))
+        print('[Intrinio] Using key: {}'.format(api_key))
         intrinio_sdk.ApiClient().configuration.api_key['api_key'] = api_key
         self.security_api = intrinio_sdk.SecurityApi()
         self.company_api = intrinio_sdk.CompanyApi()
         self.historical_data_api = intrinio_sdk.HistoricalDataApi()
 
     def get_stock_prices(self, identifier, start_date, end_date):
-        print('Fetching stock prices for ' + identifier + ', between ' + start_date + ' and ' + end_date)
+        print('[Intrinio] Fetching stock prices for ' + identifier + ', between ' + fmt(start_date) + ' and ' + fmt(end_date))
         return get_all_data(
-            lambda next_page: self.security_api.get_security_stock_prices(identifier, start_date=start_date,
-                                                                          end_date=end_date, frequency='daily',
+            lambda next_page: self.security_api.get_security_stock_prices(identifier, start_date=fmt(start_date),
+                                                                          end_date=fmt(end_date), frequency='daily',
                                                                           next_page=next_page),
             lambda stock: stock.stock_prices,
             lambda stock: [stock.close, stock.open, stock.low, stock.high, stock.volume]
         )
 
     def get_all_companies(self):
-        print('Fetching all companies')
+        print('[Intrinio] Fetching all companies')
         data = get_all_data(
             lambda next_page: self.company_api.get_all_companies(next_page=next_page),
             lambda response: response.companies,
@@ -81,7 +85,7 @@ class Intrinio:
         result = []
         n_companies = len(company_ids)
 
-        print('Got {} companies. Fetching extra info.'.format(n_companies))
+        print('[Intrinio] Got {} companies. Fetching extra info.'.format(n_companies))
         t = time.time()
         for company_id in company_ids:
             _s = self
@@ -89,16 +93,16 @@ class Intrinio:
             result.append((company_id, company.sector, company.industry_category, company.industry_group,
                            company.stock_exchange))
             if (time.time() - t) > 10:
-                print('Fetched {} out of {}'.format(len(result), n_companies))
+                print('[Intrinio] Fetched {} out of {}'.format(len(result), n_companies))
                 t = time.time()
 
         return result
 
     def get_data_by_tag(self, identifier, tag, start_date, end_date, map_value=None):
-        print('Fetching ' + tag + ' for ' + identifier + ', between ' + start_date + ' and ' + end_date)
+        print('[Intrinio] Fetching ' + tag + ' for ' + identifier + ', between ' + fmt(start_date) + ' and ' + fmt(end_date))
         result = get_all_data(
-            lambda next_page: self.historical_data_api.get_historical_data(identifier, tag, start_date=start_date,
-                                                                           end_date=end_date, frequency='daily',
+            lambda next_page: self.historical_data_api.get_historical_data(identifier, tag, start_date=fmt(start_date),
+                                                                           end_date=fmt(end_date), frequency='daily',
                                                                            next_page=next_page),
             lambda h_d: h_d.historical_data,
             lambda data: data.value,
@@ -113,7 +117,7 @@ class Intrinio:
         raw_stocks = self.get_stock_prices(identifier, start_date, end_date)
         raw_tag_data = [self.get_data_by_tag(identifier, tag, start_date, end_date) for tag in tags]
 
-        print('Total:')
+        print('[Intrinio] Total:')
         print(str(len(raw_stocks)) + ' stocks')
         for i in range(len(tags)):
             print(str(len(raw_tag_data[i])) + ' ' + tags[i])
@@ -122,8 +126,8 @@ class Intrinio:
         common_dates = sorted(list(set.intersection(*date_sets)))
         merged = []
 
-        print('Common date with all data present: ' + str(len(common_dates)))
-        print('Merging ...')
+        print('[Intrinio] Common date with all data present: ' + str(len(common_dates)))
+        print('[Intrinio] Merging ...')
 
         stock_index = 0
         tag_data_index = [0 for _ in tags]
@@ -134,6 +138,6 @@ class Intrinio:
             merged.append(raw_stocks[stock_index]['value'] + [raw_tag_data[i][tag_data_index[i]]['value'] for i in
                                                               range(len(tags))])
 
-        print('Merged')
+        print('[Intrinio] Merged')
 
         return merged

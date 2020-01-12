@@ -2,7 +2,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 
-from constants import CLOSE_PRICE_COLUMN, DATA_TAG_PRICE_TO_EARNINGS, IDENTIFIER, START_DATE, END_DATE, TRAIN_TEST_SPLIT
+from constants import DATA_TAG_PRICE_TO_EARNINGS, IDENTIFIER, START_DATE, END_DATE, TRAIN_TEST_SPLIT
+from data.model import StockInfo
 from intrinio import Intrinio
 
 
@@ -14,7 +15,7 @@ def build_series(mat, time_steps, n_days_prediction):
 
     for i in range(dim_0 - n_days_prediction):
         x[i] = mat[i:time_steps + i]
-        y[i] = mat[time_steps + i:time_steps + i + n_days_prediction, CLOSE_PRICE_COLUMN]
+        y[i] = mat[time_steps + i:time_steps + i + n_days_prediction, StockInfo.close_price_column]
 
     return x, y
 

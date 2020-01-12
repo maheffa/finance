@@ -4,8 +4,8 @@ import time
 import numpy as np
 from matplotlib import pyplot as plt
 
-from constants import CLOSE_PRICE_COLUMN
 from data import trim
+from data.model import StockInfo
 
 
 def plot_training(history, output_dir):
@@ -22,8 +22,8 @@ def plot_training(history, output_dir):
 
 def plot_best_model_prediction(scaler, model, x_test_t, y_test_t, params, output_dir, custom_name=''):
     def y_org(y):
-        y_scaled = (y * scaler.data_range_[CLOSE_PRICE_COLUMN])
-        return y_scaled + scaler.data_min_[CLOSE_PRICE_COLUMN]
+        y_scaled = (y * scaler.data_range_[StockInfo.close_price_column])
+        return y_scaled + scaler.data_min_[StockInfo.close_price_column]
 
     batch_size = params['batch_size']
     n_days_pred = params['n_days_pred']

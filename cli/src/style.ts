@@ -21,7 +21,6 @@ export const useStyles = (theme: Theme) => makeStyles(createStyles({
   },
   tableRow: {
     '&:hover': {
-      backgroundColor: theme.palette.primary.light,
       cursor: 'pointer',
     },
   },

@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Box, Grid, Button } from '@material-ui/core';
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Box, Grid, Button, TextField, MenuItem } from '@material-ui/core';
 import { ExportType } from '../constants';
 import { downloadCombinedFinanceCSV, downloadYnabCSV, importIntoCombined } from '../actions';
 import { TransactionLog, User, Transaction } from '../../../api/ynab';
 import { List } from 'immutable';
 import { useStyles } from '../../../style';
 import { ynabCli } from '../../../api/YnabClient';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import useTheme from '@material-ui/styles/useTheme/useTheme';
 import { useSnackbar } from 'notistack';
 
@@ -83,15 +81,17 @@ export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransact
         {
           exportType === ExportType.COMBINED_FINANCE ? (
             <Grid>
-              <Button
-                onClick={() => importIntoCombined(owner!, selectedTransactions, transactions)
-                  .then(res => enqueueSnackbar(successMessage(res), { variant: 'success' }))
-                  .catch(() => enqueueSnackbar('Something went wrong. Contact Jesus.', { variant: 'error' }))}
-                disabled={selectedCount === 0 || owner === undefined}
-                color="secondary" variant="outlined"
-              >
-                Import as Combined
-              </Button>
+              <Box ml={2}>
+                <Button
+                  onClick={() => importIntoCombined(owner!, selectedTransactions, transactions)
+                    .then(res => enqueueSnackbar(successMessage(res), { variant: 'success' }))
+                    .catch(() => enqueueSnackbar('Something went wrong. Contact Jesus.', { variant: 'error' }))}
+                  disabled={selectedCount === 0 || owner === undefined}
+                  color="secondary" variant="outlined"
+                >
+                  Import as Combined
+                </Button>
+              </Box>
             </Grid>
           ) : null
         }

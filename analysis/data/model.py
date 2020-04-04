@@ -1,4 +1,6 @@
-from sqlalchemy import Column, ForeignKey, Integer, Float, String, Date, UniqueConstraint
+import datetime
+
+from sqlalchemy import Column, ForeignKey, Integer, Float, String, Date, UniqueConstraint, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -48,6 +50,7 @@ class StockInfo(Base):
     low = Column(Float)
     volume = Column(Float)
     pricetoearnings = Column(Float)
+    news = Column(String)
 
     uniq = UniqueConstraint('identifier', 'date')
 
@@ -96,3 +99,17 @@ class Company(Base):
         self.id = id
         self.identifier = identifier
         self.name = name
+
+
+class FetchLog(Base):
+    __tablename__ = 'fetch_logs'
+
+    id = Column(Integer, primary_key=True)
+    identifier = Column(String(16), ForeignKey('stock_info.identifier'), nullable=False)
+    column_name = Column(String(255), nullable=False)
+    created = Column(DateTime, default=datetime.datetime.utcnow)
+
+    def __init__(self, identifier, column_name):
+        self.identifier = identifier
+        self.column_name = column_name
+

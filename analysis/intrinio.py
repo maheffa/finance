@@ -17,11 +17,20 @@ def retry_on_fail_api_call(api_call, retry=3, sleep_time=1):
     return api_call()
 
 
-def get_all_data(fetch, extract_list, extract_data, start_page='', ignore_date=False):
+def get_all_data(fetch, extract_list, extract_data, start_page='', ignore_date=False, limit=None):
+    """
+    Fetch then aggregate and transform data
+    :param fetch:  function to use to fetch the data. It should be able to receive next_page token
+    :param extract_list: build actual data list from the fetched result
+    :param extract_data: transform data from each element of the list
+    :param start_page: initial value to be passed as 'next_page'
+    :param ignore_date: recommended to be set to True if elements in extracted list does not contain a date
+    :return:
+    """
     result = []
     next_page = start_page
 
-    while next_page is not None:
+    while (next_page is not None) and (limit is None or len(result) < limit):
         fetched = retry_on_fail_api_call(lambda: fetch(next_page))
         if ignore_date:
             result += [extract_data(res) for res in extract_list(fetched)]
@@ -32,8 +41,8 @@ def get_all_data(fetch, extract_list, extract_data, start_page='', ignore_date=F
     if not ignore_date:
         result.sort(key=lambda res: res['date'])
 
-    print('[Intrinio] Total item fetched: ' + str(len(result)))
-    return result
+    print('Total item fetched: ' + str(len(result)))
+    return result if limit is None else result[:limit]
 
 
 # common_date is guaranteed to be found because:
@@ -112,6 +121,20 @@ class Intrinio:
             return result
 
         return [{'date': res['date'], 'value': map_value(res['value'])} for res in result]
+
+    def get_company_news(self, identifier):
+        print('Fetching news for ' + identifier)
+        result = get_all_data(
+            lambda next_page: self.company_api.get_company_news(identifier, next_page=next_page),
+            lambda fetched: [{'value': new.title, 'date': new.publication_date.strftime('%Y-%m-%d')} for new in fetched.news],
+            lambda data: data,
+            ignore_date=True,
+        )
+        aggregated = {}
+        for new in result:
+            aggregated[new['date']] = aggregated.get(new['date'], '') + '\n' + new['value']
+
+        return [{'value': new, 'date': date} for (date, new) in sorted(aggregated.items(), key=lambda agg: agg[0])]
 
     def fetch_and_merge(self, identifier, start_date, end_date, tags):
         raw_stocks = self.get_stock_prices(identifier, start_date, end_date)

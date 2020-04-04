@@ -54,14 +54,19 @@ class DB:
         self.session.bulk_save_objects(stocks)
         self.session.commit()
 
-    def insert_or_update_tag(self, identifier, tag, data):
-        stocks = self._find_stock(identifier, [d['date'] for d in data])
-        for i in range(len(stocks)):
-            tag_data = data[i]
-            stock = stocks[i] if stocks[i] is not None else StockInfo(identifier, tag_data['date'])
-            stock.set_tag(tag, tag_data['value'])
-            stocks[i] = stock
-        self.session.bulk_save_objects(stocks)
+    def insert_or_update_tag(self, identifier, column, data):
+        ids = self._find_ids(identifier, [d['date'] for d in data])
+        self.session.bulk_update_mappings(
+            StockInfo,
+            [{'id': ids[i], [column]: d['value']} for (i, d) in enumerate(data) if ids[i] != -1]
+        )
+        self.session.bulk_insert_mappings(
+            StockInfo,
+            [{'identifier': identifier,
+              'date': d['date'],
+              [column]: d['value'],
+              } for (i, d) in enumerate(data) if ids[i] == -1]
+        )
         self.session.commit()
 
     def populate_stocks(self, identifier, start_date, end_date):

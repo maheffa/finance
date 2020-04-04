@@ -43,6 +43,7 @@ export const ChartTransactions: React.FunctionComponent<IChartTransactionsProps>
   }));
   const allKeys = new Set(chartData.map(c => Object.keys(c.stacked)).flat(1));
 
+  // @ts-ignore
   return (
     <div>
       <div className={styles.switchRoot}>
@@ -66,9 +67,9 @@ export const ChartTransactions: React.FunctionComponent<IChartTransactionsProps>
         <CartesianGrid  strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip
-          formatter={(value: string, name: string) => [`${Number(value).toFixed(2)} \u20AC`, name]}
-        />
+        {/*
+         // @ts-ignore */}
+        <Tooltip formatter={(value: string, name: string) => [`${Number(value).toFixed(2)} \u20AC`, name]} />
         {groupBy === TransactionGrouping.BY_PAYEE ? null : <Legend />}
         {Array.from(allKeys).map((k: string, index: number) => (
           <Area

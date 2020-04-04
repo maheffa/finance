@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { Transaction } from '../../api/ynab';
-import { Paper, Table, TableRow, TableBody, TableHead, TableCell, LinearProgress, Theme, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
+import { IconButton, Paper, Table, TableRow, TableBody, TableHead, TableCell, LinearProgress, Theme, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import EditIcon from '@material-ui/icons/Edit';
 import { TransactionGrouping, groupKey, groupName } from './util';
 import { SelectInputProps } from '@material-ui/core/Select/SelectInput';
+import { EditTransactionModal } from './EditTransactionModal';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface IRawTransactions {
   loading: boolean;
   transactions: Transaction[];
+  replaceTransactions: (transactions: Transaction[]) => void;
 }
 
 interface IFilterProps {
@@ -59,7 +62,7 @@ const Filter: React.FunctionComponent<IFilterProps> = (props: IFilterProps) => {
   );
 };
 
-export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loading, transactions }) => {
+export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loading, transactions, replaceTransactions }) => {
   const classes = useStyles();
   const [payeeFilter, setPayeeFilter] = useState<string>('');
   const [userFilter, setUserFilter] = useState<string>('');
@@ -68,6 +71,9 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
     .filter((t: Transaction) => payeeFilter !== '' ? (groupKey[TransactionGrouping.BY_PAYEE](t) === payeeFilter) : true)
     .filter((t: Transaction) => userFilter !== '' ? (groupKey[TransactionGrouping.BY_USER](t) === userFilter) : true)
     .filter((t: Transaction) => categoryFilter !== '' ? (groupKey[TransactionGrouping.BY_MEMO](t) === categoryFilter) : true);
+
+  const [editTransaction, setEditTransaction] = useState<Transaction | undefined>(undefined);
+
   return (
     <div>
       {
@@ -78,6 +84,7 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
               <Filter transactions={transactions} by={TransactionGrouping.BY_MEMO} onChoice={setCategoryFilter} />
               <Filter transactions={transactions} by={TransactionGrouping.BY_PAYEE} onChoice={setPayeeFilter} />
               <Filter transactions={transactions} by={TransactionGrouping.BY_USER} onChoice={setUserFilter} />
+              <EditTransactionModal transaction={editTransaction} onClose={() => setEditTransaction(undefined)} onSaved={trans => replaceTransactions([trans])} />
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>
@@ -86,6 +93,7 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
                     <TableCell>Payee</TableCell>
                     <TableCell>Memo</TableCell>
                     <TableCell align="right">Amount</TableCell>
+                    <TableCell>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -96,6 +104,7 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
                       <TableCell>{transaction.payee.name}</TableCell>
                       <TableCell>{transaction.memo}</TableCell>
                       <TableCell align="right">{transaction.amount}</TableCell>
+                      <TableCell><IconButton onClick={() => setEditTransaction(transaction)}><EditIcon /></IconButton></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

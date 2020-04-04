@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
+
 @Configuration
 @EnableWebMvc
 class YnabConfig: WebMvcConfigurer {
@@ -31,4 +32,10 @@ class YnabConfig: WebMvcConfigurer {
                 .addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/spa/")
     }
+//
+//    override fun addCorsMappings(registry: CorsRegistry) {
+//        registry
+//            .addMapping("/**")
+//            .allowedOrigins("*")
+//    }
 }

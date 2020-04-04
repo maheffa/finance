@@ -7,6 +7,7 @@ import com.manitrarivo.ynab.data.db.Transaction
 import com.manitrarivo.ynab.data.db.TransactionRepository
 import com.manitrarivo.ynab.data.db.UserRepository
 import com.manitrarivo.ynab.data.request.TransactionsCreateRequest
+import com.manitrarivo.ynab.data.request.TransactionsUpdateRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
@@ -75,6 +76,40 @@ class TransactionController {
         }
 
         return transactionRepository.saveAll(transactions.asIterable()).toList()
+    }
+
+    @PostMapping("/update")
+    fun updateTransaction(@RequestBody request: TransactionsUpdateRequest): List<Transaction> {
+        val transactions = transactionRepository
+            .findAllById(request.transactions.map { it.id })
+            .map { it.id to it }
+            .toMap()
+        val users = userRepository
+            .findAllById(request.transactions.map { it.userId }.distinct())
+            .map { it.id to it }
+            .toMap()
+
+        val result = arrayListOf<Transaction>()
+
+        for (updateTransaction in request.transactions) {
+            transactions[updateTransaction.id]?.let { transactionObj ->
+                users[updateTransaction.userId]?.let { transactionObj.user = it }
+                updateTransaction.date?.let { transactionObj.date = it.atStartOfDay() }
+                updateTransaction.payee?.let {payeeName ->
+                    transactionObj.payee = payeeRepository
+                        .findByNameIgnoreCase(payeeName.trim()).toList()
+                        .getOrElse(0) { payeeRepository.save(Payee(payeeName.trim())) }
+                }
+                updateTransaction.memo?.let { transactionObj.memo = it }
+                updateTransaction.amount?.let { transactionObj.amount = it }
+
+                result.add(transactionObj)
+            }
+        }
+
+        transactionRepository.saveAll(result)
+
+        return result
     }
 
     @GetMapping("/all")

@@ -13,11 +13,11 @@ import javax.persistence.TemporalType
 
 @Entity
 class Transaction (
-    @Temporal(TemporalType.DATE) val date: LocalDateTime,
-    val memo: String,
-    val amount: Double,
-    @ManyToOne @JoinColumn(name = "user_id") val user: User?,
-    @ManyToOne @JoinColumn(name = "payee_id") val payee: Payee?
+    @Temporal(TemporalType.DATE) var date: LocalDateTime,
+    var memo: String,
+    var amount: Double,
+    @ManyToOne @JoinColumn(name = "user_id") var user: User?,
+    @ManyToOne @JoinColumn(name = "payee_id") var payee: Payee?
 ) {
     constructor(): this(LocalDateTime.now(), "<INVALID TRANSACTION>", 0.0, null, null)
 

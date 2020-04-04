@@ -1,6 +1,10 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.15.527 on 2019-11-11 22:59:11.
+// Generated using typescript-generator version 2.15.527 on 2020-04-04 00:11:26.
+
+export interface AuthRequest {
+  password: string;
+}
 
 export interface TransactionControllerKt {
 }
@@ -11,6 +15,10 @@ export interface Greeting {
 
 export interface TransactionsCreateRequest {
   transactions: TransactionCreateRequest[];
+}
+
+export interface TransactionsUpdateRequest {
+  transactions: TransactionUpdateRequest[];
 }
 
 export interface UserCreateRequest {
@@ -49,6 +57,15 @@ export interface TransactionCreateRequest {
   userId: number;
 }
 
+export interface TransactionUpdateRequest {
+  id: number;
+  userId: number;
+  date: [number, number, number];
+  payee: string;
+  memo: string;
+  amount: number;
+}
+
 export interface Payee {
   id: number;
   name: string;
@@ -62,6 +79,22 @@ export interface HttpClient {
 export class RestApplicationClient {
 
   constructor(protected httpClient: HttpClient) {
+  }
+
+  /**
+   * HTTP POST /0/auth
+   * Java method: com.manitrarivo.ynab.controllers.ApiController.auth
+   */
+  auth(request: AuthRequest): RestResponse<string> {
+    return this.httpClient.request({ method: "POST", url: uriEncoding`0/auth`, data: request });
+  }
+
+  /**
+   * HTTP GET /0/hello
+   * Java method: com.manitrarivo.ynab.controllers.ApiController.hello
+   */
+  hello(): RestResponse<Greeting> {
+    return this.httpClient.request({ method: "GET", url: uriEncoding`0/hello` });
   }
 
   /**
@@ -105,6 +138,14 @@ export class RestApplicationClient {
   }
 
   /**
+   * HTTP POST /api/transaction/update
+   * Java method: com.manitrarivo.ynab.controllers.TransactionController.updateTransaction
+   */
+  updateTransaction(request: TransactionsUpdateRequest): RestResponse<Transaction[]> {
+    return this.httpClient.request({ method: "POST", url: uriEncoding`api/transaction/update`, data: request });
+  }
+
+  /**
    * HTTP POST /api/user/create
    * Java method: com.manitrarivo.ynab.controllers.UserController.createUser
    */
@@ -118,14 +159,6 @@ export class RestApplicationClient {
    */
   getUsers(): RestResponse<User[]> {
     return this.httpClient.request({ method: "GET", url: uriEncoding`api/user/users` });
-  }
-
-  /**
-   * HTTP GET /hello
-   * Java method: com.manitrarivo.ynab.controllers.ApiController.hello
-   */
-  hello(): RestResponse<Greeting> {
-    return this.httpClient.request({ method: "GET", url: uriEncoding`hello` });
   }
 }
 

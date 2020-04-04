@@ -67,9 +67,9 @@ export const ChartTransactions: React.FunctionComponent<IChartTransactionsProps>
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip
-          formatter={(value, name) => [`${Number(value).toFixed(2)} \u20AC`, name]}
+          formatter={(value: string, name: string) => [`${Number(value).toFixed(2)} \u20AC`, name]}
         />
-        <Legend />
+        {groupBy === TransactionGrouping.BY_PAYEE ? null : <Legend />}
         {Array.from(allKeys).map((k: string, index: number) => (
           <Area
             key={k}

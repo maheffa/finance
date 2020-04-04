@@ -15,6 +15,7 @@ import { useQueryParam, DateParam } from 'use-query-params';
 import { TransactionGrouping } from './util';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup/ToggleButtonGroup';
 import ToggleButton from '@material-ui/lab/ToggleButton/ToggleButton';
+import { Map } from 'immutable';
 
 enum ViewType {
   RAW = 'RAW',
@@ -64,6 +65,11 @@ export const CombinedFinance: React.FunctionComponent = () => {
     ynabCli.allTransaction({ from, to }).then(setTransactions).finally(() => setLoading(false));
   };
 
+  const replaceTransactions = (updatedTransactions: Transaction[]) => {
+    const transMap = updatedTransactions.reduce((curMap, trans) => curMap.set(trans.id, trans), Map<number, Transaction>());
+    setTransactions(transactions.map(trans => transMap.get(trans.id) || trans));
+  };
+
   return (
     <div className={classes.root}>
       <Typography variant="h3" gutterBottom>
@@ -102,7 +108,7 @@ export const CombinedFinance: React.FunctionComponent = () => {
       </div>
       {
         viewType === ViewType.RAW
-          ? <RawTransactions loading={loading} transactions={transactions} />
+          ? <RawTransactions loading={loading} transactions={transactions} replaceTransactions={replaceTransactions} />
           : <ChartTransactions loading={loading} transactions={transactions} />
       }
     </div>

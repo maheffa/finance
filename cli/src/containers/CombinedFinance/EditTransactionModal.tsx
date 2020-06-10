@@ -17,6 +17,7 @@ interface IEditTransactionModalProps {
   transaction?: Transaction;
   onClose: () => void;
   onSaved: (savedTransaction: Transaction) => void;
+  onDeleted: (id: number) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -24,10 +25,13 @@ const useStyles = makeStyles((theme: Theme) =>
     input: {
       margin: theme.spacing(1),
     },
+    delete: {
+      marginRight: theme.spacing(6),
+    },
   })
 );
 
-export const EditTransactionModal: React.FunctionComponent<IEditTransactionModalProps> = ({ transaction, onClose, onSaved }) => {
+export const EditTransactionModal: React.FunctionComponent<IEditTransactionModalProps> = ({ transaction, onClose, onSaved, onDeleted }) => {
   const styles = useStyles();
   const [users, setUsers] = useState<User[]>([]);
   const [transactionUpdate, setTransactionUpdate] = useState<TransactionUpdateRequest>({
@@ -43,6 +47,13 @@ export const EditTransactionModal: React.FunctionComponent<IEditTransactionModal
     ynabCli
       .updateTransaction({ transactions: [transactionUpdate] })
       .then(res => onSaved(res[0]))
+      .then(onClose);
+  };
+
+  const handleDelete = () => {
+    ynabCli
+      .deleteTransaction({ transactions: [transactionUpdate.id] })
+      .then(res => onDeleted(res[0]))
       .then(onClose);
   };
 
@@ -105,10 +116,13 @@ export const EditTransactionModal: React.FunctionComponent<IEditTransactionModal
         />
       </DialogContent>
       <DialogActions>
+        <Button onClick={handleClose} color="secondary" variant="outlined" className={styles.delete}>
+          Delete
+        </Button>
         <Button onClick={handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleSave} color="primary">
+        <Button onClick={handleSave} color="primary" variant="contained">
           Save
         </Button>
       </DialogActions>

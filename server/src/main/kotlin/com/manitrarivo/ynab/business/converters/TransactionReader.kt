@@ -1,4 +1,4 @@
-package com.manitrarivo.ynab.converters
+package com.manitrarivo.ynab.business.converters
 
 abstract class TransactionReader<Transaction>(var curRow: Int, var maxRow: Int) {
     abstract fun getRowByIndex(index: Int): Transaction

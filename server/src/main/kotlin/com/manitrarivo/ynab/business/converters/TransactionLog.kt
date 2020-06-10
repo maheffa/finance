@@ -1,4 +1,4 @@
-package com.manitrarivo.ynab.converters
+package com.manitrarivo.ynab.business.converters
 
 import java.time.LocalDate
 

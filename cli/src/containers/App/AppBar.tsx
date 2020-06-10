@@ -1,9 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { IRouteInfos, IRouteInfo } from './constants';
+import { routes } from './constants';
 
-export const AppBar: React.FunctionComponent<{ routes: IRouteInfos }> = ({ routes }) => {
-  const rInfos: IRouteInfo[] = (Object.keys(routes).map(key => routes[key]));
+export const AppBar: React.FunctionComponent = () => {
   return (
     <div className="sidebar">
       <nav className="sidebar-nav">
@@ -11,8 +10,8 @@ export const AppBar: React.FunctionComponent<{ routes: IRouteInfos }> = ({ route
           <li className="nav-title">Finance Tool</li>
           <li className="nav-item">
             {
-              rInfos.map(rInfo => (
-                <NavLink key={rInfo.path} className="nav-link" exact={rInfo.path === '/'} to={rInfo.path}>{rInfo.title}</NavLink>
+              routes.map(route => (
+                <NavLink key={route.path} className="nav-link" exact={route.path === '/'} to={route.path}>{route.title}</NavLink>
               ))
             }
           </li>

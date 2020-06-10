@@ -11,11 +11,10 @@ import DateFnsUtils from '@date-io/date-fns';
 import moment from 'moment';
 import { DATE_FORMAT } from '../../constants';
 import { ChartTransactions } from './ChartTransactions';
-import { useQueryParam, DateParam } from 'use-query-params';
-import { TransactionGrouping } from './util';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup/ToggleButtonGroup';
 import ToggleButton from '@material-ui/lab/ToggleButton/ToggleButton';
 import { Map } from 'immutable';
+import { useUrlTimeRange } from '../hooks';
 
 enum ViewType {
   RAW = 'RAW',
@@ -47,23 +46,19 @@ const useStyles = () => makeStyles(
 export const CombinedFinance: React.FunctionComponent = () => {
   const classes = useStyles()();
   const [loading, setLoading] = useState<boolean>(false);
-  const [queryFrom, setQueryFrom] = useQueryParam('from', DateParam);
-  const [queryTo, setQueryTo] = useQueryParam('to', DateParam);
+  const [timeRange, setTimeRangeFrom, setTimeRangeTo] = useUrlTimeRange(90);
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [fromDate, setFromDate] = useState<Date>(queryFrom || moment().subtract(30, 'days').toDate());
-  const [toDate, setToDate] = useState<Date>(queryTo || new Date());
   const [viewType, setViewType] = useState<ViewType>(ViewType.RAW);
-  useEffect(() => {
-    setLoading(true);
-    ynabCli.allTransaction().then(setTransactions).finally(() => setLoading(false));
-  }, []);
 
   const fetch = () => {
     setLoading(true);
-    const from = moment(fromDate).format(DATE_FORMAT);
-    const to = moment(toDate).format(DATE_FORMAT);
-    ynabCli.allTransaction({ from, to }).then(setTransactions).finally(() => setLoading(false));
+    ynabCli
+      .allTransaction({ from: timeRange.fromFormatted, to: timeRange.toFormatted })
+      .then(setTransactions)
+      .finally(() => setLoading(false));
   };
+
+  useEffect(() => fetch(), []);
 
   const replaceTransactions = (updatedTransactions: Transaction[]) => {
     const transMap = updatedTransactions.reduce((curMap, trans) => curMap.set(trans.id, trans), Map<number, Transaction>());
@@ -82,19 +77,19 @@ export const CombinedFinance: React.FunctionComponent = () => {
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
           <KeyboardDatePicker
             variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-from" label="From"
-            value={fromDate} onChange={(date: Date | null) => { if (date) { setFromDate(date); setQueryFrom(date); }}}
+            value={timeRange.from} onChange={setTimeRangeFrom}
             KeyboardButtonProps={{ 'aria-label': 'change date' }}
             disableToolbar
           />
           <KeyboardDatePicker
             variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-to" label="To"
-            value={toDate} onChange={(date: Date | null) => { if (date) { setToDate(date); setQueryTo(date); }}}
+            value={timeRange.to} onChange={setTimeRangeTo}
             KeyboardButtonProps={{ 'aria-label': 'change date' }}
             disableToolbar
           />
         </MuiPickersUtilsProvider>
         <div className={classes.btnFilter}>
-          <Button onClick={() => fetch()} color="secondary" variant="outlined">
+          <Button onClick={() => fetch()} color="primary" variant="outlined">
             Show
           </Button>
         </div>

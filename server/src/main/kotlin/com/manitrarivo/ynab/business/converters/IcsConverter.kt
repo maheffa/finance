@@ -1,5 +1,7 @@
-package com.manitrarivo.ynab.converters
+package com.manitrarivo.ynab.business.converters
 
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.text.PDFTextStripper
 import java.io.InputStream
@@ -38,6 +40,7 @@ class IcsTransactionReader(inputStream: InputStream): TransactionReader<IcsTrans
 
 class IcsConverter: Converter<IcsTrans>() {
     val months = listOf("jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec")
+    private val log: Logger = LogManager.getLogger(IcsConverter::class)
 
     override fun getReader(inputStream: InputStream): TransactionReader<IcsTrans> = IcsTransactionReader(inputStream)
 

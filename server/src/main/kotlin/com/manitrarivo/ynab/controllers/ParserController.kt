@@ -1,9 +1,9 @@
 package com.manitrarivo.ynab.controllers
 
-import com.manitrarivo.ynab.converters.AbnConverter
-import com.manitrarivo.ynab.converters.IcsConverter
-import com.manitrarivo.ynab.converters.RevolutConverter
-import com.manitrarivo.ynab.converters.TransactionLog
+import com.manitrarivo.ynab.business.converters.AbnConverter
+import com.manitrarivo.ynab.business.converters.IcsConverter
+import com.manitrarivo.ynab.business.converters.RevolutConverter
+import com.manitrarivo.ynab.business.converters.TransactionLog
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping

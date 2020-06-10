@@ -14,10 +14,12 @@ class User(
     val name: String
 ) {
     constructor(): this("<INVALID USER>")
+    constructor(id: Int, name: String): this(name) {
+        this.id = id
+    }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0
+    var id: Int = 0
 
-    @CreationTimestamp
-    val created: LocalDateTime = LocalDateTime.now()
+    override fun toString() = this.name
 }

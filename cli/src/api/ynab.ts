@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.15.527 on 2020-04-04 00:11:26.
+// Generated using typescript-generator version 2.15.527 on 2020-06-04 20:16:24.
 
 export interface AuthRequest {
   password: string;
@@ -13,8 +13,17 @@ export interface Greeting {
   name: string;
 }
 
+export interface ProportionRequest {
+  proportions: Proportion[];
+  actionType: RequestAction;
+}
+
 export interface TransactionsCreateRequest {
   transactions: TransactionCreateRequest[];
+}
+
+export interface TransactionDeleteRequest {
+  transactions: number[];
 }
 
 export interface TransactionsUpdateRequest {
@@ -27,7 +36,6 @@ export interface UserCreateRequest {
 
 export interface User {
   id: number;
-  created: [number, number, number, number, number, number];
   name: string;
 }
 
@@ -37,6 +45,24 @@ export interface TransactionLog {
   payee: string;
   outFlow: number;
   inFlow: number;
+}
+
+export interface ProportionResponse {
+  user: User;
+  paid: number;
+  adjustment: number;
+  month: number;
+  year: number;
+  comp: number;
+  totalComp: number;
+}
+
+export interface Proportion {
+  id: number;
+  user: User;
+  month: number;
+  year: number;
+  amount: number;
 }
 
 export interface Transaction {
@@ -122,6 +148,30 @@ export class RestApplicationClient {
   }
 
   /**
+   * HTTP POST /api/proportion/action
+   * Java method: com.manitrarivo.ynab.controllers.ProportionController.proportionActionRequest
+   */
+  proportionActionRequest(proportionRequest: ProportionRequest): RestResponse<Proportion[]> {
+    return this.httpClient.request({ method: "POST", url: uriEncoding`api/proportion/action`, data: proportionRequest });
+  }
+
+  /**
+   * HTTP GET /api/proportion/details
+   * Java method: com.manitrarivo.ynab.controllers.ProportionController.detailedAdjustments
+   */
+  detailedAdjustments(queryParams?: { from?: string; to?: string; }): RestResponse<ProportionResponse[][]> {
+    return this.httpClient.request({ method: "GET", url: uriEncoding`api/proportion/details`, queryParams: queryParams });
+  }
+
+  /**
+   * HTTP GET /api/proportion/read
+   * Java method: com.manitrarivo.ynab.controllers.ProportionController.readProportions
+   */
+  readProportions(): RestResponse<Proportion[]> {
+    return this.httpClient.request({ method: "GET", url: uriEncoding`api/proportion/read` });
+  }
+
+  /**
    * HTTP GET /api/transaction/all
    * Java method: com.manitrarivo.ynab.controllers.TransactionController.allTransaction
    */
@@ -135,6 +185,14 @@ export class RestApplicationClient {
    */
   createTransaction(request: TransactionsCreateRequest): RestResponse<Transaction[]> {
     return this.httpClient.request({ method: "POST", url: uriEncoding`api/transaction/create`, data: request });
+  }
+
+  /**
+   * HTTP POST /api/transaction/delete
+   * Java method: com.manitrarivo.ynab.controllers.TransactionController.deleteTransaction
+   */
+  deleteTransaction(request: TransactionDeleteRequest): RestResponse<number[]> {
+    return this.httpClient.request({ method: "POST", url: uriEncoding`api/transaction/delete`, data: request });
   }
 
   /**
@@ -163,6 +221,8 @@ export class RestApplicationClient {
 }
 
 export type RestResponse<R> = Promise<R>;
+
+export type RequestAction = "CREATE" | "UPDATE" | "DELETE";
 
 function uriEncoding(template: TemplateStringsArray, ...substitutions: any[]): string {
   let result = "";

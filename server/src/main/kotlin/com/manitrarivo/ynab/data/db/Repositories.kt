@@ -11,4 +11,8 @@ public interface PayeeRepository: CrudRepository<Payee, Int> {
 
 public interface TransactionRepository: CrudRepository<Transaction, Int> {
     fun findAllByDateBetween(from: LocalDateTime, to: LocalDateTime): Iterable<Transaction>
+    fun findAllByDateBefore(to: LocalDateTime): Iterable<Transaction>
+    fun findAllByDateAfter(from: LocalDateTime): Iterable<Transaction>
 }
+
+public interface ProportionRepository: CrudRepository<Proportion, Int>

@@ -1,4 +1,4 @@
-package com.manitrarivo.ynab.converters
+package com.manitrarivo.ynab.business.converters
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook
 import org.apache.poi.ss.usermodel.Row

@@ -1,4 +1,4 @@
-package com.manitrarivo.ynab.converters
+package com.manitrarivo.ynab.business.converters
 
 enum class TransactionType {
     ABN,

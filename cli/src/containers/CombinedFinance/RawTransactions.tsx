@@ -84,7 +84,12 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
               <Filter transactions={transactions} by={TransactionGrouping.BY_MEMO} onChoice={setCategoryFilter} />
               <Filter transactions={transactions} by={TransactionGrouping.BY_PAYEE} onChoice={setPayeeFilter} />
               <Filter transactions={transactions} by={TransactionGrouping.BY_USER} onChoice={setUserFilter} />
-              <EditTransactionModal transaction={editTransaction} onClose={() => setEditTransaction(undefined)} onSaved={trans => replaceTransactions([trans])} />
+              <EditTransactionModal
+                transaction={editTransaction}
+                onClose={() => setEditTransaction(undefined)}
+                onSaved={trans => replaceTransactions([trans])}
+                onDeleted={id => ({})}
+              />
               <Table className={classes.table}>
                 <TableHead>
                   <TableRow>

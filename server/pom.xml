@@ -71,6 +71,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -174,7 +184,7 @@
                     <outputKind>module</outputKind>
                     <classPatterns>
                         <classPattern>com.manitrarivo.ynab.controllers.*</classPattern>
-<!--                        <classPattern>com.manitrarivo.ynab.converters.**</classPattern>-->
+<!--                        <classPattern>com.manitrarivo.ynab.business.converters.**</classPattern>-->
                     </classPatterns>
 <!--                    <excludeClasses>-->
                         <!-- The parser somehow fails. Probably because of the multipart upload -->

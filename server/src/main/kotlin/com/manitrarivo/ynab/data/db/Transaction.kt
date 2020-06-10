@@ -16,10 +16,10 @@ class Transaction (
     @Temporal(TemporalType.DATE) var date: LocalDateTime,
     var memo: String,
     var amount: Double,
-    @ManyToOne @JoinColumn(name = "user_id") var user: User?,
+    @ManyToOne @JoinColumn(name = "user_id") var user: User,
     @ManyToOne @JoinColumn(name = "payee_id") var payee: Payee?
 ) {
-    constructor(): this(LocalDateTime.now(), "<INVALID TRANSACTION>", 0.0, null, null)
+    constructor(): this(LocalDateTime.now(), "<INVALID TRANSACTION>", 0.0, User(), null)
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0

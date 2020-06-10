@@ -27,3 +27,7 @@ data class TransactionsCreateRequest(
 data class TransactionsUpdateRequest(
     val transactions: List<TransactionUpdateRequest>
 )
+
+data class TransactionDeleteRequest(
+    val transactions: List<Int>
+)

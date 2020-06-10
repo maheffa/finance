@@ -11,23 +11,22 @@ import useTheme from '@material-ui/styles/useTheme/useTheme';
 import { useSnackbar } from 'notistack';
 
 interface IExportProps {
-  selectedTransactions: List<boolean>;
   transactions: TransactionLog[];
 }
 
-const doExport = (exportType: ExportType, owner: string, selectedTransactions: List<boolean>, transactions: TransactionLog[]) =>
+const doExport = (exportType: ExportType, owner: string, transactions: TransactionLog[]) =>
   exportType === ExportType.COMBINED_FINANCE
-    ? downloadCombinedFinanceCSV(transactions, selectedTransactions, owner)
-    : downloadYnabCSV(transactions, selectedTransactions);
+    ? downloadCombinedFinanceCSV(transactions, owner)
+    : downloadYnabCSV(transactions);
 
 const successMessage = (createdTransactions: Transaction[]) => `Successfully imported ${createdTransactions.length} transactions`;
 
-export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransactions, transactions }) => {
+export const Export: React.FunctionComponent<IExportProps> = ({ transactions }) => {
   const classes = useStyles(useTheme())();
   const [users, setUsers] = useState<{ [key: number]: User }>({});
   const [owner, setOwner] = useState<number>();
   const [exportType, setExportType] = useState<ExportType>(ExportType.COMBINED_FINANCE);
-  const selectedCount = selectedTransactions.filter(v => v).size;
+  const selectedCount = transactions.length;
   const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
@@ -71,7 +70,7 @@ export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransact
       <Grid container>
         <Grid item>
           <Button
-            onClick={() => doExport(exportType, users[owner!].name , selectedTransactions, transactions)}
+            onClick={() => doExport(exportType, users[owner!].name, transactions)}
             disabled={selectedCount === 0}
             color="primary" variant="outlined"
           >
@@ -83,7 +82,7 @@ export const Export: React.FunctionComponent<IExportProps> = ({ selectedTransact
             <Grid>
               <Box ml={2}>
                 <Button
-                  onClick={() => importIntoCombined(owner!, selectedTransactions, transactions)
+                  onClick={() => importIntoCombined(owner!, transactions)
                     .then(res => enqueueSnackbar(successMessage(res), { variant: 'success' }))
                     .catch(() => enqueueSnackbar('Something went wrong. Contact Jesus.', { variant: 'error' }))}
                   disabled={selectedCount === 0 || owner === undefined}

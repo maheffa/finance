@@ -6,6 +6,7 @@ import com.manitrarivo.ynab.data.db.PayeeRepository
 import com.manitrarivo.ynab.data.db.Transaction
 import com.manitrarivo.ynab.data.db.TransactionRepository
 import com.manitrarivo.ynab.data.db.UserRepository
+import com.manitrarivo.ynab.data.request.TransactionDeleteRequest
 import com.manitrarivo.ynab.data.request.TransactionsCreateRequest
 import com.manitrarivo.ynab.data.request.TransactionsUpdateRequest
 import org.springframework.beans.factory.annotation.Autowired
@@ -111,6 +112,16 @@ class TransactionController {
 
         return result
     }
+
+    @PostMapping("/delete")
+    fun deleteTransaction(@RequestBody request: TransactionDeleteRequest): List<Int> {
+        val transactions = transactionRepository.findAllById(request.transactions)
+        val response = transactions.map { it.id }
+        transactionRepository.deleteAll(transactions)
+
+        return response;
+    }
+
 
     @GetMapping("/all")
     fun allTransaction(@RequestParam("from") from: String?, @RequestParam("to") to: String?): List<Transaction> {

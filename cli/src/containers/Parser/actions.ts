@@ -4,20 +4,13 @@ import { TransactionLog, TransactionCreateRequest } from '../../api/ynab';
 import { ynabCli } from '../../api/YnabClient';
 import { TransactionType } from './constants';
 
-const getFilteredTransactions = (transactions: TransactionLog[], selected: List<boolean>): List<TransactionLog> =>
-  selected
-    .map((isSelected, index) => isSelected ? transactions[index] : undefined)
-    .filter((transaction: TransactionLog | undefined): transaction is TransactionLog =>
-      transaction !== undefined);
-
 const downloadCSV = (
   transactions: TransactionLog[],
-  selected: List<boolean>,
   csvHeader: string,
   csvRowBuilder: (transaction: TransactionLog) => string,
   csvName: string
 ) => {
-  const csvRows = getFilteredTransactions(transactions, selected).map(csvRowBuilder).join('\n');
+  const csvRows = transactions.map(csvRowBuilder).join('\n');
   const encodedUri = encodeURI(`data:text/csv;charset=utf-8,${csvHeader}\n${csvRows}`);
   const link = document.createElement('a');
   link.setAttribute('href', encodedUri);
@@ -27,7 +20,7 @@ const downloadCSV = (
   link.click();
 };
 
-export const downloadCombinedFinanceCSV = (transactions: TransactionLog[], selected: List<boolean>, owner: string) => {
+export const downloadCombinedFinanceCSV = (transactions: TransactionLog[], owner: string) => {
   const csvRowBuilder = (transaction: TransactionLog) => {
     const date = moment()
       .year(transaction.date[0])
@@ -38,10 +31,10 @@ export const downloadCombinedFinanceCSV = (transactions: TransactionLog[], selec
     const amount = transaction.outFlow;
     return `${date}\t\t${description}\t${owner}\t${amount}`;
   };
-  return downloadCSV(transactions, selected, '', csvRowBuilder, `Combined Finance ${moment().format('lll')}`);
+  return downloadCSV(transactions, '', csvRowBuilder, `Combined Finance ${moment().format('lll')}`);
 };
 
-export const downloadYnabCSV = (transactions: TransactionLog[], selected: List<boolean>) => {
+export const downloadYnabCSV = (transactions: TransactionLog[]) => {
   const csvRowBuilder = (transaction: TransactionLog) => {
     const date = moment()
       .year(transaction.date[0])
@@ -50,11 +43,10 @@ export const downloadYnabCSV = (transactions: TransactionLog[], selected: List<b
       .format('DD/MM/YYYY');
     const outFlow = Math.round(transaction.outFlow);
     const inFlow = Math.round(transaction.inFlow);
-    return `${date},${transaction.payee},${transaction.memo},${outFlow},${inFlow}`;
+    return `"${date}","${transaction.payee}","${transaction.memo}","${outFlow}","${inFlow}"`;
   };
   return downloadCSV(
     transactions,
-    selected,
     'Date,Payee,Memo,Outflow,Inflow',
     csvRowBuilder,
     `Ynab ${moment().format('lll')}`
@@ -97,19 +89,14 @@ TransactionCreateRequest {
   userId: number;
 }
  */
-export const importIntoCombined = (userId: number, selectedTransactions: List<boolean>, transactions: TransactionLog[]) => {
+export const importIntoCombined = (userId: number, transactions: TransactionLog[]) => {
   return ynabCli.createTransaction({
-    transactions: selectedTransactions
-      .toArray()
-      .map((selected, index) => ({ transaction: transactions[index], selected }))
-      .filter(tr => tr.selected)
-      .map(tr => tr.transaction)
-      .map((transaction: TransactionLog): TransactionCreateRequest => ({
-        userId,
-        date: transaction.date,
-        payee: transaction.payee,
-        memo: transaction.memo,
-        amount: transaction.inFlow - transaction.outFlow,
-      })),
+    transactions: transactions.map((transaction: TransactionLog): TransactionCreateRequest => ({
+      userId,
+      date: transaction.date,
+      payee: transaction.payee,
+      memo: transaction.memo,
+      amount: transaction.inFlow - transaction.outFlow,
+    })),
   });
 };

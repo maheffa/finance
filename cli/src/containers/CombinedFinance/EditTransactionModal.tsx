@@ -1,17 +1,13 @@
 import * as React from 'react';
-import { Transaction, Payee, User, TransactionUpdateRequest } from '../../api/ynab';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  MenuItem,
-  DialogActions,
-  Button,
-  TextField,
-} from '@material-ui/core';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { useState, useEffect } from 'react';
+import moment from 'moment';
+import { Transaction, User, TransactionUpdateRequest } from '../../api/ynab';
+import { Dialog, DialogTitle, DialogContent, MenuItem, DialogActions, Button, TextField } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { ynabCli } from '../../api/YnabClient';
+import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
+import { DATE_FORMAT } from '../../constants';
+import DateFnsUtils from '@date-io/date-fns';
 
 interface IEditTransactionModalProps {
   transaction?: Transaction;
@@ -27,6 +23,9 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     delete: {
       marginRight: theme.spacing(6),
+    },
+    dateWrapper: {
+      marginTop: 8,
     },
   })
 );
@@ -86,13 +85,21 @@ export const EditTransactionModal: React.FunctionComponent<IEditTransactionModal
         >
           {users.map(u => <MenuItem key={u.id} value={u.id}>{u.name}</MenuItem>)}
         </TextField>
-        <TextField
-          className={styles.input}
-          label="Date"
-          type="text"
-          value={`${transactionUpdate.date[0]}-${transactionUpdate.date[1]}-${transactionUpdate.date[2]}`}
-          disabled
-        />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            className={styles.dateWrapper}
+            variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-from" label="From"
+            value={moment([transactionUpdate.date[0], transactionUpdate.date[1] - 1, transactionUpdate.date[2]]).format(DATE_FORMAT)}
+            onChange={(val: Date | null) => {
+              if (val !== null) {
+                setTransactionUpdate({ ...transactionUpdate, date: [val.getFullYear(), val.getMonth() + 1, val.getDate()] })
+              }
+            }}
+            KeyboardButtonProps={{ 'aria-label': 'change date' }}
+            autoOk
+            disableToolbar
+          />
+        </MuiPickersUtilsProvider>
         <TextField
           className={styles.input}
           label="Payee"

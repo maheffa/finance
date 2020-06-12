@@ -71,12 +71,14 @@ export const Adjustments: React.FunctionComponent = () => {
             variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-from" label="From"
             value={timeRange.from} onChange={setTimeRangeFrom}
             KeyboardButtonProps={{ 'aria-label': 'change date' }}
+            autoOk
             disableToolbar
           />
           <KeyboardDatePicker
             variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-to" label="To"
             value={timeRange.to} onChange={setTimeRangeTo}
             KeyboardButtonProps={{ 'aria-label': 'change date' }}
+            autoOk
             disableToolbar
           />
         </MuiPickersUtilsProvider>

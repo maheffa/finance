@@ -8,8 +8,6 @@ import makeStyles from '@material-ui/styles/makeStyles/makeStyles';
 import { RawTransactions } from './RawTransactions';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
-import moment from 'moment';
-import { DATE_FORMAT } from '../../constants';
 import { ChartTransactions } from './ChartTransactions';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup/ToggleButtonGroup';
 import ToggleButton from '@material-ui/lab/ToggleButton/ToggleButton';
@@ -79,12 +77,14 @@ export const CombinedFinance: React.FunctionComponent = () => {
             variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-from" label="From"
             value={timeRange.from} onChange={setTimeRangeFrom}
             KeyboardButtonProps={{ 'aria-label': 'change date' }}
+            autoOk
             disableToolbar
           />
           <KeyboardDatePicker
             variant="inline" format="dd/MM/yyyy" margin="normal" id="date-picker-to" label="To"
             value={timeRange.to} onChange={setTimeRangeTo}
             KeyboardButtonProps={{ 'aria-label': 'change date' }}
+            autoOk
             disableToolbar
           />
         </MuiPickersUtilsProvider>

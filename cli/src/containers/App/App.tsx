@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Parser } from '../Parser/Parser';
 import { AppBar } from './AppBar';
 import { Route } from 'react-router';
-import { CombinedFinance } from '../CombinedFinance/CombinedFinance';
 import { routes } from './constants';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import { colors, Container, Box } from '@material-ui/core';

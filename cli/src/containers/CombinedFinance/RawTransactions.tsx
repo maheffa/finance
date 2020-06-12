@@ -90,7 +90,7 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
                 onSaved={trans => replaceTransactions([trans])}
                 onDeleted={id => ({})}
               />
-              <Table className={classes.table}>
+              <Table className={classes.table} size="small">
                 <TableHead>
                   <TableRow>
                     <TableCell>Date</TableCell>

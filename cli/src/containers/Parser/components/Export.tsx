@@ -1,10 +1,20 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Box, Grid, Button, TextField, MenuItem } from '@material-ui/core';
+import {
+  FormControl,
+  FormLabel,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Box,
+  Grid,
+  Button,
+  TextField,
+  MenuItem,
+} from '@material-ui/core';
 import { ExportType } from '../constants';
 import { downloadCombinedFinanceCSV, downloadYnabCSV, importIntoCombined } from '../actions';
 import { TransactionLog, User, Transaction } from '../../../api/ynab';
-import { List } from 'immutable';
 import { useStyles } from '../../../style';
 import { ynabCli } from '../../../api/YnabClient';
 import useTheme from '@material-ui/styles/useTheme/useTheme';
@@ -14,10 +24,17 @@ interface IExportProps {
   transactions: TransactionLog[];
 }
 
-const doExport = (exportType: ExportType, owner: string, transactions: TransactionLog[]) =>
-  exportType === ExportType.COMBINED_FINANCE
-    ? downloadCombinedFinanceCSV(transactions, owner)
-    : downloadYnabCSV(transactions);
+const doExport = (exportType: ExportType, owner: string | undefined, transactions: TransactionLog[]) => {
+  if (exportType === ExportType.COMBINED_FINANCE) {
+    if (owner) {
+      return downloadCombinedFinanceCSV(transactions, owner);
+    } else {
+      throw new Error('Cannot export to combined without owner');
+    }
+  } else {
+    return downloadYnabCSV(transactions);
+  }
+};
 
 const successMessage = (createdTransactions: Transaction[]) => `Successfully imported ${createdTransactions.length} transactions`;
 
@@ -71,7 +88,7 @@ export const Export: React.FunctionComponent<IExportProps> = ({ transactions }) 
         <Grid item>
           <Button
             onClick={() => doExport(exportType, users[owner!].name, transactions)}
-            disabled={selectedCount === 0}
+            disabled={selectedCount === 0 || (exportType === ExportType.COMBINED_FINANCE && !users[owner!])}
             color="primary" variant="outlined"
           >
             Export to CSV

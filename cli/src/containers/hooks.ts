@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import moment from 'moment';
 import { DATE_FORMAT } from '../constants';
 import { List } from 'immutable';
+import { AES, enc } from 'crypto-js';
 
 export interface ITimeRange {
   from: Date;
@@ -56,5 +57,19 @@ export function useTableData<T>(initialRows: List<T>, initialConfig?: ITableData
     setRows,
     comparator => setConfig({ ...config, comparator }),
     filter => setConfig({ ...config, filter }),
+  ];
+}
+
+export function useIsAuthorized(): [boolean, (val: string) => void] {
+  const key = 'TGlmZSB';
+  const cypherKey = 'VjIweGMyUldiRmhPVjNCaFZWUXdPUVptbHVZVzVqWl=';
+  const alphaPart = 'Zmlf';
+  const [pass, setPass] = useState(AES.decrypt(localStorage.getItem(key) || '', cypherKey).toString(enc.Utf8));
+  return [
+    pass === atob(alphaPart) + moment().date(),
+    (newPass: string) => {
+      localStorage.setItem(key, AES.encrypt(newPass, cypherKey).toString());
+      setPass(newPass);
+    },
   ];
 }

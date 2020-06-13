@@ -4,9 +4,11 @@ import { AppBar } from './AppBar';
 import { Route } from 'react-router';
 import { routes } from './constants';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import { colors, Container, Box } from '@material-ui/core';
+import { colors, Container, Box, Modal, TextField } from '@material-ui/core';
 import ThemeProvider from '@material-ui/styles/ThemeProvider/ThemeProvider';
 import { SnackbarProvider } from 'notistack';
+import { useIsAuthorized } from '../hooks';
+import { Auth } from './Auth';
 
 const theme = createMuiTheme({
   palette: {
@@ -16,6 +18,13 @@ const theme = createMuiTheme({
 });
 
 export const App: React.FunctionComponent = () => {
+  const [isAuthorized, setPass] = useIsAuthorized();
+
+  console.dir(process.env);
+  if (!isAuthorized) {
+    return <Auth setPass={setPass} />;
+  }
+
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>

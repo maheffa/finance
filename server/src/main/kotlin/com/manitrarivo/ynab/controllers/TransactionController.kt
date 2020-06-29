@@ -131,6 +131,6 @@ class TransactionController {
         return transactionRepository.findAllByDateBetween(
             parseDate(from, monthAgo),
             parseDate(to, now)
-        ).toList()
+        ).toList().sortedBy { it.date }
     }
 }

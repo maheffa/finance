@@ -20,7 +20,6 @@ const theme = createMuiTheme({
 export const App: React.FunctionComponent = () => {
   const [isAuthorized, setPass] = useIsAuthorized();
 
-  console.dir(process.env);
   if (!isAuthorized) {
     return <Auth setPass={setPass} />;
   }

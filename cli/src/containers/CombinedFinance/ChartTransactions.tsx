@@ -38,7 +38,7 @@ export const ChartTransactions: React.FunctionComponent<IChartTransactionsProps>
   }
 
   const chartData: Array<{ name: string, stacked: IStackedGroup }> = groupTransactions(transactions).map(g => ({
-    name: moment([g.year, g.month]).format('MMM YYYY'),
+    name: moment([g.year, g.month - 1]).format('MMM YYYY'),
     stacked: stackGroup(g, groupBy),
   }));
   const allKeys = new Set(chartData.map(c => Object.keys(c.stacked)).flat(1));

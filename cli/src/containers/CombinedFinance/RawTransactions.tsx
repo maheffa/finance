@@ -196,7 +196,7 @@ export const RawTransactions: React.FunctionComponent<IRawTransactions> = ({ loa
                       <TableCell>{transaction.user.name}</TableCell>
                       <TableCell>{transaction.payee.name}</TableCell>
                       <TableCell>{transaction.memo}</TableCell>
-                      <TableCell align="right">{transaction.amount.toFixed(2)}</TableCell>
+                      <TableCell align="right">{-transaction.amount.toFixed(2)}</TableCell>
                       <TableCell><IconButton onClick={() => setEditTransaction(transaction)}><EditIcon /></IconButton></TableCell>
                     </TableRow>
                   ))}

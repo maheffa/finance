@@ -23,7 +23,7 @@ const stripId = (idTrans: IdentifiableTransactionLog): TransactionLog => {
   return trans;
 };
 
-const usePoolSelect = (ids: string[]): [{[index: string]: boolean }, number, (i: string, v: boolean) => void] => {
+const usePoolSelect = (ids: string[]): [{[index: string]: boolean }, number, (i: string, v: boolean) => void, () => void] => {
   const [idMap, setIdMap] = useState<{[index: string]: boolean }>(ids.reduce((prev, nextId) => ({ ...prev, [nextId]: false }), {}));
   const [idPool, setIdPool] = useState(new Set(ids));
 
@@ -34,6 +34,20 @@ const usePoolSelect = (ids: string[]): [{[index: string]: boolean }, number, (i:
       setIdPool(idPool.add(idToSet));
       return setIdMap({ ...idMap, [idToSet]: value })
     },
+    () => {
+      let allSelected = true;
+      const newIdMap: Record<string, boolean> = {};
+      for (const entityId of idPool) {
+        if (!idMap[entityId]) {
+          allSelected = false;
+          break;
+        }
+      }
+      for (const entityId of idPool) {
+        newIdMap[entityId] = !allSelected;
+      }
+      setIdMap(newIdMap);
+    },
   ];
 };
 
@@ -41,9 +55,10 @@ export const Content: React.FunctionComponent<IContentProps> = props => {
   const classes = useStyles(useTheme())();
   const [transactions, setTransactions, setComparator, setFilter] = useTableData<IdentifiableTransactionLog>(
     List(props.transactions.map(transaction => ({ ...transaction, id: id() }))),
-    { identifier: t => { console.log('BBB'); return t.id } }
+    { identifier: t => t.id }
   );
-  const [selected, selectedCount, setSelected] = usePoolSelect(transactions.map(t => t.id).toArray());
+  const [selected, selectedCount, setSelected, toggleAll] = usePoolSelect(transactions.map(t => t.id).toArray());
+  // console.log(`selected count ${selectedCount}, transaction size = ${transactions.size}`);
 
   return (
     <Box>
@@ -57,7 +72,7 @@ export const Content: React.FunctionComponent<IContentProps> = props => {
             <TableCell padding="checkbox">
               <Checkbox
                 checked={selectedCount === transactions.size}
-                onChange={() => transactions.forEach(t => setSelected(t.id, selectedCount !== transactions.size))}
+                onChange={() => toggleAll()}
               />
             </TableCell>
             <TableCell align="center">Date</TableCell>

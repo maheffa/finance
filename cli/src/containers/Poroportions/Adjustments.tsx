@@ -90,7 +90,7 @@ export const Adjustments: React.FunctionComponent = () => {
         {
           proportionResponses.map(proportionResponse => {
             const total = proportionResponse.reduce((sum, next) => sum + next.paid, 0);
-            const month = moment({ month: proportionResponse[0]?.month + 1, year: proportionResponse[0]?.year }).format('MMMM YYYY');
+            const month = moment({ month: proportionResponse[0]?.month - 1, year: proportionResponse[0]?.year }).format('MMMM YYYY');
             return (
               <Card className={styles.card}>
                 <CardContent>

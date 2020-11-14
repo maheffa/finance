@@ -40,7 +40,6 @@ class IcsTransactionReader(inputStream: InputStream): TransactionReader<IcsTrans
 
 class IcsConverter: Converter<IcsTrans>() {
     val months = listOf("jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec")
-    private val log: Logger = LogManager.getLogger(IcsConverter::class)
 
     override fun getReader(inputStream: InputStream): TransactionReader<IcsTrans> = IcsTransactionReader(inputStream)
 
@@ -49,15 +48,19 @@ class IcsConverter: Converter<IcsTrans>() {
             .withMonth(months.indexOf(transaction.month) + 1)
 
     override fun getPayee(transaction: IcsTrans): String {
+        val desc = transaction.desc.toLowerCase()
         return when {
-            transaction.desc.startsWith("REVOLUT") -> "to Revolut"
-            transaction.desc.startsWith("UBER") -> "Uber"
-            transaction.desc.startsWith("IDEAL BETALING") -> "from Daily Checking"
+            desc.startsWith("revolut") -> "to Revolut"
+            desc.startsWith("ideal betaling") -> "from Daily Checking"
+            desc.contains("uber") && desc.contains("eats") -> "Uber Eats"
+            desc.contains("uber") && desc.contains("trip") -> "Uber Trip"
+            desc.contains("youtube") -> "Youtube"
+            desc.startsWith("google") -> cleanUp(desc).toUpperCase()
             else -> ""
         }
     }
 
-    override fun getMemo(transaction: IcsTrans) = if (this.getPayee(transaction) == "") transaction.desc else ""
+    override fun getMemo(transaction: IcsTrans) = if (this.getPayee(transaction) == "") cleanUp(transaction.desc) else ""
 
     override fun getInflow(transaction: IcsTrans) = if (transaction.amount > 0.0) transaction.amount else 0.0
 

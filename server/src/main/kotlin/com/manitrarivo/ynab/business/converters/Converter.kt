@@ -30,4 +30,6 @@ abstract class Converter<Transaction> {
 
         return logs
     }
+
+    fun cleanUp(str: String) = Regex("[^A-Za-z0-9 ]").replace(str, "")
 }

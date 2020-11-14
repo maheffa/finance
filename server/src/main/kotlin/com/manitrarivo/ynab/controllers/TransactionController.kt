@@ -122,7 +122,6 @@ class TransactionController {
         return response;
     }
 
-
     @GetMapping("/all")
     fun allTransaction(@RequestParam("from") from: String?, @RequestParam("to") to: String?): List<Transaction> {
         val now = LocalDateTime.now()

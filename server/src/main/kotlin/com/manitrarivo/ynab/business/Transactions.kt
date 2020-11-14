@@ -40,3 +40,10 @@ fun calculateProportion(users: List<User>, proportions: List<Proportion>, transa
 
     return result
 }
+
+fun findDuplicates(transactions: List<Transaction>): List<List<Transaction>> {
+    return transactions
+        .groupBy { it.hashCode() }
+        .values
+        .filter { it.size > 1 }
+}

@@ -11,7 +11,10 @@ data class Payee(
     @Column(name = "name", nullable = false) val name: String
 ) {
     constructor(): this("<INVALID PAYEE>")
+    constructor(id: Int, name: String): this(name) {
+        this.id = id
+    }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Int = 0
+    var id: Int = 0
 }

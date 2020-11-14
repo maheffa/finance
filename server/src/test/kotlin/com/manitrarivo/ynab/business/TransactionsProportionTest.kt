@@ -9,7 +9,7 @@ import org.junit.Before
 import org.junit.Test
 import java.time.LocalDateTime
 
-class TransactionsKtTest {
+class TransactionsProportionTest {
     lateinit var user1: User
     lateinit var user2: User
 

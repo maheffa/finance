@@ -1,7 +1,5 @@
 package com.manitrarivo.ynab.business.converters
 
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.text.PDFTextStripper
 import java.io.InputStream
@@ -25,7 +23,7 @@ class IcsTransactionReader(inputStream: InputStream): TransactionReader<IcsTrans
                             groups[1].toInt(),
                             groups[2],
                             groups[3].trim(),
-                            parseDouble(groups[4]
+                            parseAmount(groups[4]
                                     .replace(".", "")
                                     .replace(",", ".")
                             ) * (if (groups[5] == "Bij") 1.0 else -1.0)

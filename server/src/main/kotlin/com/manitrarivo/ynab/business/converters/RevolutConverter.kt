@@ -1,18 +1,16 @@
 package com.manitrarivo.ynab.business.converters
 
 import java.io.InputStream
-import java.lang.Math.round
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
-import java.util.*
 
-fun parseDouble(value: String): Double {
-    val trimmed = value.trim()
+fun parseAmount(value: String): Double {
+    val trimmed = if (value.startsWith("\"") && value.endsWith("\"")) value.substring(IntRange(1, value.length - 2)) else value
     val decimal = trimmed.takeLast(3)
+
     return when {
-        decimal.isEmpty() || decimal.isBlank() -> 0.0
+        trimmed.isEmpty() || trimmed.isBlank() ->  0.0
         // 1,000.00 or 100.00
         decimal[0] == '.' -> trimmed.replace(",", "").toDouble()
         // 1.000,00 or 100,00
@@ -22,28 +20,22 @@ fun parseDouble(value: String): Double {
     }
 }
 
-fun isVaultSavingRow(row: String) = row.contains("Invisible Saving") || row.contains("Boatin-drakitra")
 
 class RevolutTransactionReader(inputStream: InputStream) : TransactionReader<List<String>>(0, 0) {
     private val rows: List<String>
 
+    companion object {
+        val DELIMITER = " , "
+    }
+
     init {
         val content = String(inputStream.readAllBytes())
-        val raw = content.split("\\n".toRegex())
-        val filteredRows = raw.filter { !isVaultSavingRow(it) && it.trim().isNotEmpty() }.toMutableList()
-        val savings = raw.filter { isVaultSavingRow(it) }
-        val totalSaving = savings
-                .map { parseDouble(it.split(";")[2]) }
-                .sum()
-        val lastRow: String = SimpleDateFormat("MMMM d").format(Date()) +
-                ";Vault Saving;" + round(totalSaving).toString() + ";;"
-        filteredRows.add(lastRow)
-        rows = filteredRows.filter { it.split(";").isNotEmpty() }
+        rows = content.split("\\n".toRegex())
         this.maxRow = rows.size
         this.curRow = 1
     }
 
-    override fun getRowByIndex(index: Int) = this.rows[index].split(";")
+    override fun getRowByIndex(index: Int) = this.rows[index].split(DELIMITER).map { it.trim() }
 }
 
 class RevolutConverter: Converter<List<String>>() {
@@ -52,34 +44,39 @@ class RevolutConverter: Converter<List<String>>() {
     override fun getDate(transaction: List<String>): LocalDate {
         try {
             return LocalDate.parse(
-                transaction[0].trim() + ", " + LocalDate.now().year.toString(),
+                transaction[0] + ", " + LocalDate.now().year.toString(),
                 DateTimeFormatter.ofPattern("MMMM d, yyyy")
             )
         } catch(e: DateTimeParseException) {
             return LocalDate.parse(
-                transaction[0].trim(),
+                transaction[0],
                 DateTimeFormatter.ofPattern("d MMM yyy")
             )
         }
     }
 
     override fun getPayee(transaction: List<String>): String {
-        val payee = transaction[1].trim()
+        val payee = transaction[1]
+        val payeeLowercase = payee.toLowerCase()
 
         // TODO:
         // 1- Transform "Exchange EUR to  FX Rate €1 = US$123.456789" to "to Revolut Portfolio"
         // 2- Transform "Patreon Membership FX Rate €1 = US$123.456789" to "Patreon Membership"
-        // 3- Transform "You Need A Budget FX Rate €1 = US$1.0967" to "You Need A Budget"
-        // Or, case 2 & 3 can be generalized.
         // Do mention in the memo what's the exchange rate is.
-        return when {
-            payee.startsWith("Google") -> "Google"
-            payee.startsWith("Amzn") || payee.contains("Amazon") -> "Amazon"
-            payee.startsWith("Audible") -> "Audible"
 
-            payee.contains("Booking.com") -> "Booking.com"
-            payee.contains("Linode") -> "Linode"
-            payee.contains("Top-Up by") -> "from ICS"
+        return when {
+            payeeLowercase.startsWith("google") -> "Google"
+            payeeLowercase.startsWith("amzn") || payee.contains("Amazon") -> "Amazon"
+            payeeLowercase.startsWith("audible") -> "Audible"
+
+            payeeLowercase.contains("booking.com") -> "Booking.com"
+            payeeLowercase.contains("linode") -> "Linode"
+            payeeLowercase.contains("top-up by") -> "from ICS"
+
+            payeeLowercase.startsWith("bought eth with eur") || payeeLowercase.startsWith("bought btc with eur") -> "Crypto Purchase"
+            payeeLowercase.startsWith("sold eth to eur") || payeeLowercase.startsWith("sold btc to eur") -> "Crypto Sale"
+
+            payeeLowercase.startsWith("patreon membership") -> "Patreon Membership"
 
             payee == "Payment from Am Manitrarivo" -> "from Daily checking"
 
@@ -87,7 +84,7 @@ class RevolutConverter: Converter<List<String>>() {
         }
     }
 
-    override fun getInflow(transaction: List<String>) = parseDouble(transaction[3])
+    override fun getInflow(transaction: List<String>) = parseAmount(transaction[3])
 
-    override fun getOutflow(transaction: List<String>) = parseDouble(transaction[2])
+    override fun getOutflow(transaction: List<String>) = parseAmount(transaction[2])
 }
